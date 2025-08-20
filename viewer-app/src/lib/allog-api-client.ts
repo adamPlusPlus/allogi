@@ -137,16 +137,26 @@ class AllogApiClientImpl implements AllogApiClient {
 
   // Compatibility shims for UI/tests that expect these helpers
   async getRecursiveLogs(): Promise<AllogLogEntry[]> {
-    // For now, same as getLogs
-    return this.getLogs();
+    // Get recursive logs from the dedicated endpoint
+    const res = await fetch(`${this.serverUrl}/api/logs/recursive`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.logs || [];
   }
 
   async getRecursiveLogsStats(): Promise<any> {
-    const stats = await this.getStats();
+    const recursiveLogs = await this.getRecursiveLogs();
     return {
-      totalRecursiveLogs: stats.totalLogs,
-      byScript: stats.byScript,
-      byLevel: stats.byLevel
+      totalRecursiveLogs: recursiveLogs.length,
+      byScript: recursiveLogs.reduce((acc: Record<string, number>, l) => {
+        const k = l.scriptId || 'unknown';
+        acc[k] = (acc[k] || 0) + 1;
+        return acc;
+      }, {}),
+      byLevel: recursiveLogs.reduce((acc: Record<string, number>, l) => {
+        acc[l.level] = (acc[l.level] || 0) + 1;
+        return acc;
+      }, {})
     };
   }
 

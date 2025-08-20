@@ -1,0 +1,1926 @@
+{
+  "timestamp": "2025-08-20T20:49:09.018Z",
+  "logs": [
+    {
+      "id": "log_1755722888962_7y3y8k13i",
+      "timestamp": "2025-08-20T20:48:08.962Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "server_startup",
+      "message": "Allog Intermediary Server started successfully",
+      "data": {
+        "port": 3002,
+        "viewerPort": 3001,
+        "config": {
+          "maxLogs": 10000,
+          "enableWebSocket": true,
+          "enablePersistence": true
+        }
+      }
+    },
+    {
+      "id": "log_1755722896933_w6wkw1h4z",
+      "timestamp": "2025-08-20T20:48:16.933Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs/recursive - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs/recursive",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:16.933Z"
+      }
+    },
+    {
+      "id": "log_1755722896937_fe5kk8i0o",
+      "timestamp": "2025-08-20T20:48:16.937Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs/recursive - 200 (4ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs/recursive",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 4,
+        "timestamp": "2025-08-20T20:48:16.937Z"
+      }
+    },
+    {
+      "id": "metrics_1755722898966_ujc2zr6fk",
+      "timestamp": "2025-08-20T20:48:18.966Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 1 requests, avg 4ms response time",
+      "data": {
+        "requests": {
+          "total": 1,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 1
+          }
+        },
+        "response": {
+          "average": 4,
+          "percentiles": {
+            "p50": 4,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722896938,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 4,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722898967_9a8pyp524",
+      "timestamp": "2025-08-20T20:48:18.967Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 1 requests, avg 4ms response time",
+      "data": {
+        "requests": {
+          "total": 1,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 1
+          }
+        },
+        "response": {
+          "average": 4,
+          "percentiles": {
+            "p50": 4,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722896938,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 4,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722898970_d5cto8r9e",
+      "timestamp": "2025-08-20T20:48:18.970Z",
+      "level": "warn",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: Memory usage: 83%",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 83%",
+        "details": {
+          "heapUsed": "8.13 MB",
+          "heapTotal": "9.74 MB",
+          "heapPercent": 83.42,
+          "external": "2.21 MB",
+          "rss": "46.43 MB"
+        }
+      }
+    },
+    {
+      "id": "health_1755722898970_vmst7se2b",
+      "timestamp": "2025-08-20T20:48:18.970Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: WebSocket: 0 active, 0 stale",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale",
+        "details": {
+          "total": 0,
+          "active": 0,
+          "stale": 0,
+          "activePercent": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722898970_s8fw1wyqm",
+      "timestamp": "2025-08-20T20:48:18.970Z",
+      "level": "error",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: Rate limiting not available",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available",
+        "details": {
+          "reason": "Rate limiting map not available"
+        }
+      }
+    },
+    {
+      "id": "health_1755722898971_ukcn7bfqt",
+      "timestamp": "2025-08-20T20:48:18.971Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Log Rotation: Log rotation disabled",
+      "data": {
+        "component": "log_rotation",
+        "status": "healthy",
+        "message": "Log rotation disabled",
+        "details": {
+          "reason": "Log rotation is not enabled"
+        }
+      }
+    },
+    {
+      "id": "health_1755722898972_lss1fwnuq",
+      "timestamp": "2025-08-20T20:48:18.972Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Archive System: Archive system: 1 files, 252 B",
+      "data": {
+        "component": "archives",
+        "status": "healthy",
+        "message": "Archive system: 1 files, 252 B",
+        "details": {
+          "archiveCount": 1,
+          "maxArchives": 30,
+          "totalSize": "252 B",
+          "directory": "C:\\Project\\allogi\\server\\archives",
+          "recentArchives": [
+            "allog-archive-20250817.json"
+          ]
+        }
+      }
+    },
+    {
+      "id": "health_1755722898972_lh3h87wk9",
+      "timestamp": "2025-08-20T20:48:18.972Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Database Connection: Database responsive (4ms)",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (4ms)",
+        "details": {
+          "responseTime": 4,
+          "type": "file",
+          "logsCount": 0,
+          "monitoringCount": 0,
+          "sourcesCount": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722898974_sukpvk8t4",
+      "timestamp": "2025-08-20T20:48:18.974Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "File System: File system accessible",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible",
+        "details": {
+          "uploads": {
+            "path": "C:\\Project\\allogi\\server\\uploads",
+            "exists": true,
+            "writable": true,
+            "size": 0
+          },
+          "archives": {
+            "path": "C:\\Project\\allogi\\server\\archives",
+            "exists": true,
+            "writable": true,
+            "size": 0
+          },
+          "dataFile": {
+            "path": "C:\\Project\\allogi\\server\\allog-data.json",
+            "exists": true,
+            "size": 100
+          }
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722903957_dnsewizeh",
+      "timestamp": "2025-08-20T20:48:23.957Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722903960_r530pshl8",
+      "timestamp": "2025-08-20T20:48:23.960Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "log_1755722904557_d8rbw2lc0",
+      "timestamp": "2025-08-20T20:48:24.557Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:24.557Z"
+      }
+    },
+    {
+      "id": "log_1755722904558_box8u2fl6",
+      "timestamp": "2025-08-20T20:48:24.558Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - 200 (1ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 1,
+        "timestamp": "2025-08-20T20:48:24.558Z"
+      }
+    },
+    {
+      "id": "log_1755722907055_nghwrd9hy",
+      "timestamp": "2025-08-20T20:48:27.055Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:27.055Z"
+      }
+    },
+    {
+      "id": "log_1755722907057_bhwfjehqt",
+      "timestamp": "2025-08-20T20:48:27.057Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - 200 (2ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 2,
+        "timestamp": "2025-08-20T20:48:27.057Z"
+      }
+    },
+    {
+      "id": "metrics_1755722908980_jwr9773u2",
+      "timestamp": "2025-08-20T20:48:28.980Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 3 requests, avg 2ms response time",
+      "data": {
+        "requests": {
+          "total": 3,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            },
+            "/api/logs": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 3
+          }
+        },
+        "response": {
+          "average": 2,
+          "percentiles": {
+            "p50": 2,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722896938,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 4,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722904559,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722907057,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722908981_ti5e6o0d8",
+      "timestamp": "2025-08-20T20:48:28.981Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 3 requests, avg 2ms response time",
+      "data": {
+        "requests": {
+          "total": 3,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            },
+            "/api/logs": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 3
+          }
+        },
+        "response": {
+          "average": 2,
+          "percentiles": {
+            "p50": 2,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722896938,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 4,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722904559,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722907057,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "log_1755722914135_n72pnbbod",
+      "timestamp": "2025-08-20T20:48:34.135Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /health - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/health",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:34.135Z"
+      }
+    },
+    {
+      "id": "log_1755722914136_br0dyge0x",
+      "timestamp": "2025-08-20T20:48:34.136Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /health - 200 (1ms)",
+      "data": {
+        "method": "GET",
+        "url": "/health",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 1,
+        "timestamp": "2025-08-20T20:48:34.136Z"
+      }
+    },
+    {
+      "id": "log_1755722917643_0egtqm4jn",
+      "timestamp": "2025-08-20T20:48:37.643Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs/recursive - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs/recursive",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:37.643Z"
+      }
+    },
+    {
+      "id": "log_1755722917644_hbxwgsj9f",
+      "timestamp": "2025-08-20T20:48:37.644Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs/recursive - 200 (1ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs/recursive",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 1,
+        "timestamp": "2025-08-20T20:48:37.644Z"
+      }
+    },
+    {
+      "id": "metrics_1755722918964_4ojh13aya",
+      "timestamp": "2025-08-20T20:48:38.964Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "System metrics: 8MB RAM, 32 cores, uptime 1m",
+      "data": {
+        "memory": {
+          "process": "8MB / 11MB",
+          "system": "46901MB / 130993MB"
+        },
+        "cpu": {
+          "cores": 32,
+          "load": 0,
+          "architecture": "x64"
+        },
+        "uptime": {
+          "server": 1,
+          "process": 1
+        },
+        "network": 5
+      }
+    },
+    {
+      "id": "metrics_1755722918966_56a7zu8kf",
+      "timestamp": "2025-08-20T20:48:38.966Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722918967_d3b4e7rqc",
+      "timestamp": "2025-08-20T20:48:38.967Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722918973_a6lob7qux",
+      "timestamp": "2025-08-20T20:48:38.973Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "System metrics: 9MB RAM, 32 cores, uptime 1m",
+      "data": {
+        "memory": {
+          "process": "9MB / 11MB",
+          "system": "46899MB / 130993MB"
+        },
+        "cpu": {
+          "cores": 32,
+          "load": 0,
+          "architecture": "x64"
+        },
+        "uptime": {
+          "server": 1,
+          "process": 1
+        },
+        "network": 5
+      }
+    },
+    {
+      "id": "metrics_1755722918984_n1cf0pj91",
+      "timestamp": "2025-08-20T20:48:38.984Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 6 requests, avg 2ms response time",
+      "data": {
+        "requests": {
+          "total": 6,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 5,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 2,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722904559,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722907057,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722914136,
+              "endpoint": "/health",
+              "method": "GET",
+              "sourceId": "health_check",
+              "responseTime": 0,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722914136,
+              "endpoint": "/health",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722918985_lo7pjsrr1",
+      "timestamp": "2025-08-20T20:48:38.985Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 6 requests, avg 2ms response time",
+      "data": {
+        "requests": {
+          "total": 6,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 5,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 2,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722904559,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722907057,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722914136,
+              "endpoint": "/health",
+              "method": "GET",
+              "sourceId": "health_check",
+              "responseTime": 0,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722914136,
+              "endpoint": "/health",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722918986_cmkvqwvb2",
+      "timestamp": "2025-08-20T20:48:38.986Z",
+      "level": "warn",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: Memory usage: 83%",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 83%",
+        "details": {
+          "heapUsed": "8.94 MB",
+          "heapTotal": "10.74 MB",
+          "heapPercent": 83.19,
+          "external": "2.4 MB",
+          "rss": "49.5 MB"
+        }
+      }
+    },
+    {
+      "id": "health_1755722918986_naxlz142l",
+      "timestamp": "2025-08-20T20:48:38.986Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: WebSocket: 0 active, 0 stale",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale",
+        "details": {
+          "total": 0,
+          "active": 0,
+          "stale": 0,
+          "activePercent": 0
+        }
+      }
+    },
+    {
+      "id": "log_1755722921541_0jlnngvg1",
+      "timestamp": "2025-08-20T20:48:41.541Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:41.541Z"
+      }
+    },
+    {
+      "id": "log_1755722921542_eqyco7734",
+      "timestamp": "2025-08-20T20:48:41.542Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - 200 (1ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 1,
+        "timestamp": "2025-08-20T20:48:41.542Z"
+      }
+    },
+    {
+      "id": "log_1755722925434_kabycda1f",
+      "timestamp": "2025-08-20T20:48:45.434Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:45.434Z"
+      }
+    },
+    {
+      "id": "log_1755722925435_bsws8k880",
+      "timestamp": "2025-08-20T20:48:45.435Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - 200 (1ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 1,
+        "timestamp": "2025-08-20T20:48:45.435Z"
+      }
+    },
+    {
+      "id": "log_1755722928485_wge13il2b",
+      "timestamp": "2025-08-20T20:48:48.485Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:48.485Z"
+      }
+    },
+    {
+      "id": "log_1755722928486_zqxutdkw7",
+      "timestamp": "2025-08-20T20:48:48.486Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs - 200 (1ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 1,
+        "timestamp": "2025-08-20T20:48:48.486Z"
+      }
+    },
+    {
+      "id": "metrics_1755722928998_umdfpyq7q",
+      "timestamp": "2025-08-20T20:48:48.998Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 9 requests, avg 1ms response time",
+      "data": {
+        "requests": {
+          "total": 9,
+          "perSecond": 1,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 5,
+              "methods": {
+                "GET": 5
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 8,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 1,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722914136,
+              "endpoint": "/health",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722921543,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722925435,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722928487,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722928999_ho2rn4aj3",
+      "timestamp": "2025-08-20T20:48:48.999Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 9 requests, avg 1ms response time",
+      "data": {
+        "requests": {
+          "total": 9,
+          "perSecond": 1,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 5,
+              "methods": {
+                "GET": 5
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 8,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 1,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722914136,
+              "endpoint": "/health",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722921543,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722925435,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722928487,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722929001_tk3ai6mtw",
+      "timestamp": "2025-08-20T20:48:49.001Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Database Connection: Database responsive (0ms)",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (0ms)",
+        "details": {
+          "responseTime": 0,
+          "type": "file",
+          "logsCount": 0,
+          "monitoringCount": 0,
+          "sourcesCount": 0
+        }
+      }
+    },
+    {
+      "id": "log_1755722931718_l8dhybnsk",
+      "timestamp": "2025-08-20T20:48:51.718Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs/server - unknown",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs/server",
+        "sourceId": "unknown",
+        "userAgent": "curl/8.12.1",
+        "ip": "::1",
+        "timestamp": "2025-08-20T20:48:51.718Z"
+      }
+    },
+    {
+      "id": "log_1755722931720_wgwa4wigo",
+      "timestamp": "2025-08-20T20:48:51.720Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "request_logger",
+      "message": "GET /api/logs/server - 200 (2ms)",
+      "data": {
+        "method": "GET",
+        "url": "/api/logs/server",
+        "sourceId": "unknown",
+        "statusCode": 200,
+        "responseTime": 2,
+        "timestamp": "2025-08-20T20:48:51.720Z"
+      }
+    },
+    {
+      "id": "metrics_1755722933970_r31w777cu",
+      "timestamp": "2025-08-20T20:48:53.970Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722933971_uex7vm902",
+      "timestamp": "2025-08-20T20:48:53.971Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722939014_j9omahlix",
+      "timestamp": "2025-08-20T20:48:59.014Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 10 requests, avg 1ms response time",
+      "data": {
+        "requests": {
+          "total": 10,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 5,
+              "methods": {
+                "GET": 5
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs/server": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 9,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 1,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722921543,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722925435,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722928487,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722931721,
+              "endpoint": "/api/logs/server",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722939015_h9pnepvkr",
+      "timestamp": "2025-08-20T20:48:59.015Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 10 requests, avg 1ms response time",
+      "data": {
+        "requests": {
+          "total": 10,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 5,
+              "methods": {
+                "GET": 5
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs/server": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 9,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 1,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722921543,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722925435,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722928487,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722931721,
+              "endpoint": "/api/logs/server",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722939016_nyvwdi9hs",
+      "timestamp": "2025-08-20T20:48:59.016Z",
+      "level": "warn",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: Memory usage: 89%",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 89%",
+        "details": {
+          "heapUsed": "9.56 MB",
+          "heapTotal": "10.74 MB",
+          "heapPercent": 89.01,
+          "external": "2.65 MB",
+          "rss": "50.37 MB"
+        }
+      }
+    },
+    {
+      "id": "health_1755722939016_zrd4m3zlj",
+      "timestamp": "2025-08-20T20:48:59.016Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: WebSocket: 0 active, 0 stale",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale",
+        "details": {
+          "total": 0,
+          "active": 0,
+          "stale": 0,
+          "activePercent": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722948960_qidkmdvtg",
+      "timestamp": "2025-08-20T20:49:08.960Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "System metrics: 9MB RAM, 32 cores, uptime 1m",
+      "data": {
+        "memory": {
+          "process": "9MB / 11MB",
+          "system": "48107MB / 130993MB"
+        },
+        "cpu": {
+          "cores": 32,
+          "load": 0,
+          "architecture": "x64"
+        },
+        "uptime": {
+          "server": 1,
+          "process": 1
+        },
+        "network": 5
+      }
+    },
+    {
+      "id": "metrics_1755722948975_845lcjc4b",
+      "timestamp": "2025-08-20T20:49:08.975Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "System metrics: 9MB RAM, 32 cores, uptime 1m",
+      "data": {
+        "memory": {
+          "process": "9MB / 11MB",
+          "system": "48105MB / 130993MB"
+        },
+        "cpu": {
+          "cores": 32,
+          "load": 0,
+          "architecture": "x64"
+        },
+        "uptime": {
+          "server": 1,
+          "process": 1
+        },
+        "network": 5
+      }
+    },
+    {
+      "id": "metrics_1755722948976_1fl2prfhl",
+      "timestamp": "2025-08-20T20:49:08.976Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722948977_ebwu6vjud",
+      "timestamp": "2025-08-20T20:49:08.977Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Database: 0 logs, 0 monitoring entries, 0 sources",
+      "data": {
+        "status": "healthy",
+        "operations": {
+          "reads": 0,
+          "writes": 0,
+          "errors": 0
+        },
+        "storage": {
+          "logs": 0,
+          "monitoring": 0,
+          "sources": 0
+        },
+        "performance": {
+          "averageQueryTime": 0,
+          "slowQueries": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1755722949018_5687h1i8z",
+      "timestamp": "2025-08-20T20:49:09.018Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 10 requests, avg 1ms response time",
+      "data": {
+        "requests": {
+          "total": 10,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 5,
+              "methods": {
+                "GET": 5
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs/server": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 9,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 1,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722921543,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722925435,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722928487,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722931721,
+              "endpoint": "/api/logs/server",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    }
+  ]
+}{
+      "id": "metrics_1755722949019_tqo2c9qwo",
+      "timestamp": "2025-08-20T20:49:09.019Z",
+      "level": "info",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "metrics_collector",
+      "message": "Performance: 10 requests, avg 1ms response time",
+      "data": {
+        "requests": {
+          "total": 10,
+          "perSecond": 0,
+          "byEndpoint": {
+            "/api/logs/recursive": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs": {
+              "total": 5,
+              "methods": {
+                "GET": 5
+              }
+            },
+            "/health": {
+              "total": 2,
+              "methods": {
+                "GET": 2
+              }
+            },
+            "/api/logs/server": {
+              "total": 1,
+              "methods": {
+                "GET": 1
+              }
+            }
+          },
+          "bySource": {
+            "unknown": 9,
+            "health_check": 1
+          }
+        },
+        "response": {
+          "average": 1,
+          "percentiles": {
+            "p50": 1,
+            "p90": 4,
+            "p95": 4,
+            "p99": 4
+          },
+          "recent": [
+            {
+              "timestamp": 1755722917644,
+              "endpoint": "/api/logs/recursive",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722921543,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722925435,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722928487,
+              "endpoint": "/api/logs",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 1,
+              "statusCode": 200
+            },
+            {
+              "timestamp": 1755722931721,
+              "endpoint": "/api/logs/server",
+              "method": "GET",
+              "sourceId": "unknown",
+              "responseTime": 2,
+              "statusCode": 200
+            }
+          ]
+        },
+        "websocket": {
+          "connections": 0,
+          "active": 0
+        }
+      }
+    },
+    {
+      "id": "health_1755722949020_nxnn6iv4m",
+      "timestamp": "2025-08-20T20:49:09.020Z",
+      "level": "error",
+      "scriptId": "server",
+      "sourceId": "server",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: Rate limiting not available",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available",
+        "details": {
+          "reason": "Rate limiting map not available"
+        }
+      }
+    }
+  ]
+}

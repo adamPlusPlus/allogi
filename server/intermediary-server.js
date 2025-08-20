@@ -25,55 +25,32 @@ const path = require('path');
 const fs = require('fs').promises;
 const { config } = require('./config-loader');
 const { DatabaseAdapter } = require('./database-adapter');
+const ErrorHandler = require('./error-handler');
+const MetricsCollector = require('./metrics-collector');
+const HealthChecker = require('./health-checker');
 
 class AllogIntermediaryServer {
   constructor(configOverrides = {}) {
     this.config = config.getServerConfig(configOverrides);
-
+    this.startTime = Date.now();
+    
     this.logs = [];
-    this.screenshots = [];
-    this.monitoringData = []; // Individual variable/state/function tracking
-    this.sources = new Map(); // Registered source applications
-    this.connections = new Set(); // WebSocket connections
-    this.rateLimitMap = new Map(); // Rate limiting per source
-    
-    // === DATA MANAGEMENT OPTIMIZATIONS ===
-    
-    // Indexes for fast data retrieval
-    this.logIndexes = {
-      bySourceId: new Map(),     // sourceId -> log[]
-      byLevel: new Map(),        // level -> log[]
-      byScriptId: new Map(),     // scriptId -> log[]
-      byTimeRange: [],           // sorted by timestamp for range queries
-      byId: new Map()            // id -> log (for fast lookup)
-    };
-    
-    this.monitoringIndexes = {
-      byModuleId: new Map(),     // moduleId -> entry[]
-      byScriptId: new Map(),     // scriptId -> entry[]
-      byType: new Map(),         // type -> entry[]
-      byName: new Map(),         // name -> entry[]
-      byTimeRange: [],           // sorted by timestamp
-      byId: new Map()            // id -> entry
-    };
-    
-    // Compression settings
-    this.compressionEnabled = this.config.enableCompression !== false;
-    this.compressionThreshold = this.config.compressionThreshold || 1000; // entries
-    
-    // Memory management
-    this.memoryOptimizationEnabled = this.config.enableMemoryOptimization !== false;
+    this.serverLogs = []; // Separate collection for server logs
+    this.sources = new Map();
+    this.connections = new Map();
+    this.monitoringData = new Map();
+    this.rateLimitCounters = new Map();
     this.lastCleanup = Date.now();
-    this.cleanupInterval = this.config.cleanupInterval || 300000; // 5 minutes
-    
-    // Log rotation
-    this.rotationEnabled = this.config.rotationEnabled !== false;
-    this.lastRotation = Date.now();
-    this.rotationInterval = this.config.rotationInterval || 'daily';
-    this.archiveDirectory = this.config.archiveDirectory || './archives';
+    this.lastLogRotation = Date.now();
+    this.lastArchiveCleanup = Date.now();
     
     // Database adapter
     this.db = new DatabaseAdapter(this.config.storage || { backend: { type: 'file' } });
+    
+    // Initialize enhanced systems
+    this.errorHandler = new ErrorHandler(this);
+    this.metricsCollector = new MetricsCollector(this);
+    this.healthChecker = new HealthChecker(this);
     
     this.app = express();
     this.setupMiddleware();
@@ -86,6 +63,10 @@ class AllogIntermediaryServer {
     this.initializeDatabase();
     this.startMemoryOptimization();
     this.startLogRotation();
+    
+    // Start monitoring systems
+    this.metricsCollector.startCollection();
+    this.healthChecker.start();
   }
 
   setupMiddleware() {
@@ -112,9 +93,68 @@ class AllogIntermediaryServer {
     // Rate limiting middleware
     this.app.use(this.rateLimitMiddleware.bind(this));
 
-    // Request logging
+    // Request logging and metrics tracking
     this.app.use((req, res, next) => {
-      console.log(`${new Date().toISOString()} - ${req.method} ${req.url} - ${req.get('X-Source-ID') || 'unknown'}`);
+      const startTime = Date.now();
+      const sourceId = req.get('X-Source-ID') || 'unknown';
+      
+      // Create structured log entry for request
+      const requestLog = {
+        id: this.generateLogId(),
+        timestamp: new Date().toISOString(),
+        level: 'info',
+        scriptId: 'server',
+        sourceId: 'server',
+        sourceType: 'request_logger',
+        message: `${req.method} ${req.url} - ${sourceId}`,
+        data: {
+          method: req.method,
+          url: req.url,
+          sourceId: sourceId,
+          userAgent: req.get('User-Agent'),
+          ip: req.ip,
+          timestamp: new Date().toISOString()
+        }
+      };
+      
+      // Add to server logs for Allogi viewer
+      this.addServerLog(requestLog);
+      
+      // Console logging for monitoring
+      console.log(`[SERVER] ${new Date().toISOString()} - ${req.method} ${req.url} - ${sourceId}`);
+      
+      // Track response time
+      res.on('finish', () => {
+        const responseTime = Date.now() - startTime;
+        
+        // Create structured log entry for response
+        const responseLog = {
+          id: this.generateLogId(),
+          timestamp: new Date().toISOString(),
+          level: res.statusCode >= 400 ? 'warn' : 'info',
+          scriptId: 'server',
+          sourceId: 'server',
+          sourceType: 'request_logger',
+          message: `${req.method} ${req.url} - ${res.statusCode} (${responseTime}ms)`,
+          data: {
+            method: req.method,
+            url: req.url,
+            sourceId: sourceId,
+            statusCode: res.statusCode,
+            responseTime: responseTime,
+            timestamp: new Date().toISOString()
+          }
+        };
+        
+        // Add to server logs for Allogi viewer
+        this.addServerLog(responseLog);
+        
+        // Record metrics
+        if (this.metricsCollector) {
+          this.metricsCollector.recordRequest(req.url, req.method, sourceId, responseTime, res.statusCode);
+        }
+      });
+      
       next();
     });
   }
@@ -124,11 +164,11 @@ class AllogIntermediaryServer {
     const now = Date.now();
     const windowMs = config.rateLimitWindow;
 
-    if (!this.rateLimitMap.has(sourceId)) {
-      this.rateLimitMap.set(sourceId, { count: 0, resetTime: now + windowMs });
+    if (!this.rateLimitCounters.has(sourceId)) {
+      this.rateLimitCounters.set(sourceId, { count: 0, resetTime: now + windowMs });
     }
 
-    const rateLimit = this.rateLimitMap.get(sourceId);
+    const rateLimit = this.rateLimitCounters.get(sourceId);
     
     if (now > rateLimit.resetTime) {
       rateLimit.count = 0;
@@ -158,6 +198,116 @@ class AllogIntermediaryServer {
         logs: this.logs.length,
         connections: this.connections.size
       });
+    });
+
+    // Enhanced health check endpoints
+    this.app.get('/health', (req, res) => {
+      const startTime = Date.now();
+      try {
+        const health = this.healthChecker.getOverallHealth();
+        const responseTime = Date.now() - startTime;
+        
+        // Record metrics
+        this.metricsCollector.recordRequest('/health', 'GET', 'health_check', responseTime, 200);
+        
+        res.json({
+          status: health.status,
+          timestamp: health.timestamp,
+          responseTime: `${responseTime}ms`,
+          summary: health.summary,
+          checks: health.checks
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/health',
+          method: 'GET',
+          sourceId: 'health_check'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    // Component-specific health checks
+    this.app.get('/health/:component', (req, res) => {
+      const startTime = Date.now();
+      try {
+        const { component } = req.params;
+        const health = this.healthChecker.getComponentHealth(component);
+        const responseTime = Date.now() - startTime;
+        
+        // Record metrics
+        this.metricsCollector.recordRequest(`/health/${component}`, 'GET', 'health_check', responseTime, 200);
+        
+        if (health.error) {
+          res.status(404).json({
+            error: 'Component not found',
+            component,
+            available: Array.from(this.healthChecker.checks.keys())
+          });
+        } else {
+          res.json({
+            ...health,
+            responseTime: `${responseTime}ms`
+          });
+        }
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: `/health/${req.params.component}`,
+          method: 'GET',
+          sourceId: 'health_check'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    // Metrics endpoint
+    this.app.get('/metrics', (req, res) => {
+      const startTime = Date.now();
+      try {
+        const metrics = this.metricsCollector.getAllMetrics();
+        const responseTime = Date.now() - startTime;
+        
+        // Record metrics
+        this.metricsCollector.recordRequest('/metrics', 'GET', 'metrics_collector', responseTime, 200);
+        
+        res.json({
+          timestamp: new Date().toISOString(),
+          responseTime: `${responseTime}ms`,
+          metrics
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/metrics',
+          method: 'GET',
+          sourceId: 'metrics_collector'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    // Error metrics endpoint
+    this.app.get('/metrics/errors', (req, res) => {
+      const startTime = Date.now();
+      try {
+        const errorMetrics = this.errorHandler.getErrorMetrics();
+        const responseTime = Date.now() - startTime;
+        
+        // Record metrics
+        this.metricsCollector.recordRequest('/metrics/errors', 'GET', 'metrics_collector', responseTime, 200);
+        
+        res.json({
+          timestamp: new Date().toISOString(),
+          responseTime: `${responseTime}ms`,
+          errors: errorMetrics
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/metrics/errors',
+          method: 'GET',
+          sourceId: 'metrics_collector'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
     });
 
     // Register a new source application
@@ -195,8 +345,14 @@ class AllogIntermediaryServer {
           serverTime: new Date().toISOString()
         });
       } catch (error) {
-        console.error('Registration error:', error);
-        res.status(500).json({ error: 'Registration failed' });
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/register',
+          method: 'POST',
+          sourceId: sourceId || 'unknown',
+          userAgent: req.get('User-Agent'),
+          ip: req.ip
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
       }
     });
 
@@ -213,8 +369,14 @@ class AllogIntermediaryServer {
           serverTime: new Date().toISOString()
         });
       } catch (error) {
-        console.error('Single log error:', error);
-        res.status(400).json({ error: error.message });
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs/single',
+          method: 'POST',
+          sourceId: req.get('X-Source-ID') || 'unknown',
+          userAgent: req.get('User-Agent'),
+          ip: req.ip
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
       }
     });
 
@@ -252,8 +414,14 @@ class AllogIntermediaryServer {
           quality: logEntry.quality || 'normal'
         });
       } catch (error) {
-        console.error('Raw log error:', error);
-        res.status(400).json({ error: error.message });
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs/raw',
+          method: 'POST',
+          sourceId: req.get('X-Source-ID') || 'unknown',
+          userAgent: req.get('User-Agent'),
+          ip: req.ip
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
       }
     });
 
@@ -277,8 +445,14 @@ class AllogIntermediaryServer {
           quality: 'raw-text'
         });
       } catch (error) {
-        console.error('Text log error:', error);
-        res.status(400).json({ error: error.message });
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs/text',
+          method: 'POST',
+          sourceId: req.get('X-Source-ID') || 'unknown',
+          userAgent: req.get('User-Agent'),
+          ip: req.ip
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
       }
     });
 
@@ -303,8 +477,14 @@ class AllogIntermediaryServer {
           method: 'GET'
         });
       } catch (error) {
-        console.error('GET text log error:', error);
-        res.status(400).json({ error: error.message });
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs/text',
+          method: 'GET',
+          sourceId: sourceId || 'unknown',
+          userAgent: req.get('User-Agent'),
+          ip: req.ip
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
       }
     });
 
@@ -332,6 +512,116 @@ class AllogIntermediaryServer {
       } catch (error) {
         console.error('Batch log error:', error);
         res.status(400).json({ error: error.message });
+      }
+    });
+
+    // Get all logs
+    this.app.get('/api/logs', (req, res) => {
+      try {
+        const { level, sourceId, scriptId, limit, offset } = req.query;
+        let filteredLogs = [...this.logs];
+
+        // Apply filters
+        if (level) {
+          filteredLogs = filteredLogs.filter(log => log.level === level);
+        }
+        if (sourceId) {
+          filteredLogs = filteredLogs.filter(log => log.sourceId === sourceId);
+        }
+        if (scriptId) {
+          filteredLogs = filteredLogs.filter(log => log.scriptId === scriptId);
+        }
+
+        // Apply pagination
+        const start = parseInt(offset) || 0;
+        const end = limit ? start + parseInt(limit) : filteredLogs.length;
+        const paginatedLogs = filteredLogs.slice(start, end);
+
+        res.json({
+          logs: paginatedLogs,
+          total: filteredLogs.length,
+          start: start,
+          end: end,
+          hasMore: end < filteredLogs.length
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs',
+          method: 'GET',
+          sourceId: req.get('X-Source-ID') || 'unknown'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    // Get server logs separately
+    this.app.get('/api/logs/server', (req, res) => {
+      try {
+        const { level, limit, offset } = req.query;
+        let filteredLogs = [...this.serverLogs];
+
+        // Apply filters
+        if (level) {
+          filteredLogs = filteredLogs.filter(log => log.level === level);
+        }
+
+        // Apply pagination
+        const start = parseInt(offset) || 0;
+        const end = limit ? start + parseInt(limit) : filteredLogs.length;
+        const paginatedLogs = filteredLogs.slice(start, end);
+
+        res.json({
+          logs: paginatedLogs,
+          total: filteredLogs.length,
+          start: start,
+          end: end,
+          hasMore: end < filteredLogs.length,
+          type: 'server_logs'
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs/server',
+          method: 'GET',
+          sourceId: req.get('X-Source-ID') || 'unknown'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    // Get recursive logs (server logs, viewer logs, and source logs)
+    this.app.get('/api/logs/recursive', (req, res) => {
+      try {
+        const { level, limit, offset, sourceType } = req.query;
+        let filteredLogs = [...this.serverLogs];
+
+        // Apply filters
+        if (level) {
+          filteredLogs = filteredLogs.filter(log => log.level === level);
+        }
+        if (sourceType) {
+          filteredLogs = filteredLogs.filter(log => log.sourceType === sourceType);
+        }
+
+        // Apply pagination
+        const start = parseInt(offset) || 0;
+        const end = limit ? start + parseInt(limit) : filteredLogs.length;
+        const paginatedLogs = filteredLogs.slice(start, end);
+
+        res.json({
+          logs: filteredLogs,
+          total: filteredLogs.length,
+          start: start,
+          end: end,
+          hasMore: end < filteredLogs.length,
+          type: 'recursive_logs'
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/api/logs/recursive',
+          method: 'GET',
+          sourceId: req.get('X-Source-ID') || 'unknown'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
       }
     });
 
@@ -1541,44 +1831,91 @@ class AllogIntermediaryServer {
     return logEntry;
   }
 
-  async addLogEntry(logEntry) {
+  addLogEntry(logEntry) {
+    // Validate required fields
+    if (!logEntry.id || !logEntry.message || !logEntry.level) {
+      console.error('Invalid log entry:', logEntry);
+      return;
+    }
+
+    // Add timestamp if missing
+    if (!logEntry.timestamp) {
+      logEntry.timestamp = new Date().toISOString();
+    }
+
     // Add to logs array
     this.logs.push(logEntry);
-    
-    // Add to indexes for fast retrieval
-    this.addLogToIndexes(logEntry);
 
-    // Maintain max logs limit
-    if (this.logs.length > this.config.maxLogs) {
-      this.logs.shift();
-      // Note: Indexes will be cleaned up during next memory optimization cycle
-    }
-
-    // Update source statistics
-    if (this.sources.has(logEntry.sourceId)) {
-      const source = this.sources.get(logEntry.sourceId);
-      source.lastSeen = new Date().toISOString();
-      source.logCount++;
-    }
-
-    // Broadcast to WebSocket viewers
+    // Broadcast to WebSocket clients
     this.broadcastToViewers({
       type: 'new_log',
       data: logEntry
     });
 
-    // Broadcast to SSE clients
-    this.broadcastToSSEClients(logEntry, 'log');
-
-    // Persist data if enabled
+    // Persist if enabled
     if (this.config.enablePersistence) {
-      // Try direct database insert for performance
-      try {
-        await this.db.addLog(logEntry);
-      } catch (error) {
-        // Fallback to full persist
-        this.persistData();
-      }
+      this.persistLogs();
+    }
+
+    // Check if we need to rotate logs
+    if (this.logs.length > this.config.maxLogs) {
+      this.rotateLogs();
+    }
+  }
+
+  /**
+   * Add server log entry (separate from application logs)
+   */
+  addServerLog(logEntry) {
+    // Validate required fields
+    if (!logEntry.id || !logEntry.message || !logEntry.level) {
+      console.error('Invalid server log entry:', logEntry);
+      return;
+    }
+
+    // Add timestamp if missing
+    if (!logEntry.timestamp) {
+      logEntry.timestamp = new Date().toISOString();
+    }
+
+    // Add to server logs array
+    this.serverLogs.push(logEntry);
+
+    // Broadcast to WebSocket clients as regular log entry for recursive logs
+    this.broadcastToViewers({
+      type: 'new_log',
+      data: logEntry
+    });
+
+    // Persist server logs if enabled
+    if (this.config.enablePersistence) {
+      this.persistServerLogs();
+    }
+
+    // Keep server logs manageable
+    if (this.serverLogs.length > 1000) {
+      this.serverLogs = this.serverLogs.slice(-1000);
+    }
+  }
+
+  /**
+   * Persist server logs to storage
+   */
+  persistServerLogs() {
+    try {
+      const fs = require('fs').promises;
+      const path = require('path');
+      
+      const serverLogsFile = path.join(__dirname, 'server-logs.json');
+      const data = {
+        timestamp: new Date().toISOString(),
+        logs: this.serverLogs
+      };
+      
+      fs.writeFile(serverLogsFile, JSON.stringify(data, null, 2))
+        .catch(error => console.error('Failed to persist server logs:', error));
+    } catch (error) {
+      console.error('Error persisting server logs:', error);
     }
   }
 
@@ -1719,6 +2056,29 @@ class AllogIntermediaryServer {
     if (this.config.enableWebSocket) {
       this.server.listen(port, () => {
         const messages = config.getStartupMessages(port, this.config.viewerPort);
+        
+        // Log startup as structured log
+        const startupLog = {
+          id: this.generateLogId(),
+          timestamp: new Date().toISOString(),
+          level: 'info',
+          scriptId: 'server',
+          sourceId: 'server',
+          sourceType: 'server_startup',
+          message: 'Allog Intermediary Server started successfully',
+          data: {
+            port: port,
+            viewerPort: this.config.viewerPort,
+            config: {
+              maxLogs: this.config.maxLogs,
+              enableWebSocket: this.config.enableWebSocket,
+              enablePersistence: this.config.enablePersistence
+            }
+          }
+        };
+        
+        this.addServerLog(startupLog);
+        
         console.log(messages.server);
         console.log(messages.websocket);
         console.log(messages.api);
@@ -1727,6 +2087,29 @@ class AllogIntermediaryServer {
     } else {
       this.app.listen(port, () => {
         const messages = config.getStartupMessages(port, this.config.viewerPort);
+        
+        // Log startup as structured log
+        const startupLog = {
+          id: this.generateLogId(),
+          timestamp: new Date().toISOString(),
+          level: 'info',
+          scriptId: 'server',
+          sourceId: 'server',
+          sourceType: 'server_startup',
+          message: 'Allog Intermediary Server started successfully',
+          data: {
+            port: port,
+            viewerPort: this.config.viewerPort,
+            config: {
+              maxLogs: this.config.maxLogs,
+              enableWebSocket: this.config.enableWebSocket,
+              enablePersistence: this.config.enablePersistence
+            }
+          }
+        };
+        
+        this.addServerLog(startupLog);
+        
         console.log(messages.server);
         console.log(messages.api);
         console.log(messages.viewer);
@@ -1735,10 +2118,40 @@ class AllogIntermediaryServer {
   }
 
   stop() {
+    // Log shutdown as structured log
+    const shutdownLog = {
+      id: this.generateLogId(),
+      timestamp: new Date().toISOString(),
+      level: 'info',
+      scriptId: 'server',
+      sourceId: 'server',
+      sourceType: 'server_shutdown',
+      message: 'Allog Intermediary Server shutting down',
+      data: {
+        uptime: Date.now() - (this.startTime || Date.now()),
+        logsCount: this.logs?.length || 0,
+        sourcesCount: this.sources?.size || 0,
+        connectionsCount: this.connections?.size || 0
+      }
+    };
+    
+    this.addServerLog(shutdownLog);
+    
     if (this.server) {
       this.server.close();
     }
     console.log('Allog Intermediary Server stopped');
+
+    // Stop monitoring systems
+    if (this.metricsCollector) {
+      this.metricsCollector.stopCollection();
+      console.log('Metrics collection stopped');
+    }
+
+    if (this.healthChecker) {
+      this.healthChecker.stop();
+      console.log('Health checker stopped');
+    }
   }
 
   // Discover active modules from received logs and source registrations
@@ -2770,6 +3183,11 @@ class AllogIntermediaryServer {
     const sizes = ['B', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  // Generate unique log ID
+  generateLogId() {
+    return `log_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
 }
 
