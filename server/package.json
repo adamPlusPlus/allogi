@@ -1,0 +1,28 @@
+{
+  "name": "allog-intermediary-server",
+  "version": "1.0.0",
+  "description": "Allog Intermediary Server - Bridge between applications and viewer",
+  "main": "intermediary-server.js",
+  "scripts": {
+    "start": "node intermediary-server.js",
+    "dev": "node intermediary-server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "ws": "^8.13.0",
+    "sqlite3": "^5.1.6",
+    "pg": "^8.11.3"
+  },
+  "optionalDependencies": {
+    "sqlite3": "^5.1.6",
+    "pg": "^8.11.3"
+  },
+  "overrides": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5"
+  },
+  "keywords": ["allog", "server", "intermediary", "logging"],
+  "author": "FormWise",
+  "license": "MIT"
+}

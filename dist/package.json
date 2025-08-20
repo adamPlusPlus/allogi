@@ -1,0 +1,30 @@
+{
+  "name": "@formwise/allogi",
+  "version": "1.0.0",
+  "description": "FormWise allogi module",
+  "main": "optional-viewer\\allog-browser-server.instrumented.js",
+  "types": "optional-viewer\\allog-browser-server.instrumented.d.ts",
+  "exports": {
+    ".": {
+      "import": "optional-viewer\\allog-browser-server.instrumented.js",
+      "require": "optional-viewer\\allog-browser-server.instrumented.js",
+      "types": "optional-viewer\\allog-browser-server.instrumented.d.ts"
+    }
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "*.map"
+  ],
+  "keywords": [
+    "formwise",
+    "react-native",
+    "allogi"
+  ],
+  "author": "FormWise Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formwise/formwise"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "network": {
+    "ports": {
+      "viewer": 3001,
+      "server": 3002
+    },
+    "urls": {
+      "defaultServer": "http://localhost:3002",
+      "alternativeServer": "http://localhost:8080",
+      "productionServer": "https://api.example.com/allog"
+    },
+    "connection": {
+      "timeout": 5000,
+      "retries": 3,
+      "minTimeout": 1000,
+      "maxTimeout": 30000,
+      "retryDelay": 1000
+    }
+  },
+  "refresh": {
+    "intervals": {
+      "default": 30000,
+      "minimum": 1000,
+      "options": [1000, 2000, 5000, 10000, 30000]
+    },
+    "autoRefresh": {
+      "enabled": false,
+      "minInterval": 30000
+    }
+  },
+  "logging": {
+    "levels": {
+      "valid": ["info", "warn", "error", "debug", "test"],
+      "default": "info",
+      "colors": {
+        "info": "#007AFF",
+        "warn": "#FF9500", 
+        "error": "#FF3B30",
+        "debug": "#888888",
+        "test": "#6c757d"
+      }
+    },
+    "internal": {
+      "maxLogs": 1000,
+      "enableConsole": true,
+      "defaultLevel": "info"
+    }
+  },
+  "ui": {
+    "colors": {
+      "status": {
+        "connected": "#28a745",
+        "error": "#dc3545",
+        "neutral": "#6c757d",
+        "warning": "#FF9500"
+      },
+      "script": [
+        "#4ec9b0", "#569cd6", "#dcdcaa", "#ce9178", "#c586c0",
+        "#6a9955", "#d7ba7d", "#9cdcfe", "#f44747", "#ff7f50"
+      ]
+    },
+    "layout": {
+      "imagePreview": {
+        "maxWidth": "100%",
+        "maxHeight": 300,
+        "borderRadius": 4
+      },
+      "notification": {
+        "autoHideDelay": 3000,
+        "fadeOutDuration": 300
+      }
+    }
+  },
+  "buffers": {
+    "logs": {
+      "default": 500,
+      "maximum": 10000
+    },
+    "stats": {
+      "enabledModules": 0,
+      "totalModules": 0
+    }
+  },
+  "instrumentation": {
+    "levels": {
+      "none": "none",
+      "basic": "basic", 
+      "detailed": "detailed",
+      "comprehensive": "comprehensive"
+    },
+    "defaults": {
+      "enabled": true,
+      "level": "detailed"
+    }
+  },
+  "defaults": {
+    "fallback": {
+      "sourceId": "unknown",
+      "scriptId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0"
+    },
+    "messages": {
+      "loading": "Loading logs...",
+      "noLogs": "No logs available",
+      "noMatching": "No logs match your current filters",
+      "disconnected": "Not connected to server",
+      "connectionFailed": "Connection failed"
+    }
+  },
+  "export": {
+    "formats": ["csv", "json"],
+    "filenamePrefixes": {
+      "logs": "allog-logs",
+      "stats": "allog-stats", 
+      "config": "allog-config"
+    }
+  }
+}

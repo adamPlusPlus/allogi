@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+if [ $# -eq 0 ]; then
+  cat <<'EOF'
+Usage: goi <start [duration]|stop [basic|murder]|status|ports>
+
+Commands:
+  start [duration]   Starts server and viewer. Optional auto-stop duration in seconds.
+  stop [mode]        Stops processes. mode: basic (default) or murder (excludes current shell)
+  status             Shows PIDs of processes started in this session
+  ports              Lists listeners on common ports (3001-3005)
+
+Examples:
+  goi start
+  goi start 60
+  goi stop
+  goi stop murder
+  goi status
+  goi ports
+
+Note: Deprecation warnings are automatically suppressed.
+EOF
+  exit 0
+fi
+
+export ALLOGI_PROTECTED_PIDS="$$,${PPID}"
+exec ./allogi.bat "$@"

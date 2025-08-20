@@ -1,0 +1,23 @@
+{
+  "short_name": "allog",
+  "name": "Allog Log Viewer",
+  "description": "Standalone web interface for viewing application logs",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1a1a1a",
+  "background_color": "#1a1a1a",
+  "orientation": "landscape-primary"
+} 

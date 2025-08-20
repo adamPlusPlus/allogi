@@ -1,0 +1,181 @@
+.connection-config {
+  position: relative;
+  display: inline-block;
+}
+
+.config-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.config-toggle:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.connecting-spinner {
+  animation: spin 1s linear infinite;
+  font-size: 12px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.config-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 400px;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 1000;
+  margin-top: 8px;
+}
+
+.config-panel h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #495057;
+}
+
+.config-field {
+  margin-bottom: 16px;
+}
+
+.config-field label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.config-field input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.config-field input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  border: 1px solid #f5c6cb;
+}
+
+.config-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.config-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.test-connection {
+  background: #17a2b8;
+  color: white;
+}
+
+.test-connection:hover:not(:disabled) {
+  background: #138496;
+}
+
+.test-connection:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.save-config {
+  background: #28a745;
+  color: white;
+}
+
+.save-config:hover:not(:disabled) {
+  background: #218838;
+}
+
+.save-config:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.reset-config {
+  background: #6c757d;
+  color: white;
+}
+
+.reset-config:hover {
+  background: #5a6268;
+}
+
+.preset-configs {
+  border-top: 1px solid #dee2e6;
+  padding-top: 16px;
+}
+
+.preset-configs h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #495057;
+}
+
+.preset-configs button {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-configs button:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.preset-configs button:last-child {
+  margin-bottom: 0;
+} 

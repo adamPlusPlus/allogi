@@ -1,0 +1,43 @@
+{
+  "name": "allog-standalone-system",
+  "version": "1.0.0",
+  "description": "Complete standalone Allog system with separated components",
+  "private": true,
+  "scripts": {
+    "start": "node start-allog.js",
+    "start-server": "cd server && npm start",
+    "start-viewer": "cd viewer-app && npm start",
+    "install-all": "npm install && cd server && npm install && cd ../viewer-app && npm install",
+    "dev": "node allogi.js start",
+    "stop": "node allogi.js stop",
+    "build-viewer": "cd viewer-app && npm run build",
+    "test-raw-logs": "node test-raw-logs.js"
+  },
+  "keywords": [
+    "allog",
+    "logging",
+    "cross-platform",
+    "standalone",
+    "react-viewer",
+    "intermediary-server"
+  ],
+  "author": "FormWise Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "ws": "^8.18.3"
+  },
+  "overrides": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "@babel/core": "^7.28.3",
+    "@babel/helpers": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1"
+  }
+}

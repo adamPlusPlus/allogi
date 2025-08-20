@@ -1,0 +1,43 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="70%" stop-color="#2a1a1a"/>
+      <stop offset="100%" stop-color="#3a1a1a"/>
+    </radialGradient>
+    
+    <!-- Red atom gradient -->
+    <radialGradient id="atomGradient" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#ff4444"/>
+      <stop offset="50%" stop-color="#cc2222"/>
+      <stop offset="100%" stop-color="#aa1111"/>
+    </radialGradient>
+    
+    <!-- Noise filter for texture -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.3 0" result="coloredNoise"/>
+      <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise"/>
+    </filter>
+  </defs>
+  
+  <!-- Background with rounded corners -->
+  <rect width="32" height="32" rx="6" fill="url(#bgGradient)"/>
+  
+  <!-- Red atom symbol -->
+  <g filter="url(#noise)" transform="translate(16, 16)">
+    <!-- Central nucleus -->
+    <circle cx="0" cy="0" r="3" fill="url(#atomGradient)" opacity="0.9"/>
+    
+    <!-- Three orbital paths -->
+    <!-- Orbit 1: Horizontal ellipse -->
+    <ellipse cx="0" cy="0" rx="8" ry="4" fill="none" stroke="url(#atomGradient)" stroke-width="1.5" opacity="0.8"/>
+    
+    <!-- Orbit 2: Vertical ellipse -->
+    <ellipse cx="0" cy="0" rx="4" ry="8" fill="none" stroke="url(#atomGradient)" stroke-width="1.5" opacity="0.8"/>
+    
+    <!-- Orbit 3: Diagonal ellipse -->
+    <ellipse cx="0" cy="0" rx="7" ry="5" fill="none" stroke="url(#atomGradient)" stroke-width="1.5" opacity="0.8" transform="rotate(45)"/>
+  </g>
+</svg> 

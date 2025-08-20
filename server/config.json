@@ -1,0 +1,152 @@
+{
+  "server": {
+    "ports": {
+      "default": 3002,
+      "viewer": 3001
+    },
+    "limits": {
+      "maxLogs": 10000,
+      "maxMonitoringEntries": 20000,
+      "rateLimit": 1000,
+      "rateLimitWindow": 60000
+    },
+    "networking": {
+      "enableWebSocket": true,
+      "enablePersistence": true,
+      "cors": {
+        "origin": "*",
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allowedHeaders": ["Content-Type", "Authorization", "X-Source-ID"]
+      }
+    }
+  },
+  "storage": {
+    "backend": {
+      "type": "file",
+      "options": {
+        "file": {
+          "filename": "./allog-data.json"
+        },
+        "sqlite": {
+          "filename": "./allog-data.db",
+          "enableWAL": true,
+          "busyTimeout": 5000
+        },
+        "postgresql": {
+          "host": "localhost",
+          "port": 5432,
+          "database": "allog",
+          "user": "allog_user",
+          "password": "",
+          "ssl": false,
+          "connectionPool": {
+            "min": 2,
+            "max": 10
+          }
+        }
+      }
+    },
+    "persistence": {
+      "filename": "./allog-data.json"
+    },
+    "uploads": {
+      "directory": "./uploads",
+      "allowedTypes": ["image/png", "image/jpeg", "image/jpg", "image/gif"],
+      "maxFileSize": 10485760,
+      "filenamePattern": "allog_{timestamp}_{random}.{ext}"
+    },
+    "rotation": {
+      "enabled": true,
+      "archiveDirectory": "./archives",
+      "rotationInterval": "daily",
+      "maxArchiveFiles": 30,
+      "compressionEnabled": true,
+      "archiveFormat": "json",
+      "rotationSize": 104857600,
+      "rotationPatterns": {
+        "daily": "YYYY-MM-DD",
+        "weekly": "YYYY-[W]WW",
+        "monthly": "YYYY-MM"
+      }
+    }
+  },
+  "logging": {
+    "levels": {
+      "valid": ["info", "warn", "error", "debug"],
+      "default": "debug"
+    },
+    "instrumentation": {
+      "defaultLevel": "detailed",
+      "enabledByDefault": true
+    },
+    "defaults": {
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "level": "debug",
+      "contentType": "image/png"
+    }
+  },
+  "monitoring": {
+    "types": {
+      "valid": ["variable", "state", "function", "property", "event"],
+      "enabledByDefault": ["variable", "state", "function"]
+    },
+    "storage": {
+      "enablePersistence": true,
+      "maxHistoryPerVariable": 100,
+      "pruneOlderThan": 3600000
+    },
+    "broadcasting": {
+      "enableRealtime": true,
+      "batchUpdates": false,
+      "batchSize": 10,
+      "batchTimeout": 1000
+    }
+  },
+  "optimization": {
+    "indexing": {
+      "enabled": true,
+      "rebuildThreshold": 100
+    },
+    "compression": {
+      "enabled": true,
+      "threshold": 1000,
+      "algorithm": "json"
+    },
+    "memoryManagement": {
+      "enabled": true,
+      "cleanupIntervalMs": 300000,
+      "retentionHours": {
+        "logs": 24,
+        "monitoring": 48,
+        "sources": 12
+      }
+    },
+    "caching": {
+      "enabled": true,
+      "maxCacheSize": 1000,
+      "ttlMs": 60000
+    }
+  },
+  "export": {
+    "formats": {
+      "csv": {
+        "headers": ["Time", "Level", "Source", "Message", "Data", "File", "Line"],
+        "filename": "allog-export-{timestamp}.csv"
+      },
+      "json": {
+        "filename": "allog-export-{timestamp}.json"
+      }
+    }
+  },
+  "messages": {
+    "rateLimit": "Rate limit exceeded",
+    "shutdown": "\n🛑 Shutting down Allog Intermediary Server...",
+    "startup": {
+      "server": "🚀 Allog Intermediary Server running on port {port}",
+      "websocket": "📡 WebSocket available at ws://localhost:{port}",
+      "api": "🌐 HTTP API available at http://localhost:{port}",
+      "viewer": "📊 React viewer should connect to http://localhost:{viewerPort}"
+    }
+  }
+}

@@ -1,0 +1,599 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+  overflow: visible;
+}
+
+.main-content.with-save-system {
+  margin-left: 300px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #404040;
+  flex-shrink: 0;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.view-separator {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 4px;
+}
+
+.save-system-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.save-system-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.view-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.view-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.view-btn.active {
+  background: #3498db;
+  border-color: #3498db;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.connected {
+  background-color: #34C759;
+}
+
+.status-dot.disconnected {
+  background-color: #FF3B30;
+}
+
+.error {
+  color: #FF3B30;
+}
+
+.header-right {
+  display: flex;
+  gap: 12px;
+}
+
+.header-right button {
+  padding: 8px 16px;
+  background-color: #007AFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.header-right button:hover:not(:disabled) {
+  background-color: #0056CC;
+}
+
+.header-right button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 24px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #404040;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 24px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #404040;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-label {
+  color: #999;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.stat-value.info {
+  color: #007AFF;
+}
+
+.stat-value.warn {
+  color: #FF9500;
+}
+
+.stat-value.error {
+  color: #FF3B30;
+}
+
+.stat-value.debug {
+  color: #34C759;
+}
+
+.auto-refresh {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.auto-refresh label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.auto-refresh input[type="checkbox"] {
+  margin: 0;
+}
+
+.auto-refresh select {
+  padding: 4px 8px;
+  background-color: #404040;
+  color: white;
+  border: 1px solid #666;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 16px;
+  padding: 16px 24px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #404040;
+  flex-shrink: 0;
+}
+
+.filters select,
+.filters input {
+  padding: 8px 12px;
+  background-color: #404040;
+  color: white;
+  border: 1px solid #666;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filters select:focus,
+.filters input:focus {
+  outline: none;
+  border-color: #007AFF;
+}
+
+.filters input {
+  flex: 1;
+}
+
+.filters input::placeholder {
+  color: #999;
+}
+
+.clear-btn {
+  padding: 8px 16px;
+  background-color: #FF3B30;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.clear-btn:hover {
+  background-color: #D70015;
+}
+
+/* Log List */
+.log-list {
+  flex: 1;
+  overflow-y: visible;
+  padding: 0;
+}
+
+.no-logs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  font-size: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 400px;
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.empty-state-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.empty-state-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #999999;
+}
+
+.log-entry {
+  border-bottom: 1px solid #404040;
+  transition: background-color 0.2s;
+}
+
+.log-entry:hover {
+  background-color: #2d2d2d;
+}
+
+.log-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  min-height: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.log-time {
+  font-size: 12px;
+  color: #999;
+  min-width: 80px;
+}
+
+.log-level {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 14px !important;
+  line-height: 14px !important;
+  padding: 0 6px !important;
+  border-radius: 3px !important;
+  font-size: 9px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 54px;
+  text-align: center;
+  align-self: center;
+}
+
+.log-level.info {
+  background-color: #007AFF;
+  color: white;
+}
+
+.log-level.warn {
+  background-color: #FF9500;
+  color: white;
+}
+
+.log-level.error {
+  background-color: #FF3B30;
+  color: white;
+}
+
+.log-level.debug {
+  background-color: #34C759;
+  color: white;
+}
+
+/* New level: test (blue-green gradient) */
+.log-level.test {
+  background: linear-gradient(90deg, #00bcd4 0%, #4CAF50 100%);
+  color: white;
+}
+
+.log-script {
+  font-size: 12px;
+  color: #999;
+  min-width: 120px;
+  font-family: 'Courier New', monospace;
+}
+
+.log-message {
+  flex: 1;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.log-toggle {
+  font-size: 12px;
+  color: #999;
+  min-width: 20px;
+  text-align: center;
+}
+
+.log-details {
+  padding: 16px 24px;
+  background-color: #2d2d2d;
+  border-top: 1px solid #404040;
+}
+
+.log-data,
+.log-stack {
+  margin-bottom: 16px;
+}
+
+.log-data strong,
+.log-stack strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #999;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.log-data pre,
+.log-stack pre {
+  background-color: #1a1a1a;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #ffffff;
+  overflow-x: auto;
+  margin: 0;
+  border: 1px solid #404040;
+}
+
+/* Scrollbar styles removed - using page-level scrolling now */
+
+/* Highlight Styles */
+.highlighted {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.highlighted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+/* Highlight patterns */
+.highlighted.highlight-pattern-default::before {
+  background: var(--highlight-color, #ffff00);
+}
+
+.highlighted.highlight-pattern-stripes::before {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--highlight-color, #ffff00),
+    var(--highlight-color, #ffff00) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.highlighted.highlight-pattern-dots::before {
+  background-image: radial-gradient(
+    circle,
+    var(--highlight-color, #ffff00) 2px,
+    transparent 2px
+  );
+  background-size: 8px 8px;
+}
+
+.highlighted.highlight-pattern-border::before {
+  background: transparent;
+  border: 3px solid var(--highlight-color, #ffff00);
+  border-radius: 6px;
+}
+
+.highlighted.highlight-pattern-glow::before {
+  background: var(--highlight-color, #ffff00);
+  box-shadow: 0 0 10px var(--highlight-color, #ffff00);
+  opacity: 0.5;
+}
+
+/* Specific highlight styles for different elements */
+.log-entry.highlighted {
+  border-left: 4px solid var(--highlight-color, #ffff00);
+  background-color: rgba(255, 255, 0, 0.1);
+}
+
+.monitoring-data-item.highlighted {
+  border: 2px solid var(--highlight-color, #ffff00);
+  box-shadow: 0 0 8px rgba(255, 255, 0, 0.3);
+}
+
+/* Table row highlighting - prevent pseudo-element from affecting layout */
+.table-row.highlighted {
+  background-color: rgba(255, 255, 0, 0.1);
+  border-left: 4px solid var(--highlight-color, #ffff00);
+}
+
+/* Disable the ::before pseudo-element for table rows to prevent layout shifting */
+.table-row.highlighted::before {
+  display: none;
+}
+
+.timeline-item.highlighted {
+  border: 2px solid var(--highlight-color, #ffff00);
+  box-shadow: 0 0 8px rgba(255, 255, 0, 0.3);
+}
+
+/* Highlight indicator */
+.highlight-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--highlight-color, #ffff00);
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 0 4px rgba(255, 255, 0, 0.6);
+}
+
+/* Highlight tooltip */
+.highlighted::after {
+  content: attr(data-highlight-name);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.highlighted:hover::after {
+  opacity: 1;
+} 
+
+/* Log quality indicators */
+.log-quality {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+.log-quality.raw-text {
+  background: #ff9800;
+  color: white;
+}
+
+.log-quality.malformed {
+  background: #f44336;
+  color: white;
+}
+
+.log-quality.normal {
+  background: #4caf50;
+  color: white;
+} 
