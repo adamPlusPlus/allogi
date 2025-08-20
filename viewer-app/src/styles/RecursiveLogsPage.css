@@ -1,4 +1,4 @@
-/* Recursive Logs Page Styles - Two Column Layout */
+/* Recursive Logs Page Styles - Single Column Layout */
 
 .recursive-logs-page {
   display: flex;
@@ -58,192 +58,16 @@
   color: #858585;
 }
 
-/* Stats */
-.recursive-logs-stats {
-  display: flex;
-  gap: 16px;
-  padding: 12px 20px;
-  background: #2d2d30;
-  border-bottom: 1px solid #3e3e42;
-  overflow-x: auto;
-}
-
-.stat-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 80px;
-  padding: 8px 12px;
-  background: #3c3c3c;
-  border-radius: 6px;
-  border: 1px solid #3e3e42;
-}
-
-.stat-number {
-  font-size: 18px;
-  font-weight: 700;
-  color: #4ec9b0;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 11px;
-  color: #858585;
-  text-align: center;
-  line-height: 1.2;
-}
-
-/* Two-Column Content Layout */
+/* Single Column Content Layout */
 .recursive-logs-content {
   display: flex;
   flex: 1;
   overflow: hidden;
 }
 
-/* Left Column - Table View */
-.recursive-logs-table-column {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid #3e3e42;
-  background: #1e1e1e;
-}
-
-.recursive-logs-table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background: #2d2d30;
-  border-bottom: 1px solid #3e3e42;
-  flex-shrink: 0;
-}
-
-.recursive-logs-table-header h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.refresh-btn {
-  background: #3c3c3c;
-  border: 1px solid #3e3e42;
-  color: #cccccc;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.2s ease;
-}
-
-.refresh-btn:hover:not(:disabled) {
-  background: #4c4c4c;
-  border-color: #5e5e5e;
-}
-
-.refresh-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.recursive-logs-table {
-  flex: 1;
-  overflow: visible;
-}
-
-.recursive-logs-table table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-
-.recursive-logs-table thead {
-  position: sticky;
-  top: 0;
-  background: #2d2d30;
-  z-index: 10;
-}
-
-.recursive-logs-table th {
-  padding: 8px 12px;
-  text-align: left;
-  font-weight: 600;
-  color: #ffffff;
-  border-bottom: 1px solid #3e3e42;
-  background: #2d2d30;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease;
-}
-
-.recursive-logs-table th:hover {
-  background: #3c3c3c;
-}
-
-.recursive-logs-table th.sortable {
-  position: relative;
-}
-
-.recursive-logs-table tbody {
-  background: #1e1e1e;
-}
-
-.recursive-logs-table td {
-  padding: 8px 12px;
-  border-bottom: 1px solid #2d2d30;
-  vertical-align: top;
-}
-
-.table-row {
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.table-row:hover {
-  background: #2d2d30;
-}
-
-.table-row.selected {
-  background: #264f78;
-}
-
-.table-script {
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.table-level {
-  font-weight: 600;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-.table-time {
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 11px;
-  color: #858585;
-}
-
-.table-message {
-  max-width: 300px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 11px;
-}
-
-.no-data {
-  text-align: center;
-  color: #858585;
-  font-style: italic;
-  padding: 20px;
-}
-
-/* Right Column - Logs View */
+/* Full Width Logs Column */
 .recursive-logs-logs-column {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background: #1e1e1e;
@@ -310,6 +134,24 @@
 .clear-btn:hover {
   background: #4c4c4c;
   border-color: #5e5e5e;
+}
+
+.copy-btn {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 /* Error Message */
@@ -481,19 +323,8 @@
     flex-direction: column;
   }
   
-  .recursive-logs-table-column,
   .recursive-logs-logs-column {
     width: 100%;
-  }
-  
-  .recursive-logs-table-column {
-    border-right: none;
-    border-bottom: 1px solid #3e3e42;
-    height: 40%;
-  }
-  
-  .recursive-logs-logs-column {
-    height: 60%;
   }
 }
 
@@ -504,24 +335,6 @@
   
   .recursive-logs-header h2 {
     font-size: 20px;
-  }
-  
-  .recursive-logs-stats {
-    padding: 8px 16px;
-    gap: 8px;
-  }
-  
-  .stat-card {
-    min-width: 60px;
-    padding: 6px 8px;
-  }
-  
-  .stat-number {
-    font-size: 16px;
-  }
-  
-  .stat-label {
-    font-size: 10px;
   }
   
   .recursive-logs-filters {

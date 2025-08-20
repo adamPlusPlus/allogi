@@ -199,6 +199,30 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
     return viewerConfig.getLogLevelColor(level);
   };
 
+  // Copy recursive logs to clipboard
+  const copyRecursiveLogsToClipboard = useCallback(async () => {
+    try {
+      const logsData = {
+        timestamp: new Date().toISOString(),
+        totalLogs: filteredLogs.length,
+        logs: filteredLogs.map(log => ({
+          id: log.id,
+          scriptId: log.scriptId,
+          level: log.level,
+          time: log.time,
+          message: log.message,
+          data: log.data,
+          stack: log.stack
+        }))
+      };
+      
+      await navigator.clipboard.writeText(JSON.stringify(logsData, null, 2));
+      console.log('✅ RecursiveLogsPage: Logs copied to clipboard successfully');
+    } catch (error) {
+      console.warn('❌ RecursiveLogsPage: Could not copy logs to clipboard:', error);
+    }
+  }, [filteredLogs]);
+
   const getScriptColor = (scriptId: string | undefined | null): string => {
     return viewerConfig.getScriptColor(scriptId || viewerConfig.fallbackValues.scriptId);
   };
@@ -209,18 +233,6 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
 
   return (
     <div className="recursive-logs-page">
-      {/* Header */}
-      <div className="recursive-logs-header">
-        <h2>🔄 Recursive Logs</h2>
-        <p className="recursive-logs-description">
-          Self-referential logs from the Allog system itself. These logs show how the logging system operates.
-        </p>
-        <div className="recursive-logs-status">
-          <span className="status-indicator">🔄 Active Filtering</span>
-          <span className="status-detail">Showing only self-logging scripts</span>
-        </div>
-      </div>
-
       {/* Two-Column Layout */}
       <div className="recursive-logs-content">
         {/* Right Column - Logs View (like Logs page) */}
@@ -275,6 +287,12 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
               }}
             >
               Clear Filters
+            </button>
+            <button 
+              className="copy-btn"
+              onClick={copyRecursiveLogsToClipboard}
+            >
+              📋 Copy Logs
             </button>
           </div>
 

@@ -12,6 +12,8 @@ import ScreenshotOverlayModal from './components/ScreenshotOverlayModal';
 import Settings from './components/Settings';
 import { log } from './utils/AllogLogger';
 import viewerConfig from './config/config-loader';
+import ConsoleInterceptor from './utils/ConsoleInterceptor';
+import { createAllogApiClient } from './lib/allog-api-client';
 
 interface MonitoringStats {
   totalModules: number;
@@ -104,6 +106,9 @@ function App() {
     startDate: '',
     endDate: ''
   });
+  
+  // Console interceptor for capturing browser console logs
+  const consoleInterceptorRef = useRef<ConsoleInterceptor | null>(null);
 
   // Define getCurrentData after state variables are defined
   const getCurrentData = useCallback(() => {
@@ -228,7 +233,7 @@ function App() {
   // Fetch logs from the API
   const fetchLogs = useCallback(async () => {
     try {
-      const response = await fetch('/api/logs?includeRecursive=false');
+      const response = await fetch(`${viewerConfig.defaultServerUrl}/api/logs?includeRecursive=false`);
       if (response.ok) {
         const data = await response.json();
         const normalized: LogEntry[] = (data.logs || []).map((raw: any) => ({
@@ -253,7 +258,7 @@ function App() {
   // Fetch stats from the API
   const fetchStats = useCallback(async () => {
     try {
-      const response = await fetch('/api/status');
+      const response = await fetch(`${viewerConfig.defaultServerUrl}/api/status`);
       if (response.ok) {
         const data = await response.json();
         setLogStats(data);
@@ -276,13 +281,13 @@ function App() {
       // Prefer DELETE /api/logs; keep POST fallback if proxied server supports it
       let ok = false;
       try {
-        const res = await fetch('/api/logs', { method: 'DELETE' });
+        const res = await fetch(`${viewerConfig.defaultServerUrl}/api/logs`, { method: 'DELETE' });
         ok = res.ok;
       } catch (error) {
         console.warn('[App] DELETE /api/logs failed, trying fallback:', error);
       }
       if (!ok) {
-        const response = await fetch('/api/logs/clear', { method: 'POST' });
+        const response = await fetch(`${viewerConfig.defaultServerUrl}/api/logs/clear`, { method: 'POST' });
         ok = response.ok;
       }
       if (ok) {
@@ -312,6 +317,24 @@ function App() {
     fetchLogs();
     fetchStats();
   }, [fetchLogs, fetchStats]);
+  
+  // Initialize console interceptor when connection is established
+  useEffect(() => {
+    if (connection.isConnected && !consoleInterceptorRef.current) {
+      const apiClient = createAllogApiClient(viewerConfig.defaultServerUrl);
+      consoleInterceptorRef.current = new ConsoleInterceptor(apiClient);
+      consoleInterceptorRef.current.enable();
+      log.info('App', 'Console interceptor enabled - browser console logs will be sent to recursive logs');
+    }
+    
+    // Cleanup function to disable interceptor on unmount
+    return () => {
+      if (consoleInterceptorRef.current) {
+        consoleInterceptorRef.current.disable();
+        consoleInterceptorRef.current = null;
+      }
+    };
+  }, [connection.isConnected]);
 
   // Filtered logs
   const filteredLogs = logs.filter(log => {
@@ -394,6 +417,31 @@ function App() {
     } catch {}
   }, [selectedLog]);
 
+  // Copy all logs to clipboard
+  const copyLogsToClipboard = useCallback(async () => {
+    try {
+      const logsData = {
+        timestamp: new Date().toISOString(),
+        totalLogs: filteredLogs.length,
+        logs: filteredLogs.map(log => ({
+          id: log.id,
+          scriptId: log.scriptId,
+          level: log.level,
+          time: log.time,
+          message: log.message,
+          data: log.data,
+          stack: log.stack
+        }))
+      };
+      
+      await navigator.clipboard.writeText(JSON.stringify(logsData, null, 2));
+      showNotification('Logs copied to clipboard!', 'success');
+    } catch (error) {
+      console.warn('Could not copy logs to clipboard:', error);
+      showNotification('Failed to copy logs to clipboard', 'error');
+    }
+  }, [filteredLogs, showNotification]);
+
   const getValueType = (value: any): string => {
     if (value === null) return 'null';
     if (value === undefined) return 'undefined';
@@ -441,7 +489,7 @@ function App() {
       doubleClickRefs.current.delete(elementId);
       
       // Allow the browser's native context menu to show
-      log.debug('App', 'Double right-click detected - allowing native context menu');
+      console.debug('Double right-click detected - allowing native context menu');
       return;
     }
     
@@ -1054,6 +1102,9 @@ function App() {
         <button onClick={saveLogsToDirectory} className="save-btn">
           💾 Save Logs
         </button>
+        <button onClick={copyLogsToClipboard} className="copy-btn">
+          📋 Copy Logs
+        </button>
       </div>
       <div className="monitoring-content">
         {/* Left: Logs list */}
@@ -1354,7 +1405,7 @@ function App() {
                       await writable.write(JSON.stringify(logData, null, 2));
                       await writable.close();
                       
-                      log.info('App', `Log saved to: ${filename}`);
+                      console.log(`Log saved to: ${filename}`);
                     }
                   }
                 } catch (error) {
@@ -1432,38 +1483,15 @@ function App() {
               <span className={`status-indicator ${currentView === 'logs' ? (connection.isConnected ? 'connected' : 'disconnected') : currentView === 'monitoring' ? (monitoringConnection.isConnected ? 'connected' : 'disconnected') : 'connected'}`}>
                 {currentView === 'logs' ? (connection.isConnected ? '●' : '○') : currentView === 'monitoring' ? (monitoringConnection.isConnected ? '●' : '○') : '●'}
               </span>
-              <span className="status-text">
-                {currentView === 'logs' ? (connection.isConnected ? 'Connected' : 'Disconnected') : currentView === 'monitoring' ? (monitoringConnection.isConnected ? 'Connected' : 'Disconnected') : 'Connected'}
-              </span>
             </div>
-            <div className="auto-refresh-controls">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={autoRefresh}
-                  onChange={(e) => setAutoRefresh(e.target.checked)}
-                />
-                Auto-refresh
-              </label>
-              <select
-                value={refreshInterval}
-                onChange={(e) => setRefreshInterval(Number(e.target.value))}
-                disabled={!autoRefresh}
-              >
-                {viewerConfig.refreshOptions.map(option => (
-                  <option key={option} value={option}>
-                    {option >= 1000 ? `${option/1000}s` : `${option}ms`}
-                  </option>
-                ))}
-              </select>
-            </div>
+
             <div className="settings-controls">
               <button 
                 onClick={() => setSettingsOpen(prev => !prev)}
                 className="settings-btn"
                 title="Open settings and view save logs directories"
               >
-                ⚙️ Settings
+                ⚙️
               </button>
             </div>
           </div>
