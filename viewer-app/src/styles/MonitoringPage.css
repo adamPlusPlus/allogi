@@ -28,39 +28,7 @@
   color: #ffffff;
 }
 
-.header-controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.connection-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 4px;
-  background: #3c3c3c;
-  font-size: 12px;
-}
-
-.status-indicator {
-  font-size: 10px;
-  font-weight: bold;
-}
-
-.status-indicator.connected {
-  color: #4ec9b0;
-}
-
-.status-indicator.disconnected {
-  color: #f44747;
-}
-
-.status-text {
-  font-size: 12px;
-  color: #cccccc;
-}
+/* Header styles moved to App.css to avoid conflicts */
 
 
 
@@ -1029,10 +997,7 @@
     padding: 10px 15px;
   }
   
-  .header-controls {
-    width: 100%;
-    justify-content: space-between;
-  }
+  /* Header controls styles moved to App.css to avoid conflicts */
   
   .monitoring-stats {
     flex-wrap: wrap;

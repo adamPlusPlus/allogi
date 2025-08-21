@@ -109,6 +109,13 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(5000);
   
+  // Persistence Limits State
+  const [persistenceLimits, setPersistenceLimits] = useState({
+    maxLogs: 10000,
+    maxRecursiveLogs: 10000,
+    maxMonitoringEntries: 20000
+  });
+  
   // Data Management States
   const [activeTab, setActiveTab] = useState<'recipients' | 'database' | 'archives' | 'maintenance'>('recipients');
   const [databaseConfig, setDatabaseConfig] = useState<DatabaseConfig | null>(null);
@@ -162,7 +169,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
       if (activeTab === 'database' || activeTab === 'maintenance') {
         setDatabaseConfig(results[0]);
         setDatabaseStats(results[1]);
-        if (activeTab === 'archives' || activeTab === 'maintenance') {
+        if (activeTab === 'maintenance') {
           setArchiveInfo(results[2]);
         }
       } else if (activeTab === 'archives') {
@@ -683,6 +690,92 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                 />
                 Console interception enabled (automatic when connected)
               </label>
+            </div>
+          </div>
+
+          {/* Persistence Limits Settings */}
+          <div className="settings-section">
+            <h3>💾 Persistence Limits</h3>
+            <div className="setting-row">
+              <p className="help-text">
+                Configure how many logs and monitoring entries will be kept in memory before older entries are automatically removed.
+                Lower limits save memory but reduce historical data availability.
+              </p>
+            </div>
+            <div className="setting-row">
+              <label>
+                Max Application Logs:
+                <input
+                  type="number"
+                  min="100"
+                  max="100000"
+                  step="100"
+                  value={persistenceLimits.maxLogs}
+                  onChange={(e) => setPersistenceLimits(prev => ({ 
+                    ...prev, 
+                    maxLogs: Math.max(100, parseInt(e.target.value) || 100) 
+                  }))}
+                />
+                <span className="help-text">Maximum number of application logs to keep (100 - 100,000)</span>
+              </label>
+            </div>
+            <div className="setting-row">
+              <label>
+                Max Recursive Logs:
+                <input
+                  type="number"
+                  min="100"
+                  max="100000"
+                  step="100"
+                  value={persistenceLimits.maxRecursiveLogs}
+                  onChange={(e) => setPersistenceLimits(prev => ({ 
+                    ...prev, 
+                    maxRecursiveLogs: Math.max(100, parseInt(e.target.value) || 100) 
+                  }))}
+                />
+                <span className="help-text">Maximum number of recursive logs to keep (100 - 100,000)</span>
+              </label>
+            </div>
+            <div className="setting-row">
+              <label>
+                Max Monitoring Entries:
+                <input
+                  type="number"
+                  min="100"
+                  max="100000"
+                  step="100"
+                  value={persistenceLimits.maxMonitoringEntries}
+                  onChange={(e) => setPersistenceLimits(prev => ({ 
+                    ...prev, 
+                    maxMonitoringEntries: Math.max(100, parseInt(e.target.value) || 100) 
+                  }))}
+                />
+                <span className="help-text">Maximum number of monitoring entries to keep (100 - 100,000)</span>
+              </label>
+            </div>
+            <div className="setting-row">
+              <button 
+                className="action-btn primary"
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/config/limits', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(persistenceLimits)
+                    });
+                    if (response.ok) {
+                      showNotification('Persistence limits updated successfully', 'success');
+                    } else {
+                      showNotification('Failed to update persistence limits', 'error');
+                    }
+                  } catch (error) {
+                    showNotification('Failed to update persistence limits', 'error');
+                  }
+                }}
+              >
+                💾 Update Limits
+              </button>
+              <span className="help-text">Click to apply these limits to the server configuration</span>
             </div>
           </div>
 

@@ -40,6 +40,9 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
     console.log('🔄 RecursiveLogsPage: Fetching logs from server:', serverUrl);
     
     // Use API client to get recursive logs
+    if (!apiClient.getRecursiveLogs) {
+      throw new Error('getRecursiveLogs method not available');
+    }
     const recursiveLogs = await apiClient.getRecursiveLogs();
     console.log('✅ RecursiveLogsPage: Received logs:', recursiveLogs.length, 'logs');
     
@@ -47,6 +50,9 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
   }, [apiClient, serverUrl]);
 
   const fetchStats = useCallback(async () => {
+    if (!apiClient.getRecursiveLogsStats) {
+      throw new Error('getRecursiveLogsStats method not available');
+    }
     const logStats = await apiClient.getRecursiveLogsStats();
     console.log('📊 RecursiveLogsPage: Received stats:', logStats);
     return logStats;
@@ -186,7 +192,31 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
   const filteredLogs = logs.filter(log => {
     if (filter.level && log.level !== filter.level) return false;
     if (filter.scriptId && log.scriptId !== filter.scriptId) return false;
-    if (filter.search && !log.message.toLowerCase().includes(filter.search.toLowerCase())) return false;
+    
+    // Enhanced search: search in message, data, scriptId, and other fields
+    if (filter.search) {
+      const searchTerm = filter.search.toLowerCase();
+      const searchableFields = [
+        log.message || '',
+        log.scriptId || '',
+        log.sourceId || '',
+        log.sourceType || '',
+        log.level || '',
+        // Search in data object if it exists
+        log.data ? JSON.stringify(log.data) : '',
+        // Search in stack trace if it exists
+        log.stack || '',
+        // Search in timestamp if it exists
+        log.timestamp || log.time || ''
+      ];
+      
+      const hasMatch = searchableFields.some(field => 
+        field.toLowerCase().includes(searchTerm)
+      );
+      
+      if (!hasMatch) return false;
+    }
+    
     return true;
   });
 
@@ -228,7 +258,21 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
   };
 
   const formatTime = (time: string): string => {
-    return new Date(time).toLocaleTimeString();
+    return new Date(time).toLocaleString();
+  };
+
+  // Function to highlight search matches in text
+  const highlightSearchMatch = (text: string, searchTerm: string) => {
+    if (!searchTerm || !text) return text;
+    
+    const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const parts = text.split(regex);
+    
+    return parts.map((part, index) => 
+      regex.test(part) ? (
+        <mark key={index} className="search-highlight">{part}</mark>
+      ) : part
+    );
   };
 
   return (
@@ -273,7 +317,7 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
               <label>Search:</label>
               <input
                 type="text"
-                placeholder="Search in messages..."
+                placeholder="Search in messages, data, script IDs, and more..."
                 value={filter.search}
                 onChange={(e) => setFilter(prev => ({ ...prev, search: e.target.value }))}
               />
@@ -322,9 +366,9 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
                     </div>
                     <div className="log-time">{formatTime(log.time)}</div>
                     <div className="log-script" style={{ color: getScriptColor(log.scriptId) }}>
-                      {log.scriptId}
+                      {highlightSearchMatch(log.scriptId || '', filter.search)}
                     </div>
-                    <div className="log-message">{log.message}</div>
+                    <div className="log-message">{highlightSearchMatch(log.message, filter.search)}</div>
                     <div className="log-expand">▶</div>
                   </div>
                   

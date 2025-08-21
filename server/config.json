@@ -6,6 +6,7 @@
     },
     "limits": {
       "maxLogs": 10000,
+      "maxRecursiveLogs": 10000,
       "maxMonitoringEntries": 20000,
       "rateLimit": 1000,
       "rateLimitWindow": 60000

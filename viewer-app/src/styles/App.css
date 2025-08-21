@@ -1,8 +1,23 @@
+/* Global debugging */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  position: relative !important;
+  height: 100% !important;
+}
+
 .app-container {
   min-height: 100vh;
   display: flex;
   background-color: #1a1a1a;
   color: #ffffff;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .app {
@@ -12,12 +27,20 @@
   background-color: #1a1a1a;
   color: #ffffff;
   flex: 1;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
 }
 
 .main-content {
   flex: 1;
   transition: margin-left 0.3s ease;
   overflow: visible;
+  /* Debug positioning */
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .main-content.with-save-system {
@@ -26,25 +49,46 @@
 
 /* Header */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  background-color: #2d2d2d;
-  border-bottom: 1px solid #404040;
-  flex-shrink: 0;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  background-color: #2d2d2d !important; /* Restored dark grey background */
+  border-bottom: 1px solid #404040 !important;
+  flex-shrink: 0 !important;
+  min-height: 60px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  /* Debug positioning */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
 }
 
 .header-controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex: 1 !important;
+  justify-content: space-between !important;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  min-height: 40px !important;
 }
 
 .view-toggle {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
 }
 
 .view-separator {
@@ -52,6 +96,10 @@
   height: 20px;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 4px;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  flex-shrink: 0 !important;
 }
 
 .save-system-toggle-btn {
@@ -63,6 +111,12 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 16px;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  min-width: 60px !important;
+  height: 36px !important;
+  flex-shrink: 0 !important;
 }
 
 .save-system-toggle-btn:hover {
@@ -78,6 +132,11 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  min-width: 80px !important;
+  height: 36px !important;
 }
 
 .view-btn:hover {
@@ -87,6 +146,47 @@
 .view-btn.active {
   background: #3498db;
   border-color: #3498db;
+}
+
+.settings-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  font-size: 16px !important;
+  min-width: 40px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  flex-shrink: 0 !important;
+  /* Make it more visible for debugging */
+  border: 2px solid #ff0000 !important;
+  background: #ff0000 !important;
+}
+
+.settings-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.settings-controls {
+  display: flex !important;
+  align-items: center !important;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  /* Make it more visible for debugging */
+  border: 2px solid #00ff00 !important;
+  background: rgba(0, 255, 0, 0.1) !important;
+  padding: 4px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
 }
 
 .header-left {
@@ -110,10 +210,38 @@
 }
 
 .connection-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.status-indicator {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #4ec9b0 !important;
+  padding: 2px 8px !important;
+  background: rgba(78, 201, 176, 0.1) !important;
+  border-radius: 4px !important;
+  /* Debug positioning */
+  position: relative !important;
+  overflow: visible !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.status-indicator.connected {
+  color: #4ec9b0;
+}
+
+.status-indicator.disconnected {
+  color: #f44747;
 }
 
 .status-dot {

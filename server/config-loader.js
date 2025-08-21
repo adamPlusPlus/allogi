@@ -48,6 +48,7 @@ class ConfigLoader {
   get serverPort() { return this.config.server.ports.default; }
   get viewerPort() { return this.config.server.ports.viewer; }
   get maxLogs() { return this.config.server.limits.maxLogs; }
+  get maxRecursiveLogs() { return this.config.server.limits.maxRecursiveLogs || this.config.server.limits.maxLogs; }
   get rateLimit() { return this.config.server.limits.rateLimit; }
   get rateLimitWindow() { return this.config.server.limits.rateLimitWindow; }
   get enableWebSocket() { return this.config.server.networking.enableWebSocket; }
@@ -87,6 +88,7 @@ class ConfigLoader {
       port: overrides.port || this.serverPort,
       viewerPort: overrides.viewerPort || this.viewerPort,
       maxLogs: overrides.maxLogs || this.maxLogs,
+      maxRecursiveLogs: overrides.maxRecursiveLogs || this.maxRecursiveLogs,
       maxMonitoringEntries: overrides.maxMonitoringEntries || this.maxMonitoringEntries,
       enableWebSocket: overrides.enableWebSocket !== undefined ? overrides.enableWebSocket : this.enableWebSocket,
       enablePersistence: overrides.enablePersistence !== undefined ? overrides.enablePersistence : this.enablePersistence,

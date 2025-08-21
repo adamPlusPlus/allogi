@@ -839,6 +839,46 @@ class AllogIntermediaryServer {
       res.json({ ok: true });
     });
 
+    // Persistence limits configuration endpoint
+    this.app.post('/api/config/limits', express.json(), (req, res) => {
+      try {
+        const { maxLogs, maxRecursiveLogs, maxMonitoringEntries } = req.body;
+        
+        // Update configuration if valid values provided
+        if (maxLogs && typeof maxLogs === 'number' && maxLogs >= 100 && maxLogs <= 100000) {
+          this.config.maxLogs = maxLogs;
+        }
+        if (maxRecursiveLogs && typeof maxRecursiveLogs === 'number' && maxRecursiveLogs >= 100 && maxRecursiveLogs <= 100000) {
+          this.config.maxRecursiveLogs = maxRecursiveLogs;
+        }
+        if (maxMonitoringEntries && typeof maxMonitoringEntries === 'number' && maxMonitoringEntries >= 100 && maxMonitoringEntries <= 100000) {
+          this.config.maxMonitoringEntries = maxMonitoringEntries;
+        }
+        
+        // Apply limits to existing data if needed
+        if (this.logs.length > this.config.maxLogs) {
+          this.logs = this.logs.slice(-this.config.maxLogs);
+        }
+        if (this.serverLogs.length > (this.config.maxRecursiveLogs || this.config.maxLogs)) {
+          this.serverLogs = this.serverLogs.slice(-(this.config.maxRecursiveLogs || this.config.maxLogs));
+        }
+        if (this.monitoringData.length > this.config.maxMonitoringEntries) {
+          this.monitoringData = this.monitoringData.slice(-this.config.maxMonitoringEntries);
+        }
+        
+        res.json({ 
+          success: true, 
+          limits: {
+            maxLogs: this.config.maxLogs,
+            maxRecursiveLogs: this.config.maxRecursiveLogs || this.config.maxLogs,
+            maxMonitoringEntries: this.config.maxMonitoringEntries
+          }
+        });
+      } catch (error) {
+        res.status(500).json({ error: 'Failed to update persistence limits' });
+      }
+    });
+
     // Individual monitoring data endpoint
     this.app.post('/api/monitoring/data', async (req, res) => {
       try {
