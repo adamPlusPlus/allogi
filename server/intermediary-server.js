@@ -37,7 +37,7 @@ class AllogIntermediaryServer {
     this.logs = [];
     this.serverLogs = []; // Separate collection for server logs
     this.sources = new Map();
-    this.connections = new Map();
+    this.connections = new Set();
     this.monitoringData = new Map();
     this.rateLimitCounters = new Map();
     this.lastCleanup = Date.now();

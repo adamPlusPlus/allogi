@@ -173,6 +173,16 @@
   background: #005a9e;
 }
 
+.new-item-btn.save-logs-mode {
+  background: linear-gradient(135deg, #4ec9b0, #3ba892);
+}
+
+.new-item-btn.save-logs-mode:hover {
+  background: linear-gradient(135deg, #3ba892, #2a8a7a);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(78, 201, 176, 0.3);
+}
+
 .import-btn {
   width: 100%;
   padding: 8px 12px;

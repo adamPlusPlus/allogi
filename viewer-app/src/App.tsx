@@ -1099,9 +1099,6 @@ function App() {
         <button onClick={clearLogs} className="clear-btn">
           Clear Logs
         </button>
-        <button onClick={saveLogsToDirectory} className="save-btn">
-          💾 Save Logs
-        </button>
         <button onClick={copyLogsToClipboard} className="copy-btn">
           📋 Copy Logs
         </button>
@@ -1305,6 +1302,7 @@ function App() {
         currentData={getCurrentData()}
         currentView={currentView}
         onCreateHighlight={handleCreateHighlight}
+        onSaveLogs={saveLogsToDirectory}
       />
       
       {/* Context Menu */}
@@ -1447,7 +1445,7 @@ function App() {
             onClick={() => setSaveSystemOpen(!saveSystemOpen)}
             title="Toggle Save System"
           >
-            💾
+            💾👤
           </button>
           <div className="header-controls">
             <div className="view-toggle">

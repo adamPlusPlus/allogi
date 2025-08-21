@@ -664,6 +664,27 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
               </label>
             </div>
           </div>
+          
+          {/* Console Interception Settings */}
+          <div className="settings-section">
+            <h3>📝 Console Interception</h3>
+            <div className="setting-row">
+              <p className="help-text">
+                When enabled, browser console logs (console.log, console.error, etc.) will be automatically 
+                sent to the recursive logs system, allowing you to monitor the viewer's internal operations.
+              </p>
+            </div>
+            <div className="setting-row">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={true}
+                  disabled={true}
+                />
+                Console interception enabled (automatic when connected)
+              </label>
+            </div>
+          </div>
 
           {/* Server Information (always show) */}
           <div className="settings-section">

@@ -90,6 +90,7 @@ interface SaveSystemProps {
     tags: string[];
     data?: any;
   }) => void;
+  onSaveLogs?: () => Promise<void>;
 }
 
 interface ContextMenuState {
@@ -136,7 +137,8 @@ const SaveSystem = forwardRef<SaveSystemRef, SaveSystemProps>(({
   onImport,
   currentData,
   currentView,
-  onCreateHighlight
+  onCreateHighlight,
+  onSaveLogs
 }, ref) => {
   const [state, setState] = useState<SaveSystemState>({
     items: [],
@@ -1634,10 +1636,10 @@ const SaveSystem = forwardRef<SaveSystemRef, SaveSystemProps>(({
                      {/* New Item Form */}
            <div className="new-item-section">
              <button
-               className="new-item-btn"
-               onClick={() => setShowNewItemForm(!showNewItemForm)}
+               className={`new-item-btn ${onSaveLogs ? 'save-logs-mode' : ''}`}
+               onClick={onSaveLogs || (() => setShowNewItemForm(!showNewItemForm))}
              >
-               {showNewItemForm ? 'Cancel' : '+ New Save'}
+               {onSaveLogs ? '💾 Save Logs' : (showNewItemForm ? 'Cancel' : '+ New Save')}
              </button>
              
              {/* Import Button */}

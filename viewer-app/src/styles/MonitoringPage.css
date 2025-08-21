@@ -62,34 +62,7 @@
   color: #cccccc;
 }
 
-.auto-refresh-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-}
 
-.auto-refresh-controls label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 12px;
-  color: #cccccc;
-  cursor: pointer;
-}
-
-.auto-refresh-controls input[type="checkbox"] {
-  margin: 0;
-}
-
-.auto-refresh-controls select {
-  padding: 4px 8px;
-  border: 1px solid #3e3e42;
-  border-radius: 3px;
-  font-size: 12px;
-  background: #3c3c3c;
-  color: #cccccc;
-}
 
 /* Stats - More Compact */
 .monitoring-stats {
