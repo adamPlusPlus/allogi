@@ -9476,6 +9476,1221 @@
       "serverReceivedAt": "2025-08-21T21:35:53.076Z",
       "quality": "raw-text",
       "timestamp": "2025-08-21T21:35:53.076Z"
+    },
+    {
+      "id": "raw_undefined_1755812181363_hc8l8ovgv",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T21:36:21.363Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:36:21.363Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:36:21.363Z"
+    },
+    {
+      "id": "raw_undefined_1755812181408_h18t7psbw",
+      "message": "[webpack-dev-server] Nothing changed.",
+      "time": "2025-08-21T21:36:21.408Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] Nothing changed.",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:36:21.408Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:36:21.408Z"
+    },
+    {
+      "id": "raw_undefined_1755812348197_2doqul0wf",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T21:39:08.197Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:39:08.197Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:39:08.197Z"
+    },
+    {
+      "id": "raw_undefined_1755812348200_2c3ehdmz6",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T21:39:08.200Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:39:08.200Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:39:08.200Z"
+    },
+    {
+      "id": "raw_undefined_1755812348238_t2m2b394u",
+      "message": "[HMR] Cannot find update. Need to do a full reload!",
+      "time": "2025-08-21T21:39:08.238Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Cannot find update. Need to do a full reload!",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:39:08.238Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:39:08.238Z"
+    },
+    {
+      "id": "raw_undefined_1755812348240_7pcazkm4g",
+      "message": "[HMR] (Probably because of restarting the webpack-dev-server)",
+      "time": "2025-08-21T21:39:08.240Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] (Probably because of restarting the webpack-dev-server)",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:39:08.240Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:39:08.240Z"
+    },
+    {
+      "id": "raw_undefined_1755812348610_0m7t7l74o",
+      "message": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+      "time": "2025-08-21T21:39:08.610Z",
+      "level": "info",
+      "data": {
+        "originalText": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:39:08.610Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:39:08.610Z"
+    },
+    {
+      "id": "raw_undefined_1755812452236_7x3t0vzg2",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T21:40:52.236Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:40:52.236Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:40:52.236Z"
+    },
+    {
+      "id": "raw_undefined_1755812452321_da6rfftny",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T21:40:52.321Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:40:52.321Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:40:52.321Z"
+    },
+    {
+      "id": "raw_undefined_1755812452324_qbxf2lox0",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T21:40:52.324Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:40:52.324Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:40:52.324Z"
+    },
+    {
+      "id": "raw_undefined_1755812452612_g4mct2930",
+      "message": "[HMR] Updated modules:",
+      "time": "2025-08-21T21:40:52.612Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Updated modules:",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:40:52.612Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:40:52.612Z"
+    },
+    {
+      "id": "raw_undefined_1755812452615_r1vbsrifo",
+      "message": "[HMR]  - ./node_modules/css-loader/dist/cjs.js!./src/styles/App.css",
+      "time": "2025-08-21T21:40:52.615Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR]  - ./node_modules/css-loader/dist/cjs.js!./src/styles/App.css",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:40:52.615Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:40:52.615Z"
+    },
+    {
+      "id": "raw_undefined_1755812452619_2swixhtc2",
+      "message": "[HMR] App is up to date.",
+      "time": "2025-08-21T21:40:52.619Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] App is up to date.",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:40:52.619Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:40:52.619Z"
+    },
+    {
+      "id": "raw_undefined_1755812463967_a0qrbo0yi",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T21:41:03.967Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:03.967Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:03.967Z"
+    },
+    {
+      "id": "raw_undefined_1755812464023_3oox2icq0",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T21:41:04.023Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:04.023Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:04.023Z"
+    },
+    {
+      "id": "raw_undefined_1755812464025_ndgpa8l2c",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T21:41:04.025Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:04.025Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:04.025Z"
+    },
+    {
+      "id": "raw_undefined_1755812464307_zc1zf8axq",
+      "message": "[HMR] Updated modules:",
+      "time": "2025-08-21T21:41:04.307Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Updated modules:",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:04.307Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:04.307Z"
+    },
+    {
+      "id": "raw_undefined_1755812464308_qrw471q9f",
+      "message": "[HMR]  - ./node_modules/css-loader/dist/cjs.js!./src/styles/App.css",
+      "time": "2025-08-21T21:41:04.308Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR]  - ./node_modules/css-loader/dist/cjs.js!./src/styles/App.css",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:04.308Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:04.308Z"
+    },
+    {
+      "id": "raw_undefined_1755812464310_0ygjiyuez",
+      "message": "[HMR] App is up to date.",
+      "time": "2025-08-21T21:41:04.310Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] App is up to date.",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:04.310Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:04.310Z"
+    },
+    {
+      "id": "raw_undefined_1755812477109_b950nopkw",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T21:41:17.109Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:17.109Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:17.109Z"
+    },
+    {
+      "id": "raw_undefined_1755812477354_fdyr1twtq",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T21:41:17.354Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:17.354Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:17.354Z"
+    },
+    {
+      "id": "raw_undefined_1755812477356_hibrfspy8",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T21:41:17.356Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:17.356Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:17.356Z"
+    },
+    {
+      "id": "raw_undefined_1755812477717_yj06xfuiv",
+      "message": "[HMR] Cannot apply update. Need to do a full reload!",
+      "time": "2025-08-21T21:41:17.717Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Cannot apply update. Need to do a full reload!",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:17.717Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:17.717Z"
+    },
+    {
+      "id": "raw_undefined_1755812477740_j5g5eoma5",
+      "message": "[HMR] Error: Aborted because ./src/App.tsx is not accepted\nUpdate propagation: ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+      "time": "2025-08-21T21:41:17.740Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Error: Aborted because ./src/App.tsx is not accepted\nUpdate propagation: ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:17.740Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:17.740Z"
+    },
+    {
+      "id": "raw_undefined_1755812478844_3sj3fgt7o",
+      "message": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+      "time": "2025-08-21T21:41:18.844Z",
+      "level": "info",
+      "data": {
+        "originalText": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:18.844Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:18.844Z"
+    },
+    {
+      "id": "raw_undefined_1755812488818_4k9jvwplh",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T21:41:28.818Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:28.818Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:28.818Z"
+    },
+    {
+      "id": "raw_undefined_1755812489038_wabwz05p8",
+      "message": "[webpack-dev-server] Nothing changed.",
+      "time": "2025-08-21T21:41:29.038Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] Nothing changed.",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T21:41:29.038Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T21:41:29.038Z"
+    },
+    {
+      "id": "raw_undefined_1755814918301_wgbv853bm",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T22:21:58.301Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:21:58.301Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:21:58.301Z"
+    },
+    {
+      "id": "raw_undefined_1755814918370_1gihc37vf",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T22:21:58.370Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:21:58.370Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:21:58.370Z"
+    },
+    {
+      "id": "raw_undefined_1755814918387_uey9xm81h",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T22:21:58.387Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:21:58.387Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:21:58.387Z"
+    },
+    {
+      "id": "raw_undefined_1755814918402_zx43zuplq",
+      "message": "[HMR] Cannot apply update. Need to do a full reload!",
+      "time": "2025-08-21T22:21:58.402Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Cannot apply update. Need to do a full reload!",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:21:58.402Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:21:58.402Z"
+    },
+    {
+      "id": "raw_undefined_1755814918422_u7ntz2yeh",
+      "message": "[HMR] Error: Aborted because ./src/config/viewer-config.json is not accepted\nUpdate propagation: ./src/config/viewer-config.json -> ./src/config/config-loader.ts -> ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+      "time": "2025-08-21T22:21:58.422Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Error: Aborted because ./src/config/viewer-config.json is not accepted\nUpdate propagation: ./src/config/viewer-config.json -> ./src/config/config-loader.ts -> ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:21:58.422Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:21:58.422Z"
+    },
+    {
+      "id": "raw_undefined_1755814919060_wmmrvleua",
+      "message": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+      "time": "2025-08-21T22:21:59.060Z",
+      "level": "info",
+      "data": {
+        "originalText": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:21:59.060Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:21:59.060Z"
+    },
+    {
+      "id": "raw_undefined_1755814932634_a20bv910m",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T22:22:12.634Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:12.634Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:12.634Z"
+    },
+    {
+      "id": "raw_undefined_1755814932841_me2jnz3qk",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T22:22:12.841Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:12.841Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:12.841Z"
+    },
+    {
+      "id": "raw_undefined_1755814932856_hrvf26lum",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T22:22:12.856Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:12.856Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:12.856Z"
+    },
+    {
+      "id": "raw_undefined_1755814932878_7y84jjt56",
+      "message": "[HMR] Cannot apply update. Need to do a full reload!",
+      "time": "2025-08-21T22:22:12.878Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Cannot apply update. Need to do a full reload!",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:12.878Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:12.878Z"
+    },
+    {
+      "id": "raw_undefined_1755814932896_f8frfru5i",
+      "message": "[HMR] Error: Aborted because ./src/components/Settings.tsx is not accepted\nUpdate propagation: ./src/components/Settings.tsx -> ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+      "time": "2025-08-21T22:22:12.896Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Error: Aborted because ./src/components/Settings.tsx is not accepted\nUpdate propagation: ./src/components/Settings.tsx -> ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:12.896Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:12.896Z"
+    },
+    {
+      "id": "raw_undefined_1755814933527_wgx4vda64",
+      "message": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+      "time": "2025-08-21T22:22:13.527Z",
+      "level": "info",
+      "data": {
+        "originalText": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:13.527Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:13.527Z"
+    },
+    {
+      "id": "raw_undefined_1755814954423_sc9b93eer",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T22:22:34.423Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:34.423Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:34.423Z"
+    },
+    {
+      "id": "raw_undefined_1755814954592_3ir4vph2s",
+      "message": "[webpack-dev-server] App hot update...",
+      "time": "2025-08-21T22:22:34.592Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App hot update...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:34.592Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:34.592Z"
+    },
+    {
+      "id": "raw_undefined_1755814954612_coe2une75",
+      "message": "[HMR] Checking for updates on the server...",
+      "time": "2025-08-21T22:22:34.612Z",
+      "level": "info",
+      "data": {
+        "originalText": "[HMR] Checking for updates on the server...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:34.612Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:34.612Z"
+    },
+    {
+      "id": "raw_undefined_1755814954978_m28ka36ye",
+      "message": "[HMR] Cannot apply update. Need to do a full reload!",
+      "time": "2025-08-21T22:22:34.978Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Cannot apply update. Need to do a full reload!",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:34.978Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:34.978Z"
+    },
+    {
+      "id": "raw_undefined_1755814954993_8hm13okk3",
+      "message": "[HMR] Error: Aborted because ./src/components/Settings.tsx is not accepted\nUpdate propagation: ./src/components/Settings.tsx -> ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+      "time": "2025-08-21T22:22:34.993Z",
+      "level": "warn",
+      "data": {
+        "originalText": "[HMR] Error: Aborted because ./src/components/Settings.tsx is not accepted\nUpdate propagation: ./src/components/Settings.tsx -> ./src/App.tsx -> ./src/index.tsx\n    at applyHandler (http://localhost:3001/main.js:1115:31)\n    at http://localhost:3001/main.js:803:21\n    at Array.map (<anonymous>)\n    at internalApply (http://localhost:3001/main.js:802:54)\n    at http://localhost:3001/main.js:773:26\n    at waitForBlockingPromises (http://localhost:3001/main.js:728:48)\n    at http://localhost:3001/main.js:771:24",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:34.993Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:34.993Z"
+    },
+    {
+      "id": "raw_undefined_1755814955881_rgqcbob09",
+      "message": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+      "time": "2025-08-21T22:22:35.881Z",
+      "level": "info",
+      "data": {
+        "originalText": "[App] Console interceptor enabled - browser console logs will be sent to recursive logs ",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:22:35.881Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:22:35.881Z"
     }
   ],
   "monitoringData": [],

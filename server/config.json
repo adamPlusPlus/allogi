@@ -5,9 +5,9 @@
       "viewer": 3001
     },
     "limits": {
-      "maxLogs": 10000,
-      "maxRecursiveLogs": 10000,
-      "maxMonitoringEntries": 20000,
+      "maxLogs": 2000,
+      "maxRecursiveLogs": 1000,
+      "maxMonitoringEntries": 5000,
       "rateLimit": 1000,
       "rateLimitWindow": 60000
     },

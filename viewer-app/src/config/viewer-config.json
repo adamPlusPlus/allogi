@@ -74,7 +74,7 @@
   "buffers": {
     "logs": {
       "default": 500,
-      "maximum": 10000
+      "maximum": 2000
     },
     "stats": {
       "enabledModules": 0,

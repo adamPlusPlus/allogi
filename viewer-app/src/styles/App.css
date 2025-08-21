@@ -2,9 +2,11 @@
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  overflow: visible !important;
+  overflow-x: hidden !important;
   position: relative !important;
   height: 100% !important;
+  width: 100% !important;
+  max-width: 100vw !important;
 }
 
 .app-container {
@@ -14,10 +16,10 @@ html, body {
   color: #ffffff;
   /* Debug positioning */
   position: relative !important;
-  overflow: visible !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
 }
 
 .app {
@@ -29,18 +31,21 @@ html, body {
   flex: 1;
   /* Debug positioning */
   position: relative !important;
-  overflow: visible !important;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
 }
 
 .main-content {
   flex: 1;
   transition: margin-left 0.3s ease;
-  overflow: visible;
+  overflow-x: hidden;
   /* Debug positioning */
   position: relative !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
 }
 
 .main-content.with-save-system {
@@ -58,16 +63,14 @@ html, body {
   flex-shrink: 0 !important;
   min-height: 60px !important;
   width: 100% !important;
+  max-width: 100vw !important;
   box-sizing: border-box !important;
   position: relative !important;
   z-index: 1000 !important;
   /* Debug positioning */
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+  overflow-x: hidden !important;
   transform: none !important;
   margin: 0 !important;
-  overflow: visible !important;
 }
 
 .header-controls {
@@ -78,8 +81,11 @@ html, body {
   justify-content: space-between !important;
   /* Debug positioning */
   position: relative !important;
-  overflow: visible !important;
+  overflow-x: hidden !important;
   min-height: 40px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .view-toggle {
@@ -121,6 +127,15 @@ html, body {
 
 .save-system-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Vertical separator between save system toggle and view buttons */
+.save-system-separator {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 8px;
+  flex-shrink: 0;
 }
 
 .view-btn {
@@ -166,9 +181,6 @@ html, body {
   position: relative !important;
   overflow: visible !important;
   flex-shrink: 0 !important;
-  /* Make it more visible for debugging */
-  border: 2px solid #ff0000 !important;
-  background: #ff0000 !important;
 }
 
 .settings-btn:hover {
@@ -743,4 +755,55 @@ html, body {
 .log-quality.normal {
   background: #4caf50;
   color: white;
+} 
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .header-controls {
+    gap: 12px !important;
+  }
+  
+  .view-toggle {
+    gap: 6px !important;
+  }
+  
+  .view-btn {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    min-width: 70px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 6px 12px !important;
+  }
+  
+  .header-controls {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .view-toggle {
+    gap: 4px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .view-btn {
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+    min-width: 60px !important;
+  }
+  
+  .save-system-toggle-btn {
+    padding: 6px 8px !important;
+    font-size: 14px !important;
+    min-width: 50px !important;
+  }
+  
+  .settings-btn {
+    padding: 6px 8px !important;
+    font-size: 14px !important;
+    min-width: 36px !important;
+  }
 } 

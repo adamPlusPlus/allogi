@@ -111,9 +111,9 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
   
   // Persistence Limits State
   const [persistenceLimits, setPersistenceLimits] = useState({
-    maxLogs: 10000,
-    maxRecursiveLogs: 10000,
-    maxMonitoringEntries: 20000
+    maxLogs: 2000,
+    maxRecursiveLogs: 1000,
+    maxMonitoringEntries: 5000
   });
   
   // Data Management States
@@ -708,7 +708,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                 <input
                   type="number"
                   min="100"
-                  max="100000"
+                  max="10000"
                   step="100"
                   value={persistenceLimits.maxLogs}
                   onChange={(e) => setPersistenceLimits(prev => ({ 
@@ -716,7 +716,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                     maxLogs: Math.max(100, parseInt(e.target.value) || 100) 
                   }))}
                 />
-                <span className="help-text">Maximum number of application logs to keep (100 - 100,000)</span>
+                <span className="help-text">Maximum number of application logs to keep (100 - 10,000)</span>
               </label>
             </div>
             <div className="setting-row">
@@ -725,7 +725,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                 <input
                   type="number"
                   min="100"
-                  max="100000"
+                  max="5000"
                   step="100"
                   value={persistenceLimits.maxRecursiveLogs}
                   onChange={(e) => setPersistenceLimits(prev => ({ 
@@ -733,7 +733,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                     maxRecursiveLogs: Math.max(100, parseInt(e.target.value) || 100) 
                   }))}
                 />
-                <span className="help-text">Maximum number of recursive logs to keep (100 - 100,000)</span>
+                <span className="help-text">Maximum number of recursive logs to keep (100 - 5,000)</span>
               </label>
             </div>
             <div className="setting-row">
@@ -742,7 +742,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                 <input
                   type="number"
                   min="100"
-                  max="100000"
+                  max="20000"
                   step="100"
                   value={persistenceLimits.maxMonitoringEntries}
                   onChange={(e) => setPersistenceLimits(prev => ({ 
@@ -750,7 +750,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                     maxMonitoringEntries: Math.max(100, parseInt(e.target.value) || 100) 
                   }))}
                 />
-                <span className="help-text">Maximum number of monitoring entries to keep (100 - 100,000)</span>
+                <span className="help-text">Maximum number of monitoring entries to keep (100 - 20,000)</span>
               </label>
             </div>
             <div className="setting-row">

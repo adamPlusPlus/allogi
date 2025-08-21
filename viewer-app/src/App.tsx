@@ -1452,6 +1452,7 @@ function App() {
           >
             💾👤
           </button>
+          <div className="save-system-separator"></div>
           <div className="header-controls">
             <div className="view-toggle">
               <button 

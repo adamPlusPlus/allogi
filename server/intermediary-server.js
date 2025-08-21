@@ -845,13 +845,13 @@ class AllogIntermediaryServer {
         const { maxLogs, maxRecursiveLogs, maxMonitoringEntries } = req.body;
         
         // Update configuration if valid values provided
-        if (maxLogs && typeof maxLogs === 'number' && maxLogs >= 100 && maxLogs <= 100000) {
+        if (maxLogs && typeof maxLogs === 'number' && maxLogs >= 100 && maxLogs <= 10000) {
           this.config.maxLogs = maxLogs;
         }
-        if (maxRecursiveLogs && typeof maxRecursiveLogs === 'number' && maxRecursiveLogs >= 100 && maxRecursiveLogs <= 100000) {
+        if (maxRecursiveLogs && typeof maxRecursiveLogs === 'number' && maxRecursiveLogs >= 100 && maxRecursiveLogs <= 5000) {
           this.config.maxRecursiveLogs = maxRecursiveLogs;
         }
-        if (maxMonitoringEntries && typeof maxMonitoringEntries === 'number' && maxMonitoringEntries >= 100 && maxMonitoringEntries <= 100000) {
+        if (maxMonitoringEntries && typeof maxMonitoringEntries === 'number' && maxMonitoringEntries >= 100 && maxMonitoringEntries <= 20000) {
           this.config.maxMonitoringEntries = maxMonitoringEntries;
         }
         
