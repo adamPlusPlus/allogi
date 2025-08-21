@@ -1881,9 +1881,9 @@ class AllogIntermediaryServer {
     // Add to server logs array
     this.serverLogs.push(logEntry);
 
-    // Broadcast to WebSocket clients as regular log entry for recursive logs
+    // Broadcast to WebSocket clients as server log entry for recursive logs only
     this.broadcastToViewers({
-      type: 'new_log',
+      type: 'new_server_log',
       data: logEntry
     });
 

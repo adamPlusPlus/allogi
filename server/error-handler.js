@@ -244,8 +244,8 @@ class ErrorHandler {
     };
 
     // Add to server logs
-    if (this.server && this.server.addLogEntry) {
-      this.server.addLogEntry(logEntry);
+    if (this.server && this.server.addServerLog) {
+      this.server.addServerLog(logEntry);
     }
 
     // Add to error history

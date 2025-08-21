@@ -220,6 +220,11 @@ function App() {
             // We could add a callback here to trigger refresh in MonitoringPage
             log.info('App', 'Received monitoring update', msg.data);
           }
+          if (msg.type === 'new_server_log') {
+            // Server logs are handled by the recursive logs page
+            // No need to update the main logs view
+            log.debug('App', 'Received server log update', msg.data);
+          }
         } catch {}
       };
     } catch {}
