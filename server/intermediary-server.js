@@ -1919,6 +1919,20 @@ class AllogIntermediaryServer {
     }
   }
 
+  /**
+   * Persist application logs to storage
+   */
+  persistLogs() {
+    try {
+      if (this.db && this.db.saveLogs) {
+        this.db.saveLogs(this.logs)
+          .catch(error => console.error('Failed to persist logs:', error));
+      }
+    } catch (error) {
+      console.error('Error persisting logs:', error);
+    }
+  }
+
   broadcastToViewers(message) {
     const messageStr = JSON.stringify(message);
     
