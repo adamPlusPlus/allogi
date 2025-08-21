@@ -605,18 +605,14 @@ class HealthChecker {
         timestamp: new Date().toISOString(),
         level: result.status === 'healthy' ? 'info' : 
                result.status === 'warning' ? 'warn' : 'error',
-        scriptId: 'server',
-        sourceId: 'server',
+        scriptId: 'SERVER',
+        sourceId: 'SERVER',
         sourceType: 'health_checker',
-        message: `${check.name}: ${result.message}`,
+        message: `${check.name}: ${result.status}`,
         data: {
           component: check.id,
           status: result.status,
-          message: result.message,
-          lastRun: result.lastRun,
-          nextRun: result.nextRun,
-          details: result.details,
-          error: result.error
+          message: result.message
         }
       };
       

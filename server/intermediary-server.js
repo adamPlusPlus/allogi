@@ -103,16 +103,14 @@ class AllogIntermediaryServer {
         id: this.generateLogId(),
         timestamp: new Date().toISOString(),
         level: 'info',
-        scriptId: 'server',
-        sourceId: 'server',
+        scriptId: 'SERVER',
+        sourceId: 'SERVER',
         sourceType: 'request_logger',
-        message: `${req.method} ${req.url} - ${sourceId}`,
+        message: `${req.method} ${req.url}`,
         data: {
           method: req.method,
           url: req.url,
           sourceId: sourceId,
-          userAgent: req.get('User-Agent'),
-          ip: req.ip,
           timestamp: new Date().toISOString()
         }
       };
@@ -121,7 +119,7 @@ class AllogIntermediaryServer {
       this.addServerLog(requestLog);
       
       // Console logging for monitoring
-      console.log(`[SERVER] ${new Date().toISOString()} - ${req.method} ${req.url} - ${sourceId}`);
+      console.log(`[SERVER] ${req.method} ${req.url} - ${sourceId}`);
       
       // Track response time
       res.on('finish', () => {
@@ -132,17 +130,15 @@ class AllogIntermediaryServer {
           id: this.generateLogId(),
           timestamp: new Date().toISOString(),
           level: res.statusCode >= 400 ? 'warn' : 'info',
-          scriptId: 'server',
-          sourceId: 'server',
+          scriptId: 'SERVER',
+          sourceId: 'SERVER',
           sourceType: 'request_logger',
           message: `${req.method} ${req.url} - ${res.statusCode} (${responseTime}ms)`,
           data: {
             method: req.method,
             url: req.url,
-            sourceId: sourceId,
             statusCode: res.statusCode,
-            responseTime: responseTime,
-            timestamp: new Date().toISOString()
+            responseTime: responseTime
           }
         };
         

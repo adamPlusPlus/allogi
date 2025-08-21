@@ -322,121 +322,20 @@ class MetricsCollector {
    * Log metrics as structured logs
    */
   logMetrics(category, data) {
-    // Create meaningful log entries based on category
-    let logEntry;
-    
-    switch (category) {
-      case 'system':
-        logEntry = {
-          id: this.generateLogId(),
-          timestamp: new Date().toISOString(),
-          level: 'info',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'metrics_collector',
-          message: `System metrics: ${Math.round(data.memory?.process?.used / 1024 / 1024)}MB RAM, ${data.cpu?.cores} cores, uptime ${Math.round(data.uptime?.server / 1000 / 60)}m`,
-          data: {
-            memory: {
-              process: `${Math.round(data.memory?.process?.used / 1024 / 1024)}MB / ${Math.round(data.memory?.process?.total / 1024 / 1024)}MB`,
-              system: `${Math.round(data.memory?.system?.used / 1024 / 1024)}MB / ${Math.round(data.memory?.system?.total / 1024 / 1024)}MB`
-            },
-            cpu: {
-              cores: data.cpu?.cores,
-              load: data.cpu?.loadAverage?.[0] || 0,
-              architecture: data.cpu?.architecture
-            },
-            uptime: {
-              server: Math.round(data.uptime?.server / 1000 / 60),
-              process: Math.round(data.uptime?.process / 1000 / 60)
-            },
-            network: Object.keys(data.network?.interfaces || {}).length
-          }
-        };
-        break;
-        
-      case 'performance':
-        logEntry = {
-          id: this.generateLogId(),
-          timestamp: new Date().toISOString(),
-          level: 'info',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'metrics_collector',
-          message: `Performance: ${data.requests?.total || 0} requests, avg ${Math.round(data.response?.average || 0)}ms response time`,
-          data: {
-            requests: {
-              total: data.requests?.total || 0,
-              perSecond: data.requests?.perSecond || 0,
-              byEndpoint: data.requests?.byEndpoint || {},
-              bySource: data.requests?.bySource || {}
-            },
-            response: {
-              average: Math.round(data.response?.average || 0),
-              percentiles: data.response?.percentiles || {},
-              recent: data.response?.recent?.slice(-5) || []
-            },
-            websocket: {
-              connections: data.websocket?.connections || 0,
-              active: data.websocket?.active || 0
-            }
-          }
-        };
-        break;
-        
-      case 'database':
-        logEntry = {
-          id: this.generateLogId(),
-          timestamp: new Date().toISOString(),
-          level: 'info',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'metrics_collector',
-          message: `Database: ${data.storage?.logs || 0} logs, ${data.storage?.monitoring || 0} monitoring entries, ${data.storage?.sources || 0} sources`,
-          data: {
-            status: data.status,
-            operations: data.operations || {},
-            storage: data.storage || {},
-            performance: data.performance || {}
-          }
-        };
-        break;
-        
-      case 'slow_request':
-        logEntry = {
-          id: this.generateLogId(),
-          timestamp: new Date().toISOString(),
-          level: 'warn',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'metrics_collector',
-          message: `Slow request detected: ${data.endpoint} took ${data.responseTime}ms`,
-          data: {
-            endpoint: data.endpoint,
-            method: data.method,
-            sourceId: data.sourceId,
-            responseTime: data.responseTime,
-            statusCode: data.statusCode,
-            timestamp: data.timestamp
-          }
-        };
-        break;
-        
-      default:
-        logEntry = {
-          id: this.generateLogId(),
-          timestamp: new Date().toISOString(),
-          level: 'info',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'metrics_collector',
-          message: `Metrics collected for ${category}`,
-          data: {
-            category,
-            metrics: data,
-            timestamp: new Date().toISOString()
-          }
-        };
-    }
+    // Create structured log entry for Allogi viewer
+    const logEntry = {
+      id: `metrics_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      timestamp: new Date().toISOString(),
+      level: 'info',
+      scriptId: 'SERVER',
+      sourceId: 'SERVER',
+      sourceType: 'metrics_collector',
+      message: `Metrics collected for ${category}`,
+      data: {
+        category,
+        summary: this.summarizeMetrics(data)
+      }
+    };
 
     // Add to server logs if available
     if (this.server && this.server.addServerLog) {
@@ -444,18 +343,7 @@ class MetricsCollector {
     }
 
     // Console logging for monitoring
-    console.log(`📊 [METRICS] ${category}:`, {
-      timestamp: data.timestamp,
-      category,
-      data: this.summarizeMetrics(data)
-    });
-    
-    // Also log the structured data for debugging
-    console.log(`[SERVER] 📊 [METRICS] ${category}:`, {
-      timestamp: data.timestamp,
-      category,
-      data: data
-    });
+    console.log(`📊 [METRICS] ${category}:`, this.summarizeMetrics(data));
   }
 
   /**

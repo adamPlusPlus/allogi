@@ -10691,6 +10691,303 @@
       "serverReceivedAt": "2025-08-21T22:22:35.881Z",
       "quality": "raw-text",
       "timestamp": "2025-08-21T22:22:35.881Z"
+    },
+    {
+      "id": "raw_undefined_1755814981143_pmgh5n22x",
+      "message": "[webpack-dev-server] App updated. Recompiling...",
+      "time": "2025-08-21T22:23:01.143Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] App updated. Recompiling...",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:23:01.143Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:23:01.143Z"
+    },
+    {
+      "id": "raw_undefined_1755814981200_1ktb06l7w",
+      "message": "[webpack-dev-server] Nothing changed.",
+      "time": "2025-08-21T22:23:01.200Z",
+      "level": "info",
+      "data": {
+        "originalText": "[webpack-dev-server] Nothing changed.",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:23:01.200Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:23:01.200Z"
+    },
+    {
+      "id": "raw_undefined_1755815592060_iyru04isv",
+      "message": "🔄 RecursiveLogsPage: Component mounted",
+      "time": "2025-08-21T22:33:12.060Z",
+      "level": "info",
+      "data": {
+        "originalText": "🔄 RecursiveLogsPage: Component mounted",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:12.060Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:12.060Z"
+    },
+    {
+      "id": "raw_undefined_1755815592077_hxweel9cr",
+      "message": "🔄 RecursiveLogsPage: Fetching logs from server: http://localhost:3001",
+      "time": "2025-08-21T22:33:12.077Z",
+      "level": "info",
+      "data": {
+        "originalText": "🔄 RecursiveLogsPage: Fetching logs from server: http://localhost:3001",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:12.077Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:12.077Z"
+    },
+    {
+      "id": "raw_undefined_1755815592093_l5jc337jy",
+      "message": "🔄 RecursiveLogsPage: Component unmounting",
+      "time": "2025-08-21T22:33:12.093Z",
+      "level": "info",
+      "data": {
+        "originalText": "🔄 RecursiveLogsPage: Component unmounting",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:12.093Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:12.093Z"
+    },
+    {
+      "id": "raw_undefined_1755815592108_m1jdlf4f0",
+      "message": "🔄 RecursiveLogsPage: Component mounted",
+      "time": "2025-08-21T22:33:12.108Z",
+      "level": "info",
+      "data": {
+        "originalText": "🔄 RecursiveLogsPage: Component mounted",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:12.108Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:12.108Z"
+    },
+    {
+      "id": "raw_undefined_1755815592122_irg1gfx1l",
+      "message": "🔄 RecursiveLogsPage: Fetching logs from server: http://localhost:3001",
+      "time": "2025-08-21T22:33:12.122Z",
+      "level": "info",
+      "data": {
+        "originalText": "🔄 RecursiveLogsPage: Fetching logs from server: http://localhost:3001",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:12.122Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:12.122Z"
+    },
+    {
+      "id": "raw_undefined_1755815592234_tng1i0zy8",
+      "message": "✅ RecursiveLogsPage: Received logs: 1000 logs",
+      "time": "2025-08-21T22:33:12.234Z",
+      "level": "info",
+      "data": {
+        "originalText": "✅ RecursiveLogsPage: Received logs: 1000 logs",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:12.234Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:12.234Z"
+    },
+    {
+      "id": "raw_undefined_1755815593571_9nt9b3s9v",
+      "message": "✅ RecursiveLogsPage: Received logs: 1000 logs",
+      "time": "2025-08-21T22:33:13.571Z",
+      "level": "info",
+      "data": {
+        "originalText": "✅ RecursiveLogsPage: Received logs: 1000 logs",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:13.571Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:13.571Z"
+    },
+    {
+      "id": "raw_undefined_1755815594626_8tgku89rk",
+      "message": "📊 RecursiveLogsPage: Received stats: {\n  \"totalRecursiveLogs\": 1000,\n  \"byScript\": {\n    \"server\": 1000\n  },\n  \"byLevel\": {\n    \"info\": 894,\n    \"warn\": 75,\n    \"error\": 31\n  }\n}",
+      "time": "2025-08-21T22:33:14.626Z",
+      "level": "info",
+      "data": {
+        "originalText": "📊 RecursiveLogsPage: Received stats: {\n  \"totalRecursiveLogs\": 1000,\n  \"byScript\": {\n    \"server\": 1000\n  },\n  \"byLevel\": {\n    \"info\": 894,\n    \"warn\": 75,\n    \"error\": 31\n  }\n}",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:14.626Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:14.626Z"
+    },
+    {
+      "id": "raw_undefined_1755815596912_qn0n6sge5",
+      "message": "📊 RecursiveLogsPage: Received stats: {\n  \"totalRecursiveLogs\": 1000,\n  \"byScript\": {\n    \"server\": 1000\n  },\n  \"byLevel\": {\n    \"info\": 895,\n    \"warn\": 74,\n    \"error\": 31\n  }\n}",
+      "time": "2025-08-21T22:33:16.912Z",
+      "level": "info",
+      "data": {
+        "originalText": "📊 RecursiveLogsPage: Received stats: {\n  \"totalRecursiveLogs\": 1000,\n  \"byScript\": {\n    \"server\": 1000\n  },\n  \"byLevel\": {\n    \"info\": 895,\n    \"warn\": 74,\n    \"error\": 31\n  }\n}",
+        "parsedAs": "raw-text"
+      },
+      "sourceId": "unknown",
+      "sourceType": "unknown",
+      "sourceVersion": "1.0.0",
+      "file": null,
+      "line": null,
+      "column": null,
+      "functionName": null,
+      "metadata": {
+        "quality": "raw-text",
+        "originalFormat": "text",
+        "autoParsed": true
+      },
+      "transmissionId": null,
+      "sequenceNumber": null,
+      "serverReceivedAt": "2025-08-21T22:33:16.912Z",
+      "quality": "raw-text",
+      "timestamp": "2025-08-21T22:33:16.912Z"
     }
   ],
   "monitoringData": [],

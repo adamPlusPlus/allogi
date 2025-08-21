@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { LogFormatter, FormattedLog } from '../utils/LogFormatter';
 import '../styles/RecursiveLogsPage.css';
 import { createAllogApiClient, AllogApiClient } from '../lib/allog-api-client';
 import viewerConfig from '../config/config-loader';
@@ -14,8 +15,8 @@ interface RecursiveLogsPageProps {
 export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInterval }: RecursiveLogsPageProps) {
   const [logs, setLogs] = useState<any[]>([]);
   const [filter, setFilter] = useState({
-    level: '',
     scriptId: '',
+    level: '',
     search: ''
   });
   const [expandedLogs, setExpandedLogs] = useState<Set<string>>(new Set());
@@ -31,6 +32,11 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
     key: 'scriptId' | 'level' | 'time' | 'message';
     direction: 'asc' | 'desc';
   } | null>(null);
+
+  // Format logs for better readability
+  const formattedLogs = useMemo(() => {
+    return logs.map(log => LogFormatter.formatLog(log));
+  }, [logs]);
 
   // Create API client instance
   const [apiClient] = useState<AllogApiClient>(() => createAllogApiClient(serverUrl));
@@ -354,48 +360,78 @@ export default function RecursiveLogsPage({ serverUrl, autoRefresh, refreshInter
                 {logs.length === 0 ? 'No recursive logs found' : 'No logs match current filter'}
               </div>
             ) : (
-              filteredLogs.map((log) => (
-                <div 
-                  key={log.id} 
-                  className={`log-entry ${expandedLogs.has(log.id) ? 'expanded' : ''} ${selectedLog?.id === log.id ? 'selected' : ''}`}
-                  data-script-id={log.scriptId}
-                >
-                  <div className="log-header" onClick={() => toggleLogExpansion(log.id)}>
-                    <div className="log-level" style={{ color: getLevelColor(log.level) }}>
-                      {log.level.toUpperCase()}
+              filteredLogs.map((log, index) => {
+                const formattedLog = formattedLogs[index];
+                return (
+                  <div 
+                    key={log.id} 
+                    className={`log-entry ${expandedLogs.has(log.id) ? 'expanded' : ''} ${selectedLog?.id === log.id ? 'selected' : ''} ${formattedLog.isServerLog ? 'server-log' : 'application-log'}`}
+                    data-script-id={log.scriptId}
+                  >
+                    <div className="log-header" onClick={() => toggleLogExpansion(log.id)}>
+                      <div className="log-level" style={{ color: getLevelColor(log.level) }}>
+                        {log.level.toUpperCase()}
+                      </div>
+                      <div className="log-time">{formatTime(log.time)}</div>
+                      <div className="log-script" style={{ color: getScriptColor(log.scriptId) }}>
+                        {highlightSearchMatch(log.scriptId || '', filter.search)}
+                      </div>
+                      <div className="log-message">
+                        {formattedLog.isServerLog ? (
+                          <span className="server-log-message">
+                            🔧 {highlightSearchMatch(formattedLog.message, filter.search)}
+                          </span>
+                        ) : (
+                          highlightSearchMatch(log.message, filter.search)
+                        )}
+                      </div>
+                      <div className="log-expand">▶</div>
                     </div>
-                    <div className="log-time">{formatTime(log.time)}</div>
-                    <div className="log-script" style={{ color: getScriptColor(log.scriptId) }}>
-                      {highlightSearchMatch(log.scriptId || '', filter.search)}
-                    </div>
-                    <div className="log-message">{highlightSearchMatch(log.message, filter.search)}</div>
-                    <div className="log-expand">▶</div>
+                    
+                    {expandedLogs.has(log.id) && (
+                      <div className="log-details">
+                        {/* Show formatted details for server logs */}
+                        {formattedLog.isServerLog && formattedLog.details && (
+                          <div className="log-details-formatted">
+                            <strong>Details:</strong>
+                            <div className="details-text">{formattedLog.details}</div>
+                          </div>
+                        )}
+                        
+                        {/* Show metadata for server logs */}
+                        {formattedLog.isServerLog && formattedLog.metadata && Object.keys(formattedLog.metadata).length > 0 && (
+                          <div className="log-metadata">
+                            <strong>Metadata:</strong>
+                            <pre>{LogFormatter.formatValue(formattedLog.metadata, 2)}</pre>
+                          </div>
+                        )}
+                        
+                        {/* Show raw data for application logs or when needed */}
+                        {(!formattedLog.isServerLog || !formattedLog.details) && log.data && (
+                          <div className="log-data">
+                            <strong>Data:</strong>
+                            <pre>{JSON.stringify(log.data, null, 2)}</pre>
+                          </div>
+                        )}
+                        
+                        {log.file && (
+                          <div className="log-file">
+                            <strong>File:</strong> {log.file}:{log.line}:{log.column}
+                            {log.functionName && ` (${log.functionName})`}
+                          </div>
+                        )}
+                        
+                        {log.stack && (
+                          <div className="log-stack">
+                            <strong>Stack:</strong>
+                            <pre>{log.stack}</pre>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  
-                  {expandedLogs.has(log.id) && (
-                    <div className="log-details">
-                      {log.data && (
-                        <div className="log-data">
-                          <strong>Data:</strong>
-                          <pre>{JSON.stringify(log.data, null, 2)}</pre>
-                        </div>
-                      )}
-                      {log.file && (
-                        <div className="log-file">
-                          <strong>File:</strong> {log.file}:{log.line}:{log.column}
-                          {log.functionName && ` (${log.functionName})`}
-                        </div>
-                      )}
-                      {log.stack && (
-                        <div className="log-stack">
-                          <strong>Stack:</strong>
-                          <pre>{log.stack}</pre>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>

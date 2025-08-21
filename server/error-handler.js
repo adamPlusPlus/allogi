@@ -227,20 +227,22 @@ class ErrorHandler {
    * Log error for monitoring and debugging
    */
   logError(errorResponse, context) {
+    // Create structured log entry for server error logs
     const logEntry = {
       id: this.generateLogId(),
-      timestamp: errorResponse.error.timestamp,
-      level: 'error',
-      sourceId: 'server',
+      timestamp: new Date().toISOString(),
+      level: this.getErrorSeverity(errorResponse.error.category),
+      scriptId: 'SERVER',
+      sourceId: 'SERVER',
       sourceType: 'error_handler',
-      message: `Error ${errorResponse.error.id}: ${errorResponse.error.message}`,
+      message: `${errorResponse.error.category}: ${errorResponse.error.message}`,
       data: {
-        error: errorResponse.error,
-        context: context,
-        requestId: errorResponse.requestId
-      },
-      category: 'server_error',
-      severity: this.getErrorSeverity(errorResponse.error.category)
+        errorId: errorResponse.error.id,
+        category: errorResponse.error.category,
+        endpoint: context.endpoint,
+        sourceId: context.sourceId,
+        retryable: errorResponse.error.retryable
+      }
     };
 
     // Add to server logs
@@ -260,14 +262,7 @@ class ErrorHandler {
     }
 
     // Console logging with structured format
-    console.error(`🚨 [${errorResponse.error.category.toUpperCase()}] ${errorResponse.error.message}`, {
-      errorId: errorResponse.error.id,
-      category: errorResponse.error.category,
-      endpoint: context.endpoint,
-      sourceId: context.sourceId,
-      timestamp: errorResponse.error.timestamp,
-      retryable: errorResponse.error.retryable
-    });
+    console.error(`🚨 [${errorResponse.error.category.toUpperCase()}] ${errorResponse.error.message}`);
   }
 
   /**

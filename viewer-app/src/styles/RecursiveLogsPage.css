@@ -428,3 +428,57 @@
 .log-entry[data-script-id="allog-instrumentation"] {
   border-left: 4px solid #ff9ff3;
 } 
+
+/* Server Log Styling */
+.server-log {
+  border-left: 3px solid #007acc;
+  background-color: rgba(0, 122, 204, 0.05);
+}
+
+.server-log .log-header {
+  background-color: rgba(0, 122, 204, 0.1);
+}
+
+.server-log-message {
+  color: #007acc;
+  font-weight: 500;
+}
+
+.log-details-formatted {
+  margin: 8px 0;
+  padding: 8px;
+  background-color: rgba(0, 122, 204, 0.05);
+  border-radius: 4px;
+}
+
+.details-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.log-metadata {
+  margin: 8px 0;
+  padding: 8px;
+  background-color: rgba(0, 122, 204, 0.05);
+  border-radius: 4px;
+}
+
+.log-metadata pre {
+  margin: 4px 0 0 0;
+  font-size: 0.85em;
+  color: #666;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Application Log Styling */
+.application-log {
+  border-left: 3px solid #28a745;
+}
+
+.application-log .log-header {
+  background-color: rgba(40, 167, 69, 0.05);
+} 
