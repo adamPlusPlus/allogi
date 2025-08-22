@@ -106,30 +106,28 @@ npm test
 
 ## Usage Examples
 
-### Using the Client Library
+### Using the Server API Directly
 
 ```javascript
-const AllogClient = require('./client/allog-client.js');
-
-const client = new AllogClient({
-  serverUrl: 'http://localhost:3002',
-  sourceId: 'my-app',
-  sourceType: 'web-app'
+// Send logs directly to the server API
+fetch('http://localhost:3002/api/logs', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    level: 'info',
+    message: 'Application started',
+    scriptId: 'my-app',
+    sourceId: 'my-app',
+    sourceType: 'application',
+    data: {
+      timestamp: new Date()
+    }
+  })
 });
 
-await client.init();
-
-// Log messages
-client.info('Application started');
-client.warn('High memory usage detected');
-client.error('Failed to connect to database', { retryCount: 3 });
-
-// Log with structured data
-client.log('User action', 'info', {
-  userId: 123,
-  action: 'login',
-  timestamp: new Date()
-});
+// Or use the viewer app's API client
+import { createAllogApiClient } from './viewer-app/src/lib/allog-api-client';
+const apiClient = createAllogApiClient('http://localhost:3002');
 ```
 
 ### API Endpoints
@@ -156,7 +154,7 @@ Each component can be deployed independently:
 
 1. **Server**: Deploy to any Node.js hosting (Heroku, AWS, etc.)
 2. **Viewer**: Build and deploy to any static hosting (Netlify, Vercel, etc.)
-3. **Client**: Include in any application (browser, Node.js, etc.)
+3. **API**: Use the server's HTTP API directly from any application
 
 ### Docker Deployment
 
@@ -184,21 +182,20 @@ CMD ["node", "intermediary-server.js"]
 
 ### Project Structure
 ```
-lib/allogi/
+allogi/
 ├── server/                 # Intermediary server
 │   ├── intermediary-server.js
-│   └── package.json
-├── client/                 # Universal client library
-│   ├── allog-client.js
-│   ├── test-client.js
+│   ├── config.json
+│   ├── uploads/           # File upload storage
+│   ├── archives/          # Log archive storage
 │   └── package.json
 ├── viewer-app/             # React viewer application
 │   ├── src/
 │   ├── public/
 │   └── package.json
-├── start-allog.js          # Startup script
-├── package.json            # Main package.json
-└── README.md               # This file
+├── allogi.js              # Main startup script
+├── package.json           # Root package.json (scripts only)
+└── README.md              # This file
 ```
 
 ### Contributing
