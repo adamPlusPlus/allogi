@@ -2107,22 +2107,24 @@ class AllogIntermediaryServer {
       this.server.listen(port, () => {
         const messages = config.getStartupMessages(port, this.config.viewerPort);
         
-        // Log startup as structured log
+        // Create startup log entry
         const startupLog = {
           id: this.generateLogId(),
           timestamp: new Date().toISOString(),
           level: 'info',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'server_startup',
-          message: 'Allog Intermediary Server started successfully',
+          scriptId: 'SERVER',
+          sourceId: 'SERVER',
+          sourceType: 'startup_shutdown',
+          message: 'Allog Intermediary Server starting up',
           data: {
-            port: port,
-            viewerPort: this.config.viewerPort,
+            version: '1.0.0',
+            startTime: this.startTime,
             config: {
-              maxLogs: this.config.maxLogs,
+              port: this.config.port,
               enableWebSocket: this.config.enableWebSocket,
-              enablePersistence: this.config.enablePersistence
+              enablePersistence: this.config.enablePersistence,
+              maxLogs: this.config.maxLogs,
+              maxRecursiveLogs: this.config.maxRecursiveLogs
             }
           }
         };
@@ -2138,22 +2140,24 @@ class AllogIntermediaryServer {
       this.app.listen(port, () => {
         const messages = config.getStartupMessages(port, this.config.viewerPort);
         
-        // Log startup as structured log
+        // Create startup log entry
         const startupLog = {
           id: this.generateLogId(),
           timestamp: new Date().toISOString(),
           level: 'info',
-          scriptId: 'server',
-          sourceId: 'server',
-          sourceType: 'server_startup',
-          message: 'Allog Intermediary Server started successfully',
+          scriptId: 'SERVER',
+          sourceId: 'SERVER',
+          sourceType: 'startup_shutdown',
+          message: 'Allog Intermediary Server starting up',
           data: {
-            port: port,
-            viewerPort: this.config.viewerPort,
+            version: '1.0.0',
+            startTime: this.startTime,
             config: {
-              maxLogs: this.config.maxLogs,
+              port: this.config.port,
               enableWebSocket: this.config.enableWebSocket,
-              enablePersistence: this.config.enablePersistence
+              enablePersistence: this.config.enablePersistence,
+              maxLogs: this.config.maxLogs,
+              maxRecursiveLogs: this.config.maxRecursiveLogs
             }
           }
         };
@@ -2173,15 +2177,16 @@ class AllogIntermediaryServer {
       id: this.generateLogId(),
       timestamp: new Date().toISOString(),
       level: 'info',
-      scriptId: 'server',
-      sourceId: 'server',
-      sourceType: 'server_shutdown',
+      scriptId: 'SERVER',
+      sourceId: 'SERVER',
+      sourceType: 'startup_shutdown',
       message: 'Allog Intermediary Server shutting down',
       data: {
-        uptime: Date.now() - (this.startTime || Date.now()),
-        logsCount: this.logs?.length || 0,
-        sourcesCount: this.sources?.size || 0,
-        connectionsCount: this.connections?.size || 0
+        uptime: Date.now() - this.startTime,
+        totalLogs: this.logs.length,
+        totalServerLogs: this.serverLogs.length,
+        totalSources: this.sources.size,
+        totalConnections: this.connections.size
       }
     };
     
@@ -3238,6 +3243,20 @@ class AllogIntermediaryServer {
   // Generate unique log ID
   generateLogId() {
     return `log_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
+
+  getScriptCategory(scriptId) {
+    if (!scriptId) return 'unknown';
+    
+    const lowerScriptId = scriptId.toLowerCase();
+    
+    if (lowerScriptId.includes('server')) return 'SERVER';
+    if (lowerScriptId.includes('viewer')) return 'viewer';
+    if (lowerScriptId.includes('client')) return 'client';
+    if (lowerScriptId.includes('library')) return 'library';
+    if (lowerScriptId.includes('feature')) return 'feature';
+    
+    return 'application';
   }
 }
 

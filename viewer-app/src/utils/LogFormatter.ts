@@ -1,3 +1,5 @@
+import { LogValidator, LOG_FIELDS, type StandardLogEntry, type ServerLogEntry, type ApplicationLogEntry } from './LogConstants';
+
 /**
  * LogFormatter - Formats logs for better readability
  * Converts verbose JSON server logs into human-readable format
@@ -15,14 +17,24 @@ export class LogFormatter {
    * Format a log entry for display
    */
   static formatLog(log: any): FormattedLog {
+    // Normalize and validate the log entry
+    const normalizedLog = LogValidator.normalize(log);
+    
     // Check if this is a server log
-    const isServerLog = log.scriptId === 'SERVER' || log.sourceId === 'SERVER' || log.recursive === true;
+    const isServerLog = LogValidator.isServerLog(normalizedLog);
     
     if (isServerLog) {
-      return this.formatServerLog(log);
+      return this.formatServerLog(normalizedLog);
     }
     
-    return this.formatApplicationLog(log);
+    return this.formatApplicationLog(normalizedLog);
+  }
+
+  /**
+   * Determine if a log entry is a server log
+   */
+  private static isServerLog(log: any): boolean {
+    return LogValidator.isServerLog(log);
   }
 
   /**
