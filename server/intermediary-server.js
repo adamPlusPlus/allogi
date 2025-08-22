@@ -22,12 +22,16 @@ const cors = require('cors');
 const http = require('http');
 const WebSocket = require('ws');
 const path = require('path');
-const fs = require('fs').promises;
+const gracefulFs = require('graceful-fs');
+const fs = gracefulFs.promises;
 const { config } = require('./config-loader');
 const { DatabaseAdapter } = require('./database-adapter');
 const ErrorHandler = require('./error-handler');
 const MetricsCollector = require('./metrics-collector');
 const HealthChecker = require('./health-checker');
+
+// Enable graceful file system operations
+gracefulFs.gracefulify(require('fs'));
 
 class AllogIntermediaryServer {
   constructor(configOverrides = {}) {
@@ -43,6 +47,10 @@ class AllogIntermediaryServer {
     this.lastCleanup = Date.now();
     this.lastLogRotation = Date.now();
     this.lastArchiveCleanup = Date.now();
+    
+    // Initialize caching system
+    this.cache = require('cacache');
+    this.cacheDir = path.join(process.cwd(), '.cache');
     
     // Database adapter
     this.db = new DatabaseAdapter(this.config.storage || { backend: { type: 'file' } });
@@ -512,9 +520,19 @@ class AllogIntermediaryServer {
     });
 
     // Get all logs
-    this.app.get('/api/logs', (req, res) => {
+    this.app.get('/api/logs', async (req, res) => {
       try {
         const { level, sourceId, scriptId, limit, offset } = req.query;
+        
+        // Create cache key based on query parameters
+        const cacheKey = `logs:${level || 'all'}:${sourceId || 'all'}:${scriptId || 'all'}:${limit || 'all'}:${offset || 'all'}`;
+        
+        // Try to get from cache first
+        let cachedResult = await this.getCachedData(cacheKey);
+        if (cachedResult) {
+          return res.json(cachedResult);
+        }
+        
         let filteredLogs = [...this.logs];
 
         // Apply filters
@@ -533,13 +551,18 @@ class AllogIntermediaryServer {
         const end = limit ? start + parseInt(limit) : filteredLogs.length;
         const paginatedLogs = filteredLogs.slice(start, end);
 
-        res.json({
+        const result = {
           logs: paginatedLogs,
           total: filteredLogs.length,
           start: start,
           end: end,
           hasMore: end < filteredLogs.length
-        });
+        };
+        
+        // Cache the result for 30 seconds
+        await this.cacheData(cacheKey, result, 30000);
+        
+        res.json(result);
       } catch (error) {
         const errorResponse = this.errorHandler.createErrorResponse(error, {
           endpoint: '/api/logs',
@@ -3127,25 +3150,47 @@ class AllogIntermediaryServer {
 
   // Compress archive data
   async compressArchiveData(data) {
-    // Simple JSON compression - could be enhanced with gzip
-    return JSON.stringify(data);
+    const tar = require('tar');
+    const path = require('path');
+    
+    try {
+      // Create a temporary JSON file
+      const tempJsonPath = path.join(this.archiveDirectory, `temp-${Date.now()}.json`);
+      await fs.writeFile(tempJsonPath, JSON.stringify(data, null, 2));
+      
+      // Create compressed tar.gz
+      const tarPath = tempJsonPath.replace('.json', '.tar.gz');
+      await tar.create({
+        gzip: true,
+        file: tarPath
+      }, [tempJsonPath]);
+      
+      // Read the compressed file and clean up temp
+      const compressedData = await fs.readFile(tarPath);
+      await fs.unlink(tempJsonPath);
+      await fs.unlink(tarPath);
+      
+      return compressedData;
+    } catch (error) {
+      console.warn('Tar compression failed, falling back to JSON:', error);
+      return JSON.stringify(data);
+    }
   }
 
   // Clean up old archive files
   async cleanupOldArchives() {
-    const fs = require('fs').promises;
+    const glob = require('glob');
     const path = require('path');
+    const rimraf = require('rimraf');
     
     try {
       const maxArchiveFiles = this.config.maxArchiveFiles || 30;
-      const files = await fs.readdir(this.archiveDirectory);
       
-      // Filter archive files and sort by date
-      const archiveFiles = files
-        .filter(file => file.startsWith('allog-archive-') && file.endsWith('.json'))
-        .map(file => ({
-          name: file,
-          path: path.join(this.archiveDirectory, file),
+      // Use glob for pattern-based file matching
+      const archiveFiles = glob.sync(path.join(this.archiveDirectory, 'allog-archive-*.json'))
+        .map(filePath => ({
+          name: path.basename(filePath),
+          path: filePath,
           stats: null
         }));
 
@@ -3170,7 +3215,7 @@ class AllogIntermediaryServer {
         
         for (const file of filesToRemove) {
           try {
-            await fs.unlink(file.path);
+            await rimraf(file.path);
             console.log(`📁 Removed old archive: ${file.name}`);
           } catch (error) {
             console.warn(`Could not remove archive file: ${file.name}`, error);
@@ -3192,6 +3237,35 @@ class AllogIntermediaryServer {
       rotatedAt: new Date().toISOString(),
       archiveDirectory: this.archiveDirectory
     };
+  }
+
+  // Cache frequently accessed data
+  async cacheData(key, data, ttl = 300000) { // 5 minutes default
+    try {
+      await this.cache.put(this.cacheDir, key, JSON.stringify(data), {
+        metadata: { timestamp: Date.now(), ttl }
+      });
+    } catch (error) {
+      console.warn('Cache write failed:', error);
+    }
+  }
+
+  // Get cached data
+  async getCachedData(key) {
+    try {
+      const result = await this.cache.get(this.cacheDir, key);
+      const metadata = JSON.parse(result.metadata.toString());
+      
+      // Check if cache is still valid
+      if (Date.now() - metadata.timestamp > metadata.ttl) {
+        await this.cache.rm(this.cacheDir, key);
+        return null;
+      }
+      
+      return JSON.parse(result.data.toString());
+    } catch (error) {
+      return null; // Cache miss or invalid
+    }
   }
 
   // Get archive information

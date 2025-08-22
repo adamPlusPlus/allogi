@@ -482,26 +482,32 @@ class PostgreSQLBackend {
   }
 
   async initialize() {
-    const { Client } = require('pg');
+    const { Pool } = require('pg');
     
-    this.client = new Client({
+    this.pool = new Pool({
       host: this.options.host,
       port: this.options.port,
       database: this.options.database,
       user: this.options.user,
       password: this.options.password,
-      ssl: this.options.ssl
+      ssl: this.options.ssl,
+      max: 20,                    // Handle 20 concurrent requests
+      idleTimeoutMillis: 30000,   // Reuse connections
+      connectionTimeoutMillis: 2000,
+      acquireTimeoutMillis: 5000
     });
 
-    await this.client.connect();
+    // Test the connection
+    const client = await this.pool.connect();
+    await client.release();
     await this.createTables();
     
     console.log(`✅ PostgreSQL database connected: ${this.options.host}:${this.options.port}/${this.options.database}`);
   }
 
   async close() {
-    if (this.client) {
-      await this.client.end();
+    if (this.pool) {
+      await this.pool.end();
     }
   }
 
@@ -558,7 +564,9 @@ class PostgreSQLBackend {
 
     for (const sql of tables) {
       try {
-        await this.client.query(sql);
+        const client = await this.pool.connect();
+        await client.query(sql);
+        client.release();
       } catch (error) {
         console.error('PostgreSQL table creation error:', error);
       }
@@ -566,146 +574,188 @@ class PostgreSQLBackend {
   }
 
   async saveLogs(logs) {
-    // Clear existing and insert all
-    await this.client.query("DELETE FROM logs");
-    
-    if (logs.length === 0) return;
+    const client = await this.pool.connect();
+    try {
+      // Clear existing and insert all
+      await client.query("DELETE FROM logs");
+      
+      if (logs.length === 0) return;
 
-    const values = logs.map((log, i) => {
-      const base = i * 10;
-      return `($${base+1}, $${base+2}, $${base+3}, $${base+4}, $${base+5}, $${base+6}, $${base+7}, $${base+8}, $${base+9}, $${base+10})`;
-    }).join(',');
+      const values = logs.map((log, i) => {
+        const base = i * 10;
+        return `($${base+1}, $${base+2}, $${base+3}, $${base+4}, $${base+5}, $${base+6}, $${base+7}, $${base+8}, $${base+9}, $${base+10})`;
+      }).join(',');
 
-    const params = logs.flatMap(log => [
+      const params = logs.flatMap(log => [
       log.id, log.scriptId, log.level, log.message, log.timestamp, log.time,
       log.sourceId, JSON.stringify(log.data), log.stack, log.serverTime
     ]);
 
-    const sql = `
-      INSERT INTO logs (id, script_id, level, message, timestamp, time, source_id, data, stack, server_time)
-      VALUES ${values}
-    `;
+      const sql = `
+        INSERT INTO logs (id, script_id, level, message, timestamp, time, source_id, data, stack, server_time)
+        VALUES ${values}
+      `;
 
-    await this.client.query(sql, params);
+      await client.query(sql, params);
+    } finally {
+      client.release();
+    }
   }
 
   async loadLogs() {
-    const result = await this.client.query("SELECT * FROM logs ORDER BY timestamp DESC");
-    return result.rows.map(row => ({
-      id: row.id,
-      scriptId: row.script_id,
-      level: row.level,
-      message: row.message,
-      timestamp: row.timestamp,
-      time: row.time,
-      sourceId: row.source_id,
-      data: row.data,
-      stack: row.stack,
-      serverTime: row.server_time
-    }));
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query("SELECT * FROM logs ORDER BY timestamp DESC");
+      return result.rows.map(row => ({
+        id: row.id,
+        scriptId: row.script_id,
+        level: row.level,
+        message: row.message,
+        timestamp: row.timestamp,
+        time: row.time,
+        sourceId: row.source_id,
+        data: row.data,
+        stack: row.stack,
+        serverTime: row.server_time
+      }));
+    } finally {
+      client.release();
+    }
   }
 
   async saveMonitoringData(monitoringData) {
-    // Clear existing and insert all
-    await this.client.query("DELETE FROM monitoring_data");
-    
-    if (monitoringData.length === 0) return;
+    const client = await this.pool.connect();
+    try {
+      // Clear existing and insert all
+      await client.query("DELETE FROM monitoring_data");
+      
+      if (monitoringData.length === 0) return;
 
-    const values = monitoringData.map((entry, i) => {
-      const base = i * 11;
-      return `($${base+1}, $${base+2}, $${base+3}, $${base+4}, $${base+5}, $${base+6}, $${base+7}, $${base+8}, $${base+9}, $${base+10}, $${base+11})`;
-    }).join(',');
+      const values = monitoringData.map((entry, i) => {
+        const base = i * 11;
+        return `($${base+1}, $${base+2}, $${base+3}, $${base+4}, $${base+5}, $${base+6}, $${base+7}, $${base+8}, $${base+9}, $${base+10}, $${base+11})`;
+      }).join(',');
 
-    const params = monitoringData.flatMap(entry => [
-      entry.id, entry.moduleId, entry.scriptId, entry.type, entry.name,
-      JSON.stringify(entry.value), JSON.stringify(entry.previousValue),
-      entry.timestamp, entry.time, entry.sourceId, JSON.stringify(entry.metadata)
-    ]);
+      const params = monitoringData.flatMap(entry => [
+        entry.id, entry.moduleId, entry.scriptId, entry.type, entry.name,
+        JSON.stringify(entry.value), JSON.stringify(entry.previousValue),
+        entry.timestamp, entry.time, entry.sourceId, JSON.stringify(entry.metadata)
+      ]);
 
-    const sql = `
-      INSERT INTO monitoring_data (id, module_id, script_id, type, name, value, previous_value, timestamp, time, source_id, metadata)
-      VALUES ${values}
-    `;
+      const sql = `
+        INSERT INTO monitoring_data (id, module_id, script_id, type, name, value, previous_value, timestamp, time, source_id, metadata)
+        VALUES ${values}
+      `;
 
-    await this.client.query(sql, params);
+      await client.query(sql, params);
+    } finally {
+      client.release();
+    }
   }
 
   async loadMonitoringData() {
-    const result = await this.client.query("SELECT * FROM monitoring_data ORDER BY timestamp DESC");
-    return result.rows.map(row => ({
-      id: row.id,
-      moduleId: row.module_id,
-      scriptId: row.script_id,
-      type: row.type,
-      name: row.name,
-      value: row.value,
-      previousValue: row.previous_value,
-      timestamp: row.timestamp,
-      time: row.time,
-      sourceId: row.source_id,
-      metadata: row.metadata || {}
-    }));
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query("SELECT * FROM monitoring_data ORDER BY timestamp DESC");
+      return result.rows.map(row => ({
+        id: row.id,
+        moduleId: row.module_id,
+        scriptId: row.script_id,
+        type: row.type,
+        name: row.name,
+        value: row.value,
+        previousValue: row.previous_value,
+        timestamp: row.timestamp,
+        time: row.time,
+        sourceId: row.source_id,
+        metadata: row.metadata || {}
+      }));
+    } finally {
+      client.release();
+    }
   }
 
   async saveSources(sources) {
-    // Clear existing and insert all
-    await this.client.query("DELETE FROM sources");
-    
-    if (sources.size === 0) return;
+    const client = await this.pool.connect();
+    try {
+      // Clear existing and insert all
+      await client.query("DELETE FROM sources");
+      
+      if (sources.size === 0) return;
 
-    const values = Array.from(sources.entries()).map((_, i) => {
-      const base = i * 2;
-      return `($${base+1}, $${base+2})`;
-    }).join(',');
+      const values = Array.from(sources.entries()).map((_, i) => {
+        const base = i * 2;
+        return `($${base+1}, $${base+2})`;
+      }).join(',');
 
     const params = Array.from(sources.entries()).flatMap(([sourceId, sourceData]) => [
       sourceId, JSON.stringify(sourceData)
     ]);
 
-    const sql = `INSERT INTO sources (source_id, data) VALUES ${values}`;
-    await this.client.query(sql, params);
+      const sql = `INSERT INTO sources (source_id, data) VALUES ${values}`;
+      await client.query(sql, params);
+    } finally {
+      client.release();
+    }
   }
 
   async loadSources() {
-    const result = await this.client.query("SELECT * FROM sources");
-    const sources = new Map();
-    
-    result.rows.forEach(row => {
-      sources.set(row.source_id, row.data);
-    });
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query("SELECT * FROM sources");
+      const sources = new Map();
+      
+      result.rows.forEach(row => {
+        sources.set(row.source_id, row.data);
+      });
 
-    return sources;
+      return sources;
+    } finally {
+      client.release();
+    }
   }
 
   async addLog(log) {
-    const sql = `
-      INSERT INTO logs (id, script_id, level, message, timestamp, time, source_id, data, stack, server_time)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-    `;
-    
-    await this.client.query(sql, [
-      log.id, log.scriptId, log.level, log.message, log.timestamp, log.time,
-      log.sourceId, JSON.stringify(log.data), log.stack, log.serverTime
-    ]);
+    const client = await this.pool.connect();
+    try {
+      const sql = `
+        INSERT INTO logs (id, script_id, level, message, timestamp, time, source_id, data, stack, server_time)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      `;
+      
+      await client.query(sql, [
+        log.id, log.scriptId, log.level, log.message, log.timestamp, log.time,
+        log.sourceId, JSON.stringify(log.data), log.stack, log.serverTime
+      ]);
+    } finally {
+      client.release();
+    }
   }
 
   async addMonitoringEntry(entry) {
-    const sql = `
-      INSERT INTO monitoring_data (id, module_id, script_id, type, name, value, previous_value, timestamp, time, source_id, metadata)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-    `;
-    
-    await this.client.query(sql, [
-      entry.id, entry.moduleId, entry.scriptId, entry.type, entry.name,
-      JSON.stringify(entry.value), JSON.stringify(entry.previousValue),
-      entry.timestamp, entry.time, entry.sourceId, JSON.stringify(entry.metadata)
-    ]);
+    const client = await this.pool.connect();
+    try {
+      const sql = `
+        INSERT INTO monitoring_data (id, module_id, script_id, type, name, value, previous_value, timestamp, time, source_id, metadata)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      `;
+      
+      await client.query(sql, [
+        entry.id, entry.moduleId, entry.scriptId, entry.type, entry.name,
+        JSON.stringify(entry.value), JSON.stringify(entry.previousValue),
+        entry.timestamp, entry.time, entry.sourceId, JSON.stringify(entry.metadata)
+      ]);
+    } finally {
+      client.release();
+    }
   }
 
   async getLogsByFilter(filter) {
-    let sql = "SELECT * FROM logs WHERE 1=1";
-    const params = [];
-    let paramCount = 0;
+    const client = await this.pool.connect();
+    try {
+      let sql = "SELECT * FROM logs WHERE 1=1";
+      const params = [];
+      let paramCount = 0;
 
     if (filter.sourceId) {
       params.push(filter.sourceId);
@@ -739,31 +789,39 @@ class PostgreSQLBackend {
       sql += ` LIMIT $${++paramCount}`;
     }
 
-    const result = await this.client.query(sql, params);
-    return result.rows.map(row => ({
-      id: row.id,
-      scriptId: row.script_id,
-      level: row.level,
-      message: row.message,
-      timestamp: row.timestamp,
-      time: row.time,
-      sourceId: row.source_id,
-      data: row.data,
-      stack: row.stack,
-      serverTime: row.server_time
-    }));
+      const result = await client.query(sql, params);
+      return result.rows.map(row => ({
+        id: row.id,
+        scriptId: row.script_id,
+        level: row.level,
+        message: row.message,
+        timestamp: row.timestamp,
+        time: row.time,
+        sourceId: row.source_id,
+        data: row.data,
+        stack: row.stack,
+        serverTime: row.server_time
+      }));
+    } finally {
+      client.release();
+    }
   }
 
   async cleanup(retentionHours) {
-    const cutoffTime = Date.now() - (retentionHours * 60 * 60 * 1000);
-    
-    const logsResult = await this.client.query("DELETE FROM logs WHERE timestamp < $1", [new Date(cutoffTime).toISOString()]);
-    const monitoringResult = await this.client.query("DELETE FROM monitoring_data WHERE timestamp < $1", [cutoffTime]);
-    
-    return {
-      logsDeleted: logsResult.rowCount || 0,
-      monitoringDeleted: monitoringResult.rowCount || 0
-    };
+    const client = await this.pool.connect();
+    try {
+      const cutoffTime = Date.now() - (retentionHours * 60 * 60 * 1000);
+      
+      const logsResult = await client.query("DELETE FROM logs WHERE timestamp < $1", [new Date(cutoffTime).toISOString()]);
+      const monitoringResult = await client.query("DELETE FROM monitoring_data WHERE timestamp < $1", [cutoffTime]);
+      
+      return {
+        logsDeleted: logsResult.rowCount || 0,
+        monitoringDeleted: monitoringResult.rowCount || 0
+      };
+    } finally {
+      client.release();
+    }
   }
 }
 
