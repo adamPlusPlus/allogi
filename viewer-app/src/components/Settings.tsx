@@ -4,6 +4,10 @@ import '../styles/Settings.css';
 interface SettingsProps {
   isOpen: boolean;
   onClose: () => void;
+  monitoringAutoRefresh?: boolean;
+  monitoringRefreshInterval?: number;
+  onMonitoringAutoRefreshChange?: (enabled: boolean) => void;
+  onMonitoringRefreshIntervalChange?: (interval: number) => void;
 }
 
 interface RecipientInfo {
@@ -51,7 +55,14 @@ interface ArchiveInfo {
   totalSize: number;
 }
 
-const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
+const Settings: React.FC<SettingsProps> = ({ 
+  isOpen, 
+  onClose,
+  monitoringAutoRefresh: propMonitoringAutoRefresh = true,
+  monitoringRefreshInterval: propMonitoringRefreshInterval = 5000,
+  onMonitoringAutoRefreshChange,
+  onMonitoringRefreshIntervalChange
+}) => {
   const [recipients, setRecipients] = useState<RecipientInfo[]>([
     {
       id: 'allog-server',
@@ -108,6 +119,30 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
   const [selectedRecipient, setSelectedRecipient] = useState<RecipientInfo | null>(null);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(5000);
+  
+  // Monitoring refresh settings
+  const [monitoringAutoRefresh, setMonitoringAutoRefresh] = useState(propMonitoringAutoRefresh);
+  const [monitoringRefreshInterval, setMonitoringRefreshInterval] = useState(propMonitoringRefreshInterval);
+
+  // Update local state when props change
+  useEffect(() => {
+    setMonitoringAutoRefresh(propMonitoringAutoRefresh);
+  }, [propMonitoringAutoRefresh]);
+
+  useEffect(() => {
+    setMonitoringRefreshInterval(propMonitoringRefreshInterval);
+  }, [propMonitoringRefreshInterval]);
+
+  // Handlers for prop callbacks
+  const handleMonitoringAutoRefreshChange = (enabled: boolean) => {
+    setMonitoringAutoRefresh(enabled);
+    onMonitoringAutoRefreshChange?.(enabled);
+  };
+
+  const handleMonitoringRefreshIntervalChange = (interval: number) => {
+    setMonitoringRefreshInterval(interval);
+    onMonitoringRefreshIntervalChange?.(interval);
+  };
   
   // Persistence Limits State
   const [persistenceLimits, setPersistenceLimits] = useState({
@@ -170,10 +205,32 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
         setDatabaseConfig(results[0]);
         setDatabaseStats(results[1]);
         if (activeTab === 'maintenance') {
-          setArchiveInfo(results[2]);
+          // Ensure archiveInfo has the expected structure
+          const archiveData = results[2];
+          if (archiveData && typeof archiveData === 'object') {
+            setArchiveInfo({
+              archiveDirectory: archiveData.archiveDirectory || '',
+              totalArchives: archiveData.totalArchives || 0,
+              archives: Array.isArray(archiveData.archives) ? archiveData.archives : [],
+              totalSize: archiveData.totalSize || 0
+            });
+          } else {
+            setArchiveInfo(null);
+          }
         }
       } else if (activeTab === 'archives') {
-        setArchiveInfo(results[0]);
+        // Ensure archiveInfo has the expected structure
+        const archiveData = results[0];
+        if (archiveData && typeof archiveData === 'object') {
+          setArchiveInfo({
+            archiveDirectory: archiveData.archiveDirectory || '',
+            totalArchives: archiveData.totalArchives || 0,
+            archives: Array.isArray(archiveData.archives) ? archiveData.archives : [],
+            totalSize: archiveData.totalSize || 0
+          });
+        } else {
+          setArchiveInfo(null);
+        }
       }
     } catch (error) {
       console.error('Failed to load data management info:', error);
@@ -501,21 +558,21 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
-              {archiveInfo && (
+              {archiveInfo && archiveInfo.totalArchives !== undefined && (
                 <div className="settings-section">
                   <h3>📦 Archive Files ({archiveInfo.totalArchives})</h3>
                   <div className="archive-summary">
                     <div className="summary-item">
                       <span className="label">Archive Directory:</span>
-                      <span className="value">{archiveInfo.archiveDirectory}</span>
+                      <span className="value">{archiveInfo.archiveDirectory || 'N/A'}</span>
                     </div>
                     <div className="summary-item">
                       <span className="label">Total Size:</span>
-                      <span className="value">{(archiveInfo.totalSize / 1024 / 1024).toFixed(2)} MB</span>
+                      <span className="value">{archiveInfo.totalSize ? (archiveInfo.totalSize / 1024 / 1024).toFixed(2) : '0'} MB</span>
                     </div>
                   </div>
                   
-                  {archiveInfo.archives.length > 0 ? (
+                  {archiveInfo.archives && archiveInfo.archives.length > 0 ? (
                     <div className="archives-list">
                       {archiveInfo.archives.map(archive => (
                         <div key={archive.filename} className="archive-item">
@@ -626,12 +683,12 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                         </div>
                       </div>
                     )}
-                    {archiveInfo && (
+                    {archiveInfo && archiveInfo.totalArchives !== undefined && (
                       <div className="overview-card">
                         <h4>Archives</h4>
                         <div className="overview-stats">
                           <div>{archiveInfo.totalArchives} archive files</div>
-                          <div>{(archiveInfo.totalSize / 1024 / 1024).toFixed(2)} MB total</div>
+                          <div>{archiveInfo.totalSize ? (archiveInfo.totalSize / 1024 / 1024).toFixed(2) : '0'} MB total</div>
                         </div>
                       </div>
                     )}
@@ -651,12 +708,12 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />
-                Enable auto-refresh
+                Enable auto-refresh (general)
               </label>
             </div>
             <div className="setting-row">
               <label>
-                Refresh interval:
+                General refresh interval:
                 <select
                   value={refreshInterval}
                   onChange={(e) => setRefreshInterval(Number(e.target.value))}
@@ -669,6 +726,70 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                   <option value={30000}>30 seconds</option>
                 </select>
               </label>
+            </div>
+          </div>
+
+          {/* Monitoring Refresh Settings */}
+          <div className="settings-section monitoring-refresh-settings">
+            <h3>📊 Monitoring Refresh Settings</h3>
+            <div className="setting-row">
+              <p className="help-text">
+                Configure refresh behavior for the monitoring page. Lower intervals provide more real-time updates but may increase server load.
+              </p>
+            </div>
+            <div className="setting-row">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={monitoringAutoRefresh}
+                  onChange={(e) => handleMonitoringAutoRefreshChange(e.target.checked)}
+                />
+                Enable monitoring auto-refresh
+              </label>
+            </div>
+            <div className="setting-row">
+              <label>
+                Monitoring refresh interval:
+                <select
+                  value={monitoringRefreshInterval}
+                  onChange={(e) => handleMonitoringRefreshIntervalChange(Number(e.target.value))}
+                  disabled={!monitoringAutoRefresh}
+                >
+                  <option value={1000}>1 second</option>
+                  <option value={2000}>2 seconds</option>
+                  <option value={5000}>5 seconds (default)</option>
+                  <option value={10000}>10 seconds (balanced)</option>
+                  <option value={30000}>30 seconds (conservative)</option>
+                  <option value={60000}>1 minute</option>
+                </select>
+              </label>
+            </div>
+            <div className="setting-row">
+              <button 
+                className="action-btn primary"
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/config/monitoring-refresh', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        autoRefresh: monitoringAutoRefresh,
+                        refreshInterval: monitoringRefreshInterval
+                      })
+                    });
+                    if (response.ok) {
+                      showNotification('Monitoring refresh settings updated successfully', 'success');
+                    } else {
+                      showNotification('Failed to update monitoring refresh settings', 'error');
+                    }
+                  } catch (error) {
+                    showNotification('Failed to update monitoring refresh settings', 'error');
+                  }
+                }}
+              >
+                💾 Update Monitoring Settings
+              </button>
+              <span className="help-text">Click to apply these settings to the monitoring system</span>
             </div>
           </div>
           

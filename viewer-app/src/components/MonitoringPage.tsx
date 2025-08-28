@@ -87,9 +87,21 @@ interface MonitoringPageProps {
       logMessage?: string;
     }) => boolean;
   }>;
+  autoRefresh?: boolean;
+  refreshInterval?: number;
+  onAutoRefreshChange?: (enabled: boolean) => void;
+  onRefreshIntervalChange?: (interval: number) => void;
 }
 
-export default function MonitoringPage({ onStatsUpdate, onConnectionUpdate, saveSystemRef }: MonitoringPageProps) {
+export default function MonitoringPage({ 
+  onStatsUpdate, 
+  onConnectionUpdate, 
+  saveSystemRef,
+  autoRefresh: propAutoRefresh = true,
+  refreshInterval: propRefreshInterval = 5000,
+  onAutoRefreshChange,
+  onRefreshIntervalChange
+}: MonitoringPageProps) {
   const { contextMenu, showContextMenu, hideContextMenu } = useContextMenu();
   const { getHighlightStyles, isElementHighlighted } = useHighlights();
   // Double-click detection for native context menu
@@ -109,8 +121,28 @@ export default function MonitoringPage({ onStatsUpdate, onConnectionUpdate, save
     isConnected: false,
     retryCount: 0
   });
-  const [autoRefresh, setAutoRefresh] = useState(true);
-  const [refreshInterval, setRefreshInterval] = useState(500);
+  const [autoRefresh, setAutoRefresh] = useState(propAutoRefresh);
+  const [refreshInterval, setRefreshInterval] = useState(propRefreshInterval);
+
+  // Update local state when props change
+  useEffect(() => {
+    setAutoRefresh(propAutoRefresh);
+  }, [propAutoRefresh]);
+
+  useEffect(() => {
+    setRefreshInterval(propRefreshInterval);
+  }, [propRefreshInterval]);
+
+  // Handlers for prop callbacks
+  const handleAutoRefreshChange = (enabled: boolean) => {
+    setAutoRefresh(enabled);
+    onAutoRefreshChange?.(enabled);
+  };
+
+  const handleRefreshIntervalChange = (interval: number) => {
+    setRefreshInterval(interval);
+    onRefreshIntervalChange?.(interval);
+  };
   const [filters, setFilters] = useState<FilterOptions>({
     moduleId: '',
     scriptId: '',
@@ -980,6 +1012,33 @@ export default function MonitoringPage({ onStatsUpdate, onConnectionUpdate, save
             />
             Events
           </label>
+        </div>
+
+        <div className="refresh-controls">
+          <div className="refresh-group">
+            <label className="refresh-label">
+              <input
+                type="checkbox"
+                checked={autoRefresh}
+                onChange={(e) => handleAutoRefreshChange(e.target.checked)}
+                className="refresh-checkbox"
+              />
+              🔄 Auto-refresh
+            </label>
+            <select
+              value={refreshInterval}
+              onChange={(e) => handleRefreshIntervalChange(Number(e.target.value))}
+              disabled={!autoRefresh}
+              className="refresh-interval-select"
+            >
+              <option value={1000}>1 second</option>
+              <option value={2000}>2 seconds</option>
+              <option value={5000}>5 seconds</option>
+              <option value={10000}>10 seconds</option>
+              <option value={30000}>30 seconds</option>
+              <option value={60000}>1 minute</option>
+            </select>
+          </div>
         </div>
 
         <div className="view-mode-controls">

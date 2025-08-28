@@ -140,6 +140,58 @@
   color: #ffffff;
 }
 
+/* Refresh Controls */
+.refresh-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.refresh-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.refresh-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #cccccc;
+  cursor: pointer;
+  user-select: none;
+}
+
+.refresh-checkbox {
+  margin: 0;
+  cursor: pointer;
+}
+
+.refresh-interval-select {
+  padding: 6px 10px;
+  border: 1px solid #3e3e42;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #3c3c3c;
+  color: #cccccc;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.refresh-interval-select:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.25);
+}
+
+.refresh-interval-select:disabled {
+  background: #2d2d30;
+  color: #858585;
+  cursor: not-allowed;
+  border-color: #3e3e42;
+}
+
 /* Content - Optimized Layout */
 .monitoring-content {
   display: flex;

@@ -93,6 +93,10 @@ function App() {
   const [monitoringStats, setMonitoringStats] = useState<MonitoringStats>(viewerConfig.getInitialMonitoringStats());
   const [autoRefresh, setAutoRefresh] = useState(viewerConfig.autoRefreshEnabled);
   const [refreshInterval, setRefreshInterval] = useState(viewerConfig.defaultRefreshInterval);
+  
+  // Monitoring refresh settings
+  const [monitoringAutoRefresh, setMonitoringAutoRefresh] = useState(true);
+  const [monitoringRefreshInterval, setMonitoringRefreshInterval] = useState(5000);
   const [saveSystemOpen, setSaveSystemOpen] = useState(false);
   const [expandedLogs, setExpandedLogs] = useState<Set<string>>(new Set());
   const [selectedLog, setSelectedLog] = useState<LogEntry | null>(null);
@@ -1261,6 +1265,10 @@ function App() {
         onStatsUpdate={setMonitoringStats}
         onConnectionUpdate={setMonitoringConnection}
         saveSystemRef={saveSystemRef}
+        autoRefresh={monitoringAutoRefresh}
+        refreshInterval={monitoringRefreshInterval}
+        onAutoRefreshChange={setMonitoringAutoRefresh}
+        onRefreshIntervalChange={setMonitoringRefreshInterval}
       />
     </div>
   );
@@ -1529,6 +1537,10 @@ function App() {
       <Settings
         isOpen={settingsOpen}
         onClose={() => setSettingsOpen(false)}
+        monitoringAutoRefresh={monitoringAutoRefresh}
+        monitoringRefreshInterval={monitoringRefreshInterval}
+        onMonitoringAutoRefreshChange={setMonitoringAutoRefresh}
+        onMonitoringRefreshIntervalChange={setMonitoringRefreshInterval}
       />
     </div>
   );
