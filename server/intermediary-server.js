@@ -264,6 +264,157 @@ class AllogIntermediaryServer {
       }
     });
 
+    // Simple /logs endpoint for client compatibility
+    this.app.get('/logs', (req, res) => {
+      try {
+        const { limit = 100, offset = 0, level, sourceId, scriptId } = req.query;
+        
+        let filteredLogs = [...this.logs];
+        
+        // Apply filters
+        if (level) {
+          filteredLogs = filteredLogs.filter(log => log.level === level);
+        }
+        if (sourceId) {
+          filteredLogs = filteredLogs.filter(log => log.sourceId === sourceId);
+        }
+        if (scriptId) {
+          filteredLogs = filteredLogs.filter(log => log.scriptId === scriptId);
+        }
+        
+        // Apply pagination
+        const startIndex = parseInt(offset);
+        const endIndex = startIndex + parseInt(limit);
+        const paginatedLogs = filteredLogs.slice(startIndex, endIndex);
+        
+        res.json({
+          logs: paginatedLogs,
+          total: filteredLogs.length,
+          limit: parseInt(limit),
+          offset: startIndex,
+          hasMore: endIndex < filteredLogs.length
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/logs',
+          method: 'GET',
+          sourceId: req.get('X-Source-ID') || 'unknown'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    this.app.post('/logs', async (req, res) => {
+      try {
+        const sourceId = req.get('X-Source-ID') || 'unknown';
+        
+        // Forward to the appropriate API endpoint based on request content
+        let logEntry;
+        
+        if (req.body && typeof req.body === 'object') {
+          // Check if it's a text log with 'text' field
+          if (req.body.text && typeof req.body.text === 'string') {
+            // Text log - use text endpoint format
+            logEntry = this.createRawTextLogEntry(req.body.text, sourceId, req.body.level || 'info');
+          } else {
+            // Structured log - use single endpoint
+            logEntry = this.validateAndEnrichLogEntry(req.body, sourceId);
+          }
+          await this.addLogEntry(logEntry);
+        } else if (typeof req.body === 'string') {
+          // Text log - use text endpoint
+          logEntry = this.createRawTextLogEntry(req.body, sourceId);
+          await this.addLogEntry(logEntry);
+        } else {
+          // Raw data - use raw endpoint
+          logEntry = this.createRawTextLogEntry(String(req.body), sourceId);
+          await this.addLogEntry(logEntry);
+        }
+        
+        res.json({
+          message: 'Log entry received via /logs endpoint',
+          logId: logEntry.id,
+          serverTime: new Date().toISOString(),
+          forwarded: true
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/logs',
+          method: 'POST',
+          sourceId: req.get('X-Source-ID') || 'unknown',
+          userAgent: req.get('User-Agent'),
+          ip: req.ip
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
+    // DELETE endpoint for clearing logs
+    this.app.delete('/logs', (req, res) => {
+      try {
+        const logsCleared = this.logs.length;
+        this.logs = [];
+        
+        // Clear server logs as well
+        this.serverLogs = [];
+        
+        // Clear monitoring data safely
+        if (this.monitoringData && typeof this.monitoringData.clear === 'function') {
+          this.monitoringData.clear();
+        } else if (this.monitoringData) {
+          this.monitoringData = new Map();
+        }
+        
+        // Clear rate limit counters safely
+        if (this.rateLimitCounters && typeof this.rateLimitCounters.clear === 'function') {
+          this.rateLimitCounters.clear();
+        } else if (this.rateLimitCounters) {
+          this.rateLimitCounters = new Map();
+        }
+        
+        // Clear sources safely
+        if (this.sources && typeof this.sources.clear === 'function') {
+          this.sources.clear();
+        } else if (this.sources) {
+          this.sources = new Map();
+        }
+        
+        // Clear connections safely
+        if (this.connections && typeof this.connections.clear === 'function') {
+          this.connections.clear();
+        } else if (this.connections) {
+          this.connections = new Set();
+        }
+        
+        // Clear indexes if they exist
+        if (this.logIndexes) {
+          this.logIndexes.byTimeRange = [];
+          this.logIndexes.byLevel = new Map();
+          this.logIndexes.bySource = new Map();
+          this.logIndexes.byScript = new Map();
+        }
+        
+        if (this.monitoringIndexes) {
+          this.monitoringIndexes.byTimeRange = [];
+          this.monitoringIndexes.byType = new Map();
+          this.monitoringIndexes.bySource = new Map();
+        }
+        
+        res.json({
+          message: 'All logs and data cleared',
+          logsCleared,
+          serverTime: new Date().toISOString()
+        });
+      } catch (error) {
+        const errorResponse = this.errorHandler.createErrorResponse(error, {
+          endpoint: '/logs',
+          method: 'DELETE',
+          sourceId: req.get('X-Source-ID') || 'unknown'
+        });
+        res.status(errorResponse.statusCode).json(errorResponse);
+      }
+    });
+
     // Metrics endpoint
     this.app.get('/metrics', (req, res) => {
       const startTime = Date.now();
