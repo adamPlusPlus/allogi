@@ -97,8 +97,8 @@ export default function MonitoringPage({
   onStatsUpdate, 
   onConnectionUpdate, 
   saveSystemRef,
-  autoRefresh: propAutoRefresh = true,
-  refreshInterval: propRefreshInterval = 5000,
+  autoRefresh: propAutoRefresh = false,
+  refreshInterval: propRefreshInterval = 30000,
   onAutoRefreshChange,
   onRefreshIntervalChange
 }: MonitoringPageProps) {
@@ -216,12 +216,40 @@ export default function MonitoringPage({
      }
   }, [stats, selectedData]);
 
-  // Auto-refresh effect
+  // Auto-refresh effect with page visibility check
   useEffect(() => {
     if (!autoRefresh) return;
 
-    const interval = setInterval(fetchMonitoringData, refreshInterval);
-    return () => clearInterval(interval);
+    let interval: NodeJS.Timeout;
+    
+    const startInterval = () => {
+      if (document.visibilityState === 'visible') {
+        interval = setInterval(fetchMonitoringData, refreshInterval);
+      }
+    };
+    
+    const stopInterval = () => {
+      if (interval) clearInterval(interval);
+    };
+    
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        startInterval();
+      } else {
+        stopInterval();
+      }
+    };
+    
+    // Start interval if page is visible
+    startInterval();
+    
+    // Listen for visibility changes
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      stopInterval();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [autoRefresh, refreshInterval, fetchMonitoringData]);
 
   // Initial fetch

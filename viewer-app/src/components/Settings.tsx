@@ -117,8 +117,8 @@ const Settings: React.FC<SettingsProps> = ({
   ]);
 
   const [selectedRecipient, setSelectedRecipient] = useState<RecipientInfo | null>(null);
-  const [autoRefresh, setAutoRefresh] = useState(true);
-  const [refreshInterval, setRefreshInterval] = useState(5000);
+  const [autoRefresh, setAutoRefresh] = useState(false);
+  const [refreshInterval, setRefreshInterval] = useState(30000);
   
   // Monitoring refresh settings
   const [monitoringAutoRefresh, setMonitoringAutoRefresh] = useState(propMonitoringAutoRefresh);
