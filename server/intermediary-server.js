@@ -78,6 +78,44 @@ class AllogIntermediaryServer {
   }
 
   setupMiddleware() {
+    // Rate limiting middleware to prevent spam attacks
+    const requestCounts = new Map();
+    this.app.use((req, res, next) => {
+      const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
+      const now = Date.now();
+      const windowStart = now - 60000; // 1 minute window
+      
+      // Clean old entries
+      for (const [ip, requests] of requestCounts.entries()) {
+        requestCounts.set(ip, requests.filter(time => time > windowStart));
+        if (requestCounts.get(ip).length === 0) {
+          requestCounts.delete(ip);
+        }
+      }
+      
+      // Check current client
+      if (!requestCounts.has(clientIP)) {
+        requestCounts.set(clientIP, []);
+      }
+      
+      const clientRequests = requestCounts.get(clientIP);
+      
+      // Rate limit: max 100 requests per minute per IP
+      if (clientRequests.length >= 100) {
+        console.warn(`🚫 Rate limit exceeded for ${clientIP}: ${clientRequests.length} requests in last minute`);
+        return res.status(429).json({
+          error: 'Rate limit exceeded',
+          message: 'Too many requests from this IP. Please wait before retrying.',
+          retryAfter: 60,
+          requestsInWindow: clientRequests.length
+        });
+      }
+      
+      // Add current request
+      clientRequests.push(now);
+      next();
+    });
+
     // CORS for cross-origin requests
     this.app.use(cors({
       origin: '*',
@@ -192,6 +230,21 @@ class AllogIntermediaryServer {
   }
 
   setupRoutes() {
+    // Handle erroneous POST requests to root (common mistake)
+    this.app.post('/', (req, res) => {
+      const sourceId = req.get('X-Source-ID') || 'unknown';
+      console.warn(`⚠️  POST request to root endpoint from ${sourceId} - should use /logs instead`);
+      
+      res.status(400).json({
+        error: 'Wrong endpoint',
+        message: 'POST requests should be sent to /logs, not /',
+        correctEndpoint: '/logs',
+        serverUrl: `http://localhost:${this.config.ports.default}`,
+        documentation: 'See CONNECTION_GUIDE.md for proper usage',
+        sourceId: sourceId
+      });
+    });
+
     // Health check
     this.app.get('/', (req, res) => {
       res.json({
@@ -1032,8 +1085,11 @@ class AllogIntermediaryServer {
         if (this.serverLogs.length > (this.config.maxRecursiveLogs || this.config.maxLogs)) {
           this.serverLogs = this.serverLogs.slice(-(this.config.maxRecursiveLogs || this.config.maxLogs));
         }
-        if (this.monitoringData.length > this.config.maxMonitoringEntries) {
-          this.monitoringData = this.monitoringData.slice(-this.config.maxMonitoringEntries);
+        if (this.monitoringData.size > this.config.maxMonitoringEntries) {
+          // Convert to array, slice, then back to Map
+          const entries = Array.from(this.monitoringData.entries());
+          const sliced = entries.slice(-this.config.maxMonitoringEntries);
+          this.monitoringData = new Map(sliced);
         }
         
         res.json({ 
@@ -1706,12 +1762,12 @@ class AllogIntermediaryServer {
 
         // Import monitoring data
         if (monitoringData && Array.isArray(monitoringData)) {
-          if (replaceExisting) this.monitoringData = [];
+          if (replaceExisting) this.monitoringData = new Map();
           
           monitoringData.forEach(entry => {
             try {
-              if (!entry.id || !this.monitoringData.find(m => m.id === entry.id)) {
-                this.monitoringData.push(entry);
+              if (!entry.id || !this.monitoringData.has(entry.id)) {
+                this.monitoringData.set(entry.id, entry);
                 results.monitoring.imported++;
               } else {
                 results.monitoring.skipped++;
@@ -1723,8 +1779,10 @@ class AllogIntermediaryServer {
 
           // Maintain size limit
           const maxMonitoring = this.config.maxMonitoringEntries || (this.config.maxLogs * 2);
-          if (this.monitoringData.length > maxMonitoring) {
-            this.monitoringData = this.monitoringData.slice(-maxMonitoring);
+          if (this.monitoringData.size > maxMonitoring) {
+            const entries = Array.from(this.monitoringData.entries());
+            const sliced = entries.slice(-maxMonitoring);
+            this.monitoringData = new Map(sliced);
           }
         }
 
@@ -2204,7 +2262,7 @@ class AllogIntermediaryServer {
       this.rebuildLogIndexes();
       this.rebuildMonitoringIndexes();
       
-      console.log(`📂 Loaded ${this.logs.length} logs, ${this.monitoringData.length} monitoring entries, and ${this.sources.size} sources from database`);
+      console.log(`📂 Loaded ${this.logs.length} logs, ${this.monitoringData.size} monitoring entries, and ${this.sources.size} sources from database`);
     } catch (error) {
       console.error('Database load failed, trying file fallback:', error);
       
@@ -2214,7 +2272,12 @@ class AllogIntermediaryServer {
         const parsed = JSON.parse(data);
         
         this.logs = parsed.logs || [];
-        this.monitoringData = parsed.monitoringData || [];
+        // Convert monitoring data back to Map if it was loaded as array
+        if (Array.isArray(parsed.monitoringData)) {
+          this.monitoringData = new Map(parsed.monitoringData.map((entry, index) => [entry.id || index, entry]));
+        } else {
+          this.monitoringData = new Map(Object.entries(parsed.monitoringData || {}));
+        }
         this.sources = new Map(parsed.sources || []);
         
         // Rebuild indexes
@@ -2578,7 +2641,7 @@ class AllogIntermediaryServer {
   organizeMonitoringData() {
     const modules = {};
     
-    this.monitoringData.forEach(entry => {
+    this.monitoringData.forEach((entry, key) => {
       // Initialize module if it doesn't exist
       if (!modules[entry.moduleId]) {
         modules[entry.moduleId] = { 
@@ -2808,13 +2871,14 @@ class AllogIntermediaryServer {
     const retentionHours = this.config.monitoringRetentionHours || 48;
     const cutoffTime = Date.now() - (retentionHours * 60 * 60 * 1000);
     
-    const initialCount = this.monitoringData.length;
-    this.monitoringData = this.monitoringData.filter(entry => {
+    const initialCount = this.monitoringData.size;
+    const filteredEntries = Array.from(this.monitoringData.entries()).filter(([key, entry]) => {
       return entry.timestamp > cutoffTime;
     });
+    this.monitoringData = new Map(filteredEntries);
     
     // Rebuild monitoring indexes after cleanup
-    if (this.monitoringData.length !== initialCount) {
+    if (this.monitoringData.size !== initialCount) {
       this.rebuildMonitoringIndexes();
     }
   }
@@ -2843,7 +2907,7 @@ class AllogIntermediaryServer {
       this.rebuildLogIndexes();
     }
     
-    if (Math.abs(monitoringIndexSize - this.monitoringData.length) > 100) {
+    if (Math.abs(monitoringIndexSize - this.monitoringData.size) > 100) {
       this.rebuildMonitoringIndexes();
     }
   }
@@ -2962,9 +3026,9 @@ class AllogIntermediaryServer {
     };
 
     // Rebuild from current monitoring data
-    this.monitoringData.forEach(entry => this.addMonitoringToIndexes(entry));
+    this.monitoringData.forEach((entry, key) => this.addMonitoringToIndexes(entry));
     
-    console.log(`🔄 Rebuilt monitoring indexes (${this.monitoringData.length} entries)`);
+    console.log(`🔄 Rebuilt monitoring indexes (${this.monitoringData.size} entries)`);
   }
 
   // Fast log lookup methods using indexes
@@ -3245,10 +3309,10 @@ class AllogIntermediaryServer {
 
       // Clear current logs and monitoring data
       const archivedLogs = this.logs.length;
-      const archivedMonitoring = this.monitoringData.length;
+      const archivedMonitoring = this.monitoringData.size;
       
       this.logs = [];
-      this.monitoringData = [];
+      this.monitoringData = new Map();
       
       // Rebuild indexes
       this.rebuildLogIndexes();

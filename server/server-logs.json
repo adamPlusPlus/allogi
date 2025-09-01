@@ -1,179 +1,124 @@
 {
-  "timestamp": "2025-08-22T20:31:52.208Z",
+  "timestamp": "2025-09-01T21:21:44.168Z",
   "logs": [
     {
-      "id": "log_1755894692202_7y8nkirx5",
-      "timestamp": "2025-08-22T20:31:32.202Z",
+      "id": "log_1756761196785_g1i5qiu1d",
+      "timestamp": "2025-09-01T21:13:16.785Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
-      "sourceType": "startup_shutdown",
-      "message": "Allog Intermediary Server starting up",
+      "sourceType": "request_logger",
+      "message": "DELETE /logs - 200 (2ms)",
       "data": {
-        "version": "1.0.0",
-        "startTime": 1755894692128,
-        "config": {
-          "port": "3002",
-          "enableWebSocket": true,
-          "enablePersistence": true,
-          "maxLogs": 2000,
-          "maxRecursiveLogs": 1000
+        "method": "DELETE",
+        "url": "/logs",
+        "statusCode": 200,
+        "responseTime": 2
+      }
+    },
+    {
+      "id": "log_1756761201259_qm085is31",
+      "timestamp": "2025-09-01T21:13:21.259Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "request_logger",
+      "message": "GET /",
+      "data": {
+        "method": "GET",
+        "url": "/",
+        "sourceId": "unknown",
+        "timestamp": "2025-09-01T21:13:21.259Z"
+      }
+    },
+    {
+      "id": "log_1756761201261_8574yvvi1",
+      "timestamp": "2025-09-01T21:13:21.261Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "request_logger",
+      "message": "GET / - 200 (2ms)",
+      "data": {
+        "method": "GET",
+        "url": "/",
+        "statusCode": 200,
+        "responseTime": 2
+      }
+    },
+    {
+      "id": "metrics_1756761203769_kjp520f6t",
+      "timestamp": "2025-09-01T21:13:23.769Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "10MB",
+            "system": "30469MB"
+          },
+          "uptime": "1m"
         }
       }
     },
     {
-      "id": "log_1755894701638_kfcgb14np",
-      "timestamp": "2025-08-22T20:31:41.638Z",
+      "id": "metrics_1756761203775_nqzdcrm7i",
+      "timestamp": "2025-09-01T21:13:23.775Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/logs?includeRecursive=false",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
       "data": {
-        "method": "GET",
-        "url": "/api/logs?includeRecursive=false",
-        "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:41.639Z"
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "30467MB"
+          },
+          "uptime": "1m"
+        }
       }
     },
     {
-      "id": "log_1755894701640_6rsw3cxy7",
-      "timestamp": "2025-08-22T20:31:41.640Z",
+      "id": "metrics_1756761203775_9rfp04nqi",
+      "timestamp": "2025-09-01T21:13:23.775Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/status",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
       "data": {
-        "method": "GET",
-        "url": "/api/status",
-        "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:41.640Z"
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
       }
     },
     {
-      "id": "log_1755894701643_jgnbl98x2",
-      "timestamp": "2025-08-22T20:31:41.643Z",
+      "id": "metrics_1756761203776_nq8gihl8e",
+      "timestamp": "2025-09-01T21:13:23.776Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/status - 200 (3ms)",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
       "data": {
-        "method": "GET",
-        "url": "/api/status",
-        "statusCode": 200,
-        "responseTime": 3
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
       }
     },
     {
-      "id": "log_1755894701646_99fltci79",
-      "timestamp": "2025-08-22T20:31:41.646Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/status",
-      "data": {
-        "method": "GET",
-        "url": "/api/status",
-        "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:41.646Z"
-      }
-    },
-    {
-      "id": "log_1755894701646_rszx2mwfv",
-      "timestamp": "2025-08-22T20:31:41.646Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/status - 200 (0ms)",
-      "data": {
-        "method": "GET",
-        "url": "/api/status",
-        "statusCode": 200,
-        "responseTime": 0
-      }
-    },
-    {
-      "id": "log_1755894701656_g5og1rz9q",
-      "timestamp": "2025-08-22T20:31:41.656Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/logs?includeRecursive=false - 200 (18ms)",
-      "data": {
-        "method": "GET",
-        "url": "/api/logs?includeRecursive=false",
-        "statusCode": 200,
-        "responseTime": 18
-      }
-    },
-    {
-      "id": "log_1755894701657_crxavcwvn",
-      "timestamp": "2025-08-22T20:31:41.657Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/logs?includeRecursive=false",
-      "data": {
-        "method": "GET",
-        "url": "/api/logs?includeRecursive=false",
-        "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:41.657Z"
-      }
-    },
-    {
-      "id": "log_1755894701664_yczmfn439",
-      "timestamp": "2025-08-22T20:31:41.664Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /api/logs?includeRecursive=false - 304 (7ms)",
-      "data": {
-        "method": "GET",
-        "url": "/api/logs?includeRecursive=false",
-        "statusCode": 304,
-        "responseTime": 7
-      }
-    },
-    {
-      "id": "log_1755894701771_x9vebdwaa",
-      "timestamp": "2025-08-22T20:31:41.771Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "POST /api/logs/text",
-      "data": {
-        "method": "POST",
-        "url": "/api/logs/text",
-        "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:41.771Z"
-      }
-    },
-    {
-      "id": "log_1755894701772_8ysgy734r",
-      "timestamp": "2025-08-22T20:31:41.772Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "POST /api/logs/text - 200 (1ms)",
-      "data": {
-        "method": "POST",
-        "url": "/api/logs/text",
-        "statusCode": 200,
-        "responseTime": 1
-      }
-    },
-    {
-      "id": "metrics_1755894702205_pf54un7u8",
-      "timestamp": "2025-08-22T20:31:42.205Z",
+      "id": "metrics_1756761203777_d7q4pwnye",
+      "timestamp": "2025-09-01T21:13:23.777Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -183,14 +128,14 @@
         "category": "performance",
         "summary": {
           "total": 5,
-          "perSecond": 5,
-          "avgResponse": "6ms"
+          "perSecond": 0,
+          "avgResponse": "3ms"
         }
       }
     },
     {
-      "id": "metrics_1755894702206_hj5ayji61",
-      "timestamp": "2025-08-22T20:31:42.206Z",
+      "id": "metrics_1756761203777_bhhgj4x0d",
+      "timestamp": "2025-09-01T21:13:23.777Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -200,28 +145,28 @@
         "category": "performance",
         "summary": {
           "total": 5,
-          "perSecond": 5,
-          "avgResponse": "6ms"
+          "perSecond": 0,
+          "avgResponse": "3ms"
         }
       }
     },
     {
-      "id": "health_1755894702207_wthon82no",
-      "timestamp": "2025-08-22T20:31:42.207Z",
-      "level": "info",
+      "id": "health_1756761203778_3gtegpzxk",
+      "timestamp": "2025-09-01T21:13:23.778Z",
+      "level": "warn",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
       "sourceType": "health_checker",
-      "message": "Memory Usage: healthy",
+      "message": "Memory Usage: warning",
       "data": {
         "component": "memory",
-        "status": "healthy",
-        "message": "Memory usage: 72%"
+        "status": "warning",
+        "message": "Memory usage: 81%"
       }
     },
     {
-      "id": "health_1755894702207_mh7rglw6x",
-      "timestamp": "2025-08-22T20:31:42.207Z",
+      "id": "health_1756761203778_9qikd9c5u",
+      "timestamp": "2025-09-01T21:13:23.778Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -230,12 +175,258 @@
       "data": {
         "component": "websocket",
         "status": "healthy",
-        "message": "WebSocket: 1 active, 0 stale"
+        "message": "WebSocket: 0 active, 0 stale"
       }
     },
     {
-      "id": "health_1755894702207_ljynfmemp",
-      "timestamp": "2025-08-22T20:31:42.207Z",
+      "id": "metrics_1756761213791_w3mkk34sq",
+      "timestamp": "2025-09-01T21:13:33.791Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 5,
+          "perSecond": 0,
+          "avgResponse": "3ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761213791_q0l7uwj2v",
+      "timestamp": "2025-09-01T21:13:33.791Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 5,
+          "perSecond": 0,
+          "avgResponse": "3ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761213792_phzznb95a",
+      "timestamp": "2025-09-01T21:13:33.792Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (0ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761218783_y1fhn7v11",
+      "timestamp": "2025-09-01T21:13:38.783Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761218784_s0nc2irfr",
+      "timestamp": "2025-09-01T21:13:38.784Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761223800_b01utdfv1",
+      "timestamp": "2025-09-01T21:13:43.800Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 5,
+          "perSecond": 0,
+          "avgResponse": "3ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761223801_2brrkjrcq",
+      "timestamp": "2025-09-01T21:13:43.801Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 5,
+          "perSecond": 0,
+          "avgResponse": "3ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761223801_17sd2mvhl",
+      "timestamp": "2025-09-01T21:13:43.801Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 83%"
+      }
+    },
+    {
+      "id": "health_1756761223802_rb1uivl17",
+      "timestamp": "2025-09-01T21:13:43.802Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761233771_3ni7shh1e",
+      "timestamp": "2025-09-01T21:13:53.771Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "32303MB"
+          },
+          "uptime": "1m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761233776_ii36ibyhl",
+      "timestamp": "2025-09-01T21:13:53.776Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "32309MB"
+          },
+          "uptime": "1m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761233797_paw4icjrq",
+      "timestamp": "2025-09-01T21:13:53.797Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761233798_h2xxxpoh4",
+      "timestamp": "2025-09-01T21:13:53.798Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761233799_9xjzcvv6b",
+      "timestamp": "2025-09-01T21:13:53.799Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 5,
+          "perSecond": 0,
+          "avgResponse": "3ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761233812_g8nenqxs1",
+      "timestamp": "2025-09-01T21:13:53.812Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 5,
+          "perSecond": 0,
+          "avgResponse": "3ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761233813_b0nrwmkj6",
+      "timestamp": "2025-09-01T21:13:53.813Z",
       "level": "error",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -248,98 +439,8 @@
       }
     },
     {
-      "id": "health_1755894702208_h0iqfqm0k",
-      "timestamp": "2025-08-22T20:31:42.208Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "health_checker",
-      "message": "Log Rotation: healthy",
-      "data": {
-        "component": "log_rotation",
-        "status": "healthy",
-        "message": "Log rotation disabled"
-      }
-    },
-    {
-      "id": "health_1755894702209_quffxiry6",
-      "timestamp": "2025-08-22T20:31:42.209Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "health_checker",
-      "message": "Archive System: healthy",
-      "data": {
-        "component": "archives",
-        "status": "healthy",
-        "message": "Archive system: 1 files, 252 B"
-      }
-    },
-    {
-      "id": "health_1755894702209_h62d6vqaw",
-      "timestamp": "2025-08-22T20:31:42.209Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "health_checker",
-      "message": "Database Connection: healthy",
-      "data": {
-        "component": "database",
-        "status": "healthy",
-        "message": "Database responsive (3ms)"
-      }
-    },
-    {
-      "id": "health_1755894702211_4vz0syfh9",
-      "timestamp": "2025-08-22T20:31:42.211Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "health_checker",
-      "message": "File System: healthy",
-      "data": {
-        "component": "filesystem",
-        "status": "healthy",
-        "message": "File system accessible"
-      }
-    },
-    {
-      "id": "metrics_1755894707202_w15qyacuw",
-      "timestamp": "2025-08-22T20:31:47.202Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "metrics_collector",
-      "message": "Metrics collected for database",
-      "data": {
-        "category": "database",
-        "summary": {
-          "logs": 31,
-          "monitoring": 0,
-          "sources": 0
-        }
-      }
-    },
-    {
-      "id": "metrics_1755894707203_0ol7wbau1",
-      "timestamp": "2025-08-22T20:31:47.203Z",
-      "level": "info",
-      "scriptId": "SERVER",
-      "sourceId": "SERVER",
-      "sourceType": "metrics_collector",
-      "message": "Metrics collected for database",
-      "data": {
-        "category": "database",
-        "summary": {
-          "logs": 31,
-          "monitoring": 0,
-          "sources": 0
-        }
-      }
-    },
-    {
-      "id": "log_1755894710535_3rsfopa0r",
-      "timestamp": "2025-08-22T20:31:50.535Z",
+      "id": "log_1756761241851_nl7q1i5c5",
+      "timestamp": "2025-09-01T21:14:01.851Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -349,12 +450,12 @@
         "method": "GET",
         "url": "/",
         "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:50.535Z"
+        "timestamp": "2025-09-01T21:14:01.851Z"
       }
     },
     {
-      "id": "log_1755894710536_tx947k939",
-      "timestamp": "2025-08-22T20:31:50.536Z",
+      "id": "log_1756761241852_k6pwjof1l",
+      "timestamp": "2025-09-01T21:14:01.852Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -368,38 +469,130 @@
       }
     },
     {
-      "id": "log_1755894710728_a346hg4fq",
-      "timestamp": "2025-08-22T20:31:50.728Z",
+      "id": "metrics_1756761243805_9vd7xpgs9",
+      "timestamp": "2025-09-01T21:14:03.805Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /favicon.ico",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
       "data": {
-        "method": "GET",
-        "url": "/favicon.ico",
-        "sourceId": "unknown",
-        "timestamp": "2025-08-22T20:31:50.728Z"
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
       }
     },
     {
-      "id": "log_1755894710730_w02ziqnsh",
-      "timestamp": "2025-08-22T20:31:50.730Z",
+      "id": "metrics_1756761243821_sn9nfobtt",
+      "timestamp": "2025-09-01T21:14:03.821Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761243822_bo9zpeae2",
+      "timestamp": "2025-09-01T21:14:03.822Z",
       "level": "warn",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
-      "sourceType": "request_logger",
-      "message": "GET /favicon.ico - 404 (2ms)",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
       "data": {
-        "method": "GET",
-        "url": "/favicon.ico",
-        "statusCode": 404,
-        "responseTime": 2
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 89%"
       }
     },
     {
-      "id": "metrics_1755894712207_xmagdhiv2",
-      "timestamp": "2025-08-22T20:31:52.207Z",
+      "id": "health_1756761243822_q5iknzx5b",
+      "timestamp": "2025-09-01T21:14:03.822Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761243823_qpquvnu1a",
+      "timestamp": "2025-09-01T21:14:03.823Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "health_1756761243825_chdk509i6",
+      "timestamp": "2025-09-01T21:14:03.825Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761248798_z8e82nstw",
+      "timestamp": "2025-09-01T21:14:08.798Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761248799_t6165bayd",
+      "timestamp": "2025-09-01T21:14:08.799Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761253807_cnh2nwqlz",
+      "timestamp": "2025-09-01T21:14:13.807Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -408,15 +601,15 @@
       "data": {
         "category": "performance",
         "summary": {
-          "total": 7,
+          "total": 6,
           "perSecond": 0,
-          "avgResponse": "5ms"
+          "avgResponse": "2ms"
         }
       }
     },
     {
-      "id": "metrics_1755894712208_gihh2kl4d",
-      "timestamp": "2025-08-22T20:31:52.208Z",
+      "id": "metrics_1756761253823_ldissmsly",
+      "timestamp": "2025-09-01T21:14:13.823Z",
       "level": "info",
       "scriptId": "SERVER",
       "sourceId": "SERVER",
@@ -425,10 +618,4234 @@
       "data": {
         "category": "performance",
         "summary": {
-          "total": 7,
+          "total": 6,
           "perSecond": 0,
-          "avgResponse": "5ms"
+          "avgResponse": "2ms"
         }
+      }
+    },
+    {
+      "id": "metrics_1756761263782_0spicq33c",
+      "timestamp": "2025-09-01T21:14:23.782Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33681MB"
+          },
+          "uptime": "2m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761263787_t7ejj4b2j",
+      "timestamp": "2025-09-01T21:14:23.787Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33679MB"
+          },
+          "uptime": "2m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761263807_xahuwm5x6",
+      "timestamp": "2025-09-01T21:14:23.807Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761263808_13lhib2j2",
+      "timestamp": "2025-09-01T21:14:23.808Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761263809_pktvvl5zj",
+      "timestamp": "2025-09-01T21:14:23.809Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761263823_67wjt6hpc",
+      "timestamp": "2025-09-01T21:14:23.823Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761263824_ncwumvnr3",
+      "timestamp": "2025-09-01T21:14:23.824Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 87%"
+      }
+    },
+    {
+      "id": "health_1756761263825_y7id87ud5",
+      "timestamp": "2025-09-01T21:14:23.825Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761273817_2b4t67zpk",
+      "timestamp": "2025-09-01T21:14:33.817Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761273833_bbfupgkx1",
+      "timestamp": "2025-09-01T21:14:33.833Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761273834_tof7ghzaz",
+      "timestamp": "2025-09-01T21:14:33.834Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (0ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761278812_v52u6pcpb",
+      "timestamp": "2025-09-01T21:14:38.812Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761278813_0khlk2a0d",
+      "timestamp": "2025-09-01T21:14:38.813Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761283824_q7xb1fclp",
+      "timestamp": "2025-09-01T21:14:43.824Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761283839_ggxnva63u",
+      "timestamp": "2025-09-01T21:14:43.839Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761283840_b0f2k28bp",
+      "timestamp": "2025-09-01T21:14:43.840Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 91%"
+      }
+    },
+    {
+      "id": "health_1756761283840_ht619mtup",
+      "timestamp": "2025-09-01T21:14:43.840Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761283840_ojmoy8xhy",
+      "timestamp": "2025-09-01T21:14:43.840Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "metrics_1756761293790_owsock262",
+      "timestamp": "2025-09-01T21:14:53.790Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "31664MB"
+          },
+          "uptime": "2m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761293797_jwevwzdbd",
+      "timestamp": "2025-09-01T21:14:53.797Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "31671MB"
+          },
+          "uptime": "2m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761293816_hgx55ti2l",
+      "timestamp": "2025-09-01T21:14:53.816Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761293817_ovkgq8osv",
+      "timestamp": "2025-09-01T21:14:53.817Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761293832_xo38z34co",
+      "timestamp": "2025-09-01T21:14:53.832Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761293847_j92qnnxdk",
+      "timestamp": "2025-09-01T21:14:53.847Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761303841_lt1dicxhb",
+      "timestamp": "2025-09-01T21:15:03.841Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761303857_k9d9n3q1t",
+      "timestamp": "2025-09-01T21:15:03.857Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761303858_9rdjh75qj",
+      "timestamp": "2025-09-01T21:15:03.858Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 89%"
+      }
+    },
+    {
+      "id": "health_1756761303859_n07ybrpin",
+      "timestamp": "2025-09-01T21:15:03.859Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761303859_3xv5yqwfc",
+      "timestamp": "2025-09-01T21:15:03.859Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Log Rotation: healthy",
+      "data": {
+        "component": "log_rotation",
+        "status": "healthy",
+        "message": "Log rotation disabled"
+      }
+    },
+    {
+      "id": "health_1756761303860_w530tagys",
+      "timestamp": "2025-09-01T21:15:03.860Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (2ms)"
+      }
+    },
+    {
+      "id": "health_1756761303862_5g8ttwuij",
+      "timestamp": "2025-09-01T21:15:03.862Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761308822_b9jgpd7mw",
+      "timestamp": "2025-09-01T21:15:08.822Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761308823_8vvgfcla7",
+      "timestamp": "2025-09-01T21:15:08.823Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761313853_m0dxg0ik0",
+      "timestamp": "2025-09-01T21:15:13.853Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761313869_325iygb4i",
+      "timestamp": "2025-09-01T21:15:13.869Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761323790_ktyegcuds",
+      "timestamp": "2025-09-01T21:15:23.790Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "10MB",
+            "system": "32301MB"
+          },
+          "uptime": "3m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761323797_4szdzcus8",
+      "timestamp": "2025-09-01T21:15:23.797Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "10MB",
+            "system": "32304MB"
+          },
+          "uptime": "3m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761323832_vmw9fakk9",
+      "timestamp": "2025-09-01T21:15:23.832Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761323833_h3fty9ylb",
+      "timestamp": "2025-09-01T21:15:23.833Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761323864_ku949yy35",
+      "timestamp": "2025-09-01T21:15:23.864Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761323880_oqsbjfuvn",
+      "timestamp": "2025-09-01T21:15:23.880Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761323881_0xzycezlg",
+      "timestamp": "2025-09-01T21:15:23.881Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 90%"
+      }
+    },
+    {
+      "id": "health_1756761323882_miy6sn1xg",
+      "timestamp": "2025-09-01T21:15:23.882Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761333876_i7qfc2vsz",
+      "timestamp": "2025-09-01T21:15:33.876Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761333891_l4qxcmdg0",
+      "timestamp": "2025-09-01T21:15:33.891Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761333893_cftmuw61z",
+      "timestamp": "2025-09-01T21:15:33.893Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "health_1756761333893_2timrf1hl",
+      "timestamp": "2025-09-01T21:15:33.893Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761338835_es3jt9hgc",
+      "timestamp": "2025-09-01T21:15:38.835Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761338836_y2vmob4ok",
+      "timestamp": "2025-09-01T21:15:38.836Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761343884_m0jshy6lj",
+      "timestamp": "2025-09-01T21:15:43.884Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761343900_t4m5x1j2f",
+      "timestamp": "2025-09-01T21:15:43.900Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761343901_cao69p12b",
+      "timestamp": "2025-09-01T21:15:43.901Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 88%"
+      }
+    },
+    {
+      "id": "health_1756761343901_mutgzegjy",
+      "timestamp": "2025-09-01T21:15:43.901Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761353803_1ejx3bd2w",
+      "timestamp": "2025-09-01T21:15:53.803Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "32519MB"
+          },
+          "uptime": "3m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761353810_uzwugc7pr",
+      "timestamp": "2025-09-01T21:15:53.810Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "32514MB"
+          },
+          "uptime": "3m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761353844_ci0mwwpx2",
+      "timestamp": "2025-09-01T21:15:53.844Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761353845_q003turpz",
+      "timestamp": "2025-09-01T21:15:53.845Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761353892_fbvflk2k1",
+      "timestamp": "2025-09-01T21:15:53.892Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761353908_z7pxhzuq7",
+      "timestamp": "2025-09-01T21:15:53.908Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761363897_ok91zayto",
+      "timestamp": "2025-09-01T21:16:03.897Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761363912_w4nig87xj",
+      "timestamp": "2025-09-01T21:16:03.912Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761363913_o7u0d46lh",
+      "timestamp": "2025-09-01T21:16:03.913Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 94%"
+      }
+    },
+    {
+      "id": "health_1756761363914_vk3elcnej",
+      "timestamp": "2025-09-01T21:16:03.914Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761363915_ovif1syau",
+      "timestamp": "2025-09-01T21:16:03.915Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Archive System: healthy",
+      "data": {
+        "component": "archives",
+        "status": "healthy",
+        "message": "Archive system: 1 files, 252 B"
+      }
+    },
+    {
+      "id": "health_1756761363915_k0n9g1st4",
+      "timestamp": "2025-09-01T21:16:03.915Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (2ms)"
+      }
+    },
+    {
+      "id": "health_1756761363917_hswnvrrma",
+      "timestamp": "2025-09-01T21:16:03.917Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761368858_hd2d6odxs",
+      "timestamp": "2025-09-01T21:16:08.858Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761368858_wv0nu3phb",
+      "timestamp": "2025-09-01T21:16:08.858Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761373897_ftc3e3hgz",
+      "timestamp": "2025-09-01T21:16:13.897Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761373913_ve6cv74js",
+      "timestamp": "2025-09-01T21:16:13.913Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761383814_6ztgm42o4",
+      "timestamp": "2025-09-01T21:16:23.814Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33421MB"
+          },
+          "uptime": "4m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761383819_8aipx5suf",
+      "timestamp": "2025-09-01T21:16:23.819Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33422MB"
+          },
+          "uptime": "4m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761383872_edza14ieg",
+      "timestamp": "2025-09-01T21:16:23.872Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761383873_2wipmvzk6",
+      "timestamp": "2025-09-01T21:16:23.873Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761383904_vlftxxa3u",
+      "timestamp": "2025-09-01T21:16:23.904Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761383920_vj2kky88j",
+      "timestamp": "2025-09-01T21:16:23.920Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761383921_n0chcfh2z",
+      "timestamp": "2025-09-01T21:16:23.921Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 88%"
+      }
+    },
+    {
+      "id": "health_1756761383921_mfp77k6io",
+      "timestamp": "2025-09-01T21:16:23.921Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761383922_pvh59vybm",
+      "timestamp": "2025-09-01T21:16:23.922Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "metrics_1756761393916_s9wd2g0t7",
+      "timestamp": "2025-09-01T21:16:33.916Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761393930_r87yytas7",
+      "timestamp": "2025-09-01T21:16:33.930Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761393932_2m5b8l5hg",
+      "timestamp": "2025-09-01T21:16:33.932Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761398882_ihzijyg3f",
+      "timestamp": "2025-09-01T21:16:38.882Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761398882_j34it45gl",
+      "timestamp": "2025-09-01T21:16:38.882Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761403918_nf9jy9ubz",
+      "timestamp": "2025-09-01T21:16:43.918Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761403934_2m5qoc1m2",
+      "timestamp": "2025-09-01T21:16:43.934Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761403935_9es702f4j",
+      "timestamp": "2025-09-01T21:16:43.935Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 88%"
+      }
+    },
+    {
+      "id": "health_1756761403936_k57vg3iaz",
+      "timestamp": "2025-09-01T21:16:43.936Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761413829_tie5r3ihi",
+      "timestamp": "2025-09-01T21:16:53.829Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "32918MB"
+          },
+          "uptime": "4m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761413833_idd9pohmt",
+      "timestamp": "2025-09-01T21:16:53.833Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "32916MB"
+          },
+          "uptime": "4m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761413886_47ygs44tg",
+      "timestamp": "2025-09-01T21:16:53.886Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761413887_sc95efptu",
+      "timestamp": "2025-09-01T21:16:53.887Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761413918_t3yinevjg",
+      "timestamp": "2025-09-01T21:16:53.918Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761413934_5i8bziy68",
+      "timestamp": "2025-09-01T21:16:53.934Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761423921_fvjqd89v6",
+      "timestamp": "2025-09-01T21:17:03.921Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761423936_qcro0yq09",
+      "timestamp": "2025-09-01T21:17:03.936Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761423937_z92c9lpwg",
+      "timestamp": "2025-09-01T21:17:03.937Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 88%"
+      }
+    },
+    {
+      "id": "health_1756761423938_ca1ajy3zh",
+      "timestamp": "2025-09-01T21:17:03.938Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761423938_5w6rv4lfp",
+      "timestamp": "2025-09-01T21:17:03.938Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Log Rotation: healthy",
+      "data": {
+        "component": "log_rotation",
+        "status": "healthy",
+        "message": "Log rotation disabled"
+      }
+    },
+    {
+      "id": "health_1756761423939_uxedtepr3",
+      "timestamp": "2025-09-01T21:17:03.939Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (2ms)"
+      }
+    },
+    {
+      "id": "health_1756761423941_iq4ia4a7f",
+      "timestamp": "2025-09-01T21:17:03.941Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761428895_77mzlu9do",
+      "timestamp": "2025-09-01T21:17:08.895Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761428896_v3wgh4ocy",
+      "timestamp": "2025-09-01T21:17:08.896Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761433937_25kbr5m39",
+      "timestamp": "2025-09-01T21:17:13.937Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761433938_j15jrxhht",
+      "timestamp": "2025-09-01T21:17:13.938Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761433939_kncgshkcx",
+      "timestamp": "2025-09-01T21:17:13.939Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "metrics_1756761443841_wegtg5ke5",
+      "timestamp": "2025-09-01T21:17:23.841Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "10MB",
+            "system": "33501MB"
+          },
+          "uptime": "5m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761443846_tvofobtxo",
+      "timestamp": "2025-09-01T21:17:23.846Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33501MB"
+          },
+          "uptime": "5m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761443899_1058vkcbi",
+      "timestamp": "2025-09-01T21:17:23.899Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761443900_ry7rfibub",
+      "timestamp": "2025-09-01T21:17:23.900Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761443944_abcsxelau",
+      "timestamp": "2025-09-01T21:17:23.944Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761443945_8owmq1p65",
+      "timestamp": "2025-09-01T21:17:23.945Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761443946_8rdgndtwc",
+      "timestamp": "2025-09-01T21:17:23.946Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 91%"
+      }
+    },
+    {
+      "id": "health_1756761443947_uql3apo25",
+      "timestamp": "2025-09-01T21:17:23.947Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761453958_klm0xed8m",
+      "timestamp": "2025-09-01T21:17:33.958Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761453959_7jc7x7nop",
+      "timestamp": "2025-09-01T21:17:33.959Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761453961_hxdwcji4m",
+      "timestamp": "2025-09-01T21:17:33.961Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761458915_8b5brfos0",
+      "timestamp": "2025-09-01T21:17:38.915Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761458916_h28dotdi0",
+      "timestamp": "2025-09-01T21:17:38.916Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761463968_u1aa9iygp",
+      "timestamp": "2025-09-01T21:17:43.968Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761463969_9bre6e9rr",
+      "timestamp": "2025-09-01T21:17:43.969Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761463970_nvqsym6ig",
+      "timestamp": "2025-09-01T21:17:43.970Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 91%"
+      }
+    },
+    {
+      "id": "health_1756761463970_sxu745fom",
+      "timestamp": "2025-09-01T21:17:43.970Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761473857_k295bm7jk",
+      "timestamp": "2025-09-01T21:17:53.857Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33883MB"
+          },
+          "uptime": "5m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761473863_17rwg2jli",
+      "timestamp": "2025-09-01T21:17:53.863Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33882MB"
+          },
+          "uptime": "5m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761473928_5kc3yow9i",
+      "timestamp": "2025-09-01T21:17:53.928Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761473929_fqmfhzm54",
+      "timestamp": "2025-09-01T21:17:53.929Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761473976_dfz6g7uf3",
+      "timestamp": "2025-09-01T21:17:53.976Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761473978_xtjc6ovcq",
+      "timestamp": "2025-09-01T21:17:53.978Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761483978_o4yk6qns5",
+      "timestamp": "2025-09-01T21:18:03.978Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761483980_cc3jczqfe",
+      "timestamp": "2025-09-01T21:18:03.980Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761483981_fgcl59diu",
+      "timestamp": "2025-09-01T21:18:03.981Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 93%"
+      }
+    },
+    {
+      "id": "health_1756761483982_479xcs703",
+      "timestamp": "2025-09-01T21:18:03.982Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761483983_e2nils7zp",
+      "timestamp": "2025-09-01T21:18:03.983Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "health_1756761483985_favbn0433",
+      "timestamp": "2025-09-01T21:18:03.985Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (4ms)"
+      }
+    },
+    {
+      "id": "health_1756761483988_5nbmmmv0g",
+      "timestamp": "2025-09-01T21:18:03.988Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761488933_abjgav1d0",
+      "timestamp": "2025-09-01T21:18:08.933Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761488934_il8u8fxvq",
+      "timestamp": "2025-09-01T21:18:08.934Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761493989_yrelnsays",
+      "timestamp": "2025-09-01T21:18:13.989Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761493990_eg1cyydxd",
+      "timestamp": "2025-09-01T21:18:13.990Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761503863_jo574vhbd",
+      "timestamp": "2025-09-01T21:18:23.863Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33701MB"
+          },
+          "uptime": "6m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761503868_r1z3q07ug",
+      "timestamp": "2025-09-01T21:18:23.868Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "33701MB"
+          },
+          "uptime": "6m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761503937_9dzdn9hwb",
+      "timestamp": "2025-09-01T21:18:23.937Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761503938_wjtnkfm02",
+      "timestamp": "2025-09-01T21:18:23.938Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761503999_kqqarceyh",
+      "timestamp": "2025-09-01T21:18:23.999Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761504000_ml4pcbdx6",
+      "timestamp": "2025-09-01T21:18:24.000Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761504001_0ml4nqdnv",
+      "timestamp": "2025-09-01T21:18:24.001Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 91%"
+      }
+    },
+    {
+      "id": "health_1756761504001_gkwxw2ny0",
+      "timestamp": "2025-09-01T21:18:24.001Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761514001_ygrorr7be",
+      "timestamp": "2025-09-01T21:18:34.001Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761514002_p9by1b0m3",
+      "timestamp": "2025-09-01T21:18:34.002Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761514004_x0xituj3k",
+      "timestamp": "2025-09-01T21:18:34.004Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761518952_igbyn6pmz",
+      "timestamp": "2025-09-01T21:18:38.952Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761518953_h3lm1x6lo",
+      "timestamp": "2025-09-01T21:18:38.953Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761524005_8wvckwb1u",
+      "timestamp": "2025-09-01T21:18:44.005Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761524006_ndjuhtkhf",
+      "timestamp": "2025-09-01T21:18:44.006Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761524007_pxeh080j6",
+      "timestamp": "2025-09-01T21:18:44.007Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 92%"
+      }
+    },
+    {
+      "id": "health_1756761524008_gwznuwsi6",
+      "timestamp": "2025-09-01T21:18:44.008Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761533870_bvor2ua7d",
+      "timestamp": "2025-09-01T21:18:53.870Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "34555MB"
+          },
+          "uptime": "6m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761533877_5ykefyct6",
+      "timestamp": "2025-09-01T21:18:53.877Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "34554MB"
+          },
+          "uptime": "6m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761533961_1s82613eg",
+      "timestamp": "2025-09-01T21:18:53.961Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761533962_cuvri8ayz",
+      "timestamp": "2025-09-01T21:18:53.962Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761534007_qnffluy1g",
+      "timestamp": "2025-09-01T21:18:54.007Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761534009_hmr8yozae",
+      "timestamp": "2025-09-01T21:18:54.009Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761534009_ye9616ptz",
+      "timestamp": "2025-09-01T21:18:54.009Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "metrics_1756761544021_kyhqvwttd",
+      "timestamp": "2025-09-01T21:19:04.021Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761544022_z537c2yzo",
+      "timestamp": "2025-09-01T21:19:04.022Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761544024_qdd12sknv",
+      "timestamp": "2025-09-01T21:19:04.024Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 95%"
+      }
+    },
+    {
+      "id": "health_1756761544025_sxnbx2rez",
+      "timestamp": "2025-09-01T21:19:04.025Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761544026_zkeriq5co",
+      "timestamp": "2025-09-01T21:19:04.026Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Log Rotation: healthy",
+      "data": {
+        "component": "log_rotation",
+        "status": "healthy",
+        "message": "Log rotation disabled"
+      }
+    },
+    {
+      "id": "health_1756761544028_0pdlqi9uq",
+      "timestamp": "2025-09-01T21:19:04.028Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (3ms)"
+      }
+    },
+    {
+      "id": "health_1756761544028_w9kzc9v3h",
+      "timestamp": "2025-09-01T21:19:04.028Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Archive System: healthy",
+      "data": {
+        "component": "archives",
+        "status": "healthy",
+        "message": "Archive system: 1 files, 252 B"
+      }
+    },
+    {
+      "id": "health_1756761544030_k69hvxr0z",
+      "timestamp": "2025-09-01T21:19:04.030Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761548966_tjda3lzvg",
+      "timestamp": "2025-09-01T21:19:08.966Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761548967_an5vp5d8i",
+      "timestamp": "2025-09-01T21:19:08.967Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761554036_45gvl3ivi",
+      "timestamp": "2025-09-01T21:19:14.036Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761554037_gvin9fxwc",
+      "timestamp": "2025-09-01T21:19:14.037Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761563877_fx8jxmbei",
+      "timestamp": "2025-09-01T21:19:23.877Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35197MB"
+          },
+          "uptime": "7m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761563882_r0cq9v5hd",
+      "timestamp": "2025-09-01T21:19:23.882Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35199MB"
+          },
+          "uptime": "7m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761563981_jr65dwvzu",
+      "timestamp": "2025-09-01T21:19:23.981Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761563982_tlaghliuw",
+      "timestamp": "2025-09-01T21:19:23.982Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761564045_lhtw328b5",
+      "timestamp": "2025-09-01T21:19:24.045Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761564046_6jwowtrat",
+      "timestamp": "2025-09-01T21:19:24.046Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761564047_0q1x0tqik",
+      "timestamp": "2025-09-01T21:19:24.047Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 88%"
+      }
+    },
+    {
+      "id": "health_1756761564048_gz98r81lo",
+      "timestamp": "2025-09-01T21:19:24.048Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761574057_ryulacen7",
+      "timestamp": "2025-09-01T21:19:34.057Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761574058_4ke7f9ai9",
+      "timestamp": "2025-09-01T21:19:34.058Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761574060_8wwrnjfhu",
+      "timestamp": "2025-09-01T21:19:34.060Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761578982_inqzfqdye",
+      "timestamp": "2025-09-01T21:19:38.982Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761578984_nyy37hbad",
+      "timestamp": "2025-09-01T21:19:38.984Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761584057_i1b2nbfbz",
+      "timestamp": "2025-09-01T21:19:44.057Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761584058_gnr7r3705",
+      "timestamp": "2025-09-01T21:19:44.058Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761584060_460ezwin2",
+      "timestamp": "2025-09-01T21:19:44.060Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 91%"
+      }
+    },
+    {
+      "id": "health_1756761584061_buvnlgbwd",
+      "timestamp": "2025-09-01T21:19:44.061Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761584061_mlwq3gl00",
+      "timestamp": "2025-09-01T21:19:44.061Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "metrics_1756761593883_372qzjako",
+      "timestamp": "2025-09-01T21:19:53.883Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35358MB"
+          },
+          "uptime": "7m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761593889_8gx0m3tym",
+      "timestamp": "2025-09-01T21:19:53.889Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35357MB"
+          },
+          "uptime": "7m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761593987_gyjzbve68",
+      "timestamp": "2025-09-01T21:19:53.987Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761593988_7oz7k0c8j",
+      "timestamp": "2025-09-01T21:19:53.988Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761594064_ocwndktsd",
+      "timestamp": "2025-09-01T21:19:54.064Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761594065_h0drwxlqy",
+      "timestamp": "2025-09-01T21:19:54.065Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761604078_vbq61ejz1",
+      "timestamp": "2025-09-01T21:20:04.078Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761604080_0xesrhfyw",
+      "timestamp": "2025-09-01T21:20:04.080Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761604081_u6lzxwrfi",
+      "timestamp": "2025-09-01T21:20:04.081Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 96%"
+      }
+    },
+    {
+      "id": "health_1756761604082_rbpjbw21j",
+      "timestamp": "2025-09-01T21:20:04.082Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761604083_ugaq8zn69",
+      "timestamp": "2025-09-01T21:20:04.083Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (3ms)"
+      }
+    },
+    {
+      "id": "health_1756761604085_h8pndz78o",
+      "timestamp": "2025-09-01T21:20:04.085Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761609000_n5js10e69",
+      "timestamp": "2025-09-01T21:20:09.000Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761609001_mjbt8n8ps",
+      "timestamp": "2025-09-01T21:20:09.001Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761614084_2ot8j56yo",
+      "timestamp": "2025-09-01T21:20:14.084Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761614085_lxm8mzgyy",
+      "timestamp": "2025-09-01T21:20:14.085Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761623895_6ii0i7xgm",
+      "timestamp": "2025-09-01T21:20:23.895Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "34560MB"
+          },
+          "uptime": "8m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761623901_4tmmpsp2d",
+      "timestamp": "2025-09-01T21:20:23.901Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "34570MB"
+          },
+          "uptime": "8m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761624013_st0ckrzb0",
+      "timestamp": "2025-09-01T21:20:24.013Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761624015_wguor1trl",
+      "timestamp": "2025-09-01T21:20:24.015Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761624093_jiuq3u46y",
+      "timestamp": "2025-09-01T21:20:24.093Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761624094_zpsw7hpxq",
+      "timestamp": "2025-09-01T21:20:24.094Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761624095_0fiqdl17j",
+      "timestamp": "2025-09-01T21:20:24.095Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 89%"
+      }
+    },
+    {
+      "id": "health_1756761624096_xr98l4eum",
+      "timestamp": "2025-09-01T21:20:24.096Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761634097_re310xthh",
+      "timestamp": "2025-09-01T21:20:34.097Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761634098_ppovettkb",
+      "timestamp": "2025-09-01T21:20:34.098Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761634099_9lai5rx53",
+      "timestamp": "2025-09-01T21:20:34.099Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "health_1756761634101_c9ax70ziu",
+      "timestamp": "2025-09-01T21:20:34.101Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (2ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761639024_v4loz788q",
+      "timestamp": "2025-09-01T21:20:39.024Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761639026_2iumx5mkx",
+      "timestamp": "2025-09-01T21:20:39.026Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761644109_fwy3fvo6y",
+      "timestamp": "2025-09-01T21:20:44.109Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761644110_m36j4y9yn",
+      "timestamp": "2025-09-01T21:20:44.110Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761644111_y0fi7i7h9",
+      "timestamp": "2025-09-01T21:20:44.111Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 93%"
+      }
+    },
+    {
+      "id": "health_1756761644112_4y6jprxri",
+      "timestamp": "2025-09-01T21:20:44.112Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "metrics_1756761653905_11ac9qxht",
+      "timestamp": "2025-09-01T21:20:53.905Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35235MB"
+          },
+          "uptime": "8m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761653910_tgqewa4vy",
+      "timestamp": "2025-09-01T21:20:53.910Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35234MB"
+          },
+          "uptime": "8m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761654025_46gui2v7x",
+      "timestamp": "2025-09-01T21:20:54.025Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761654026_vo21hl1cu",
+      "timestamp": "2025-09-01T21:20:54.026Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761654120_5bd7p2jae",
+      "timestamp": "2025-09-01T21:20:54.120Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761654122_mjndotupp",
+      "timestamp": "2025-09-01T21:20:54.122Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761664128_yv26uicpa",
+      "timestamp": "2025-09-01T21:21:04.128Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761664130_nvfduj8dl",
+      "timestamp": "2025-09-01T21:21:04.130Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761664131_y9insyh4k",
+      "timestamp": "2025-09-01T21:21:04.131Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 93%"
+      }
+    },
+    {
+      "id": "health_1756761664132_24t9y2xfl",
+      "timestamp": "2025-09-01T21:21:04.132Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761664133_mfxrv36fb",
+      "timestamp": "2025-09-01T21:21:04.133Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Log Rotation: healthy",
+      "data": {
+        "component": "log_rotation",
+        "status": "healthy",
+        "message": "Log rotation disabled"
+      }
+    },
+    {
+      "id": "health_1756761664134_qkep1kl2k",
+      "timestamp": "2025-09-01T21:21:04.134Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (3ms)"
+      }
+    },
+    {
+      "id": "health_1756761664136_5p58h5864",
+      "timestamp": "2025-09-01T21:21:04.136Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "File System: healthy",
+      "data": {
+        "component": "filesystem",
+        "status": "healthy",
+        "message": "File system accessible"
+      }
+    },
+    {
+      "id": "metrics_1756761669035_5tiot2vj8",
+      "timestamp": "2025-09-01T21:21:09.035Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761669036_bg1c5di90",
+      "timestamp": "2025-09-01T21:21:09.036Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761674130_tp5gjjts2",
+      "timestamp": "2025-09-01T21:21:14.130Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761674131_ggra1l1mt",
+      "timestamp": "2025-09-01T21:21:14.131Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761683910_clqm1jx35",
+      "timestamp": "2025-09-01T21:21:23.910Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35931MB"
+          },
+          "uptime": "9m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761683916_0pobrhhoh",
+      "timestamp": "2025-09-01T21:21:23.916Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for system",
+      "data": {
+        "category": "system",
+        "summary": {
+          "memory": {
+            "process": "11MB",
+            "system": "35941MB"
+          },
+          "uptime": "9m"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761684047_xf1to6h4b",
+      "timestamp": "2025-09-01T21:21:24.047Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761684049_ms8qfhnen",
+      "timestamp": "2025-09-01T21:21:24.049Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761684143_cc23wtqc2",
+      "timestamp": "2025-09-01T21:21:24.143Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761684144_rbftyrdi7",
+      "timestamp": "2025-09-01T21:21:24.144Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761684145_qhlaivfeq",
+      "timestamp": "2025-09-01T21:21:24.145Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: critical",
+      "data": {
+        "component": "memory",
+        "status": "critical",
+        "message": "Memory usage: 93%"
+      }
+    },
+    {
+      "id": "health_1756761684146_ydep9h0lm",
+      "timestamp": "2025-09-01T21:21:24.146Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
+      }
+    },
+    {
+      "id": "health_1756761684147_ltb4o93n7",
+      "timestamp": "2025-09-01T21:21:24.147Z",
+      "level": "error",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Rate Limiting: error",
+      "data": {
+        "component": "rate_limiting",
+        "status": "error",
+        "message": "Rate limiting not available"
+      }
+    },
+    {
+      "id": "metrics_1756761694158_sy0l2l344",
+      "timestamp": "2025-09-01T21:21:34.158Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761694159_gvnx1yoih",
+      "timestamp": "2025-09-01T21:21:34.159Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    },
+    {
+      "id": "health_1756761694161_k735520pf",
+      "timestamp": "2025-09-01T21:21:34.161Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Database Connection: healthy",
+      "data": {
+        "component": "database",
+        "status": "healthy",
+        "message": "Database responsive (1ms)"
+      }
+    },
+    {
+      "id": "metrics_1756761699058_4ibtnceod",
+      "timestamp": "2025-09-01T21:21:39.058Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761699059_dlrkv7hj0",
+      "timestamp": "2025-09-01T21:21:39.059Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for database",
+      "data": {
+        "category": "database",
+        "summary": {
+          "logs": 0,
+          "sources": 0
+        }
+      }
+    },
+    {
+      "id": "metrics_1756761704168_f89p97ymm",
+      "timestamp": "2025-09-01T21:21:44.168Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    }
+  ]
+}{
+      "id": "metrics_1756761704169_9tc3c6hjz",
+      "timestamp": "2025-09-01T21:21:44.169Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "metrics_collector",
+      "message": "Metrics collected for performance",
+      "data": {
+        "category": "performance",
+        "summary": {
+          "total": 6,
+          "perSecond": 0,
+          "avgResponse": "2ms"
+        }
+      }
+    }
+  ]
+}{
+      "id": "health_1756761704170_s3tbs8lrf",
+      "timestamp": "2025-09-01T21:21:44.170Z",
+      "level": "warn",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "Memory Usage: warning",
+      "data": {
+        "component": "memory",
+        "status": "warning",
+        "message": "Memory usage: 88%"
+      }
+    },
+    {
+      "id": "health_1756761704171_8jmg7lsz1",
+      "timestamp": "2025-09-01T21:21:44.171Z",
+      "level": "info",
+      "scriptId": "SERVER",
+      "sourceId": "SERVER",
+      "sourceType": "health_checker",
+      "message": "WebSocket Connections: healthy",
+      "data": {
+        "component": "websocket",
+        "status": "healthy",
+        "message": "WebSocket: 0 active, 0 stale"
       }
     }
   ]

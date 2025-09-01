@@ -329,12 +329,13 @@ function App() {
   
   // Initialize console interceptor when connection is established
   useEffect(() => {
-    if (connection.isConnected && !consoleInterceptorRef.current) {
-      const apiClient = createAllogApiClient(viewerConfig.defaultServerUrl);
-      consoleInterceptorRef.current = new ConsoleInterceptor(apiClient);
-      consoleInterceptorRef.current.enable();
-      log.info('App', 'Console interceptor enabled - browser console logs will be sent to recursive logs');
-    }
+    // Console interceptor temporarily disabled to reduce system load
+    // if (connection.isConnected && !consoleInterceptorRef.current) {
+    //   const apiClient = createAllogApiClient(viewerConfig.defaultServerUrl);
+    //   consoleInterceptorRef.current = new ConsoleInterceptor(apiClient);
+    //   consoleInterceptorRef.current.enable();
+    //   log.info('App', 'Console interceptor enabled - browser console logs will be sent to recursive logs');
+    // }
     
     // Cleanup function to disable interceptor on unmount
     return () => {
@@ -1477,12 +1478,13 @@ function App() {
                 📊 Monitoring
               </button>
               <div className="view-separator"></div>
-              <button 
+              {/* Temporarily disabled to reduce system load */}
+              {/* <button 
                 className={`view-btn ${currentView === 'recursive' ? 'active' : ''}`}
                 onClick={() => setCurrentView('recursive')}
               >
                 🔄 Recursive Logs
-              </button>
+              </button> */}
               <div className="view-separator"></div>
               <button 
                 className={`view-btn ${currentView === 'instrumentation' ? 'active' : ''}`}
